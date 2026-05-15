@@ -1,67 +1,42 @@
-/* PASTE YOUR FULL style.css HERE */
-
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@400;500;700;800&display=swap');
 
 :root{
 
   --black:#0d0d0f;
-
   --charcoal:#151515;
-
   --panel:#101010;
-
   --brass:#b8893a;
-
   --brass2:#d0aa62;
-
   --cream:#e7e3dc;
-
   --muted:#b9aea1;
-
   --line:rgba(184,137,58,.28);
 
 }
 
 *{
-
   box-sizing:border-box;
-
   margin:0;
-
   padding:0;
-
 }
 
 html{
-
   scroll-behavior:smooth;
-
 }
 
 body{
-
   background:var(--black);
-
   color:var(--cream);
-
   font-family:Inter,Arial,sans-serif;
-
 }
 
 a{
-
   text-decoration:none;
-
   color:inherit;
-
 }
 
 img{
-
   display:block;
-
   max-width:100%;
-
 }
 
 /* HEADER */
@@ -69,26 +44,18 @@ img{
 .site-header{
 
   position:absolute;
-
   top:0;
-
   left:0;
-
   width:100%;
-
   z-index:10;
 
-  background:linear-gradient(
-
-    to bottom,
-
-    rgba(8,8,9,.94),
-
-    rgba(8,8,9,.55),
-
-    transparent
-
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(8,8,9,.94),
+      rgba(8,8,9,.55),
+      transparent
+    );
 
   border-bottom:1px solid rgba(184,137,58,.18);
 
@@ -97,15 +64,12 @@ img{
 .header-inner{
 
   width:min(1500px,94vw);
-
   margin:auto;
 
   height:96px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   gap:28px;
@@ -113,31 +77,21 @@ img{
 }
 
 .brand{
-
   display:flex;
-
   align-items:center;
-
   gap:18px;
-
 }
 
 .brand img{
-
   width:64px;
-
   height:64px;
-
 }
 
 .brand h1{
 
   font-family:Cinzel,Georgia,serif;
-
   font-size:1.32rem;
-
   font-weight:500;
-
   letter-spacing:.02em;
 
 }
@@ -145,11 +99,8 @@ img{
 .brand p{
 
   font-size:.78rem;
-
   color:var(--muted);
-
   line-height:1.35;
-
   margin-top:5px;
 
 }
@@ -157,50 +108,44 @@ img{
 nav{
 
   display:flex;
-
   gap:26px;
-
   align-items:center;
 
   text-transform:uppercase;
 
   font-size:.72rem;
-
   font-weight:700;
-
   letter-spacing:.06em;
 
 }
 
 nav a{
-
   opacity:.86;
-
 }
 
 nav a:hover{
-
   color:var(--brass2);
-
 }
 
 .header-btn,
-
 .btn.gold{
 
-  background:linear-gradient(135deg,var(--brass2),var(--brass));
+  background:
+    linear-gradient(
+      135deg,
+      var(--brass2),
+      var(--brass)
+    );
 
   color:#111;
 
-  font-size:.72rem;
+  font-size:.68rem;
 
   text-transform:uppercase;
-
   font-weight:800;
+  letter-spacing:.06em;
 
-  letter-spacing:.07em;
-
-  padding:14px 22px;
+  padding:13px 20px;
 
   border:1px solid rgba(255,255,255,.12);
 
@@ -211,13 +156,11 @@ nav a:hover{
   display:none;
 
   background:none;
-
   border:1px solid var(--line);
 
   color:var(--brass2);
 
   width:44px;
-
   height:42px;
 
   font-size:1.3rem;
@@ -229,15 +172,12 @@ nav a:hover{
 .hero{
 
   height:78vh;
-
   min-height:720px;
 
   position:relative;
-
   overflow:hidden;
 
   display:flex;
-
   align-items:center;
 
   border-bottom:1px solid var(--line);
@@ -247,55 +187,42 @@ nav a:hover{
 .hero-img{
 
   position:absolute;
-
   inset:0;
 
   width:100%;
-
   height:100%;
 
   object-fit:cover;
-
   object-position:center center;
 
-  filter:brightness(.72) contrast(1.08) saturate(.95);
+  filter:
+    brightness(.72)
+    contrast(1.08)
+    saturate(.95);
 
 }
 
 .hero-overlay,
-
 .hero-shade{
 
   position:absolute;
-
   inset:0;
 
   background:
 
     linear-gradient(
-
       to right,
-
       rgba(8,8,9,.96) 0%,
-
       rgba(8,8,9,.82) 35%,
-
       rgba(8,8,9,.28) 68%,
-
       rgba(8,8,9,.08) 100%
-
     ),
 
     linear-gradient(
-
       to top,
-
       rgba(8,8,9,.7),
-
       rgba(8,8,9,.05) 45%,
-
       rgba(8,8,9,.58)
-
     );
 
 }
@@ -305,6 +232,7 @@ nav a:hover{
   position:relative;
 
   width:min(1500px,94vw);
+  max-width:720px;
 
   margin:auto;
 
@@ -317,7 +245,6 @@ nav a:hover{
   color:var(--brass2);
 
   text-transform:uppercase;
-
   letter-spacing:.16em;
 
   margin-bottom:20px;
@@ -330,13 +257,15 @@ nav a:hover{
 
   font-family:Cinzel,Georgia,serif;
 
-  font-size:clamp(3.1rem,6.2vw,6.8rem);
+  font-size:clamp(2.8rem,5vw,5.35rem);
 
-  line-height:.96;
+  line-height:1;
 
   font-weight:400;
 
-  max-width:790px;
+  max-width:720px;
+
+  letter-spacing:.01em;
 
 }
 
@@ -357,9 +286,7 @@ nav a:hover{
 .hero-actions{
 
   display:flex;
-
   gap:16px;
-
   flex-wrap:wrap;
 
 }
@@ -368,15 +295,14 @@ nav a:hover{
 
   border:1px solid rgba(231,227,220,.46);
 
-  padding:14px 22px;
+  padding:13px 20px;
 
   text-transform:uppercase;
 
-  font-size:.72rem;
+  font-size:.68rem;
 
   font-weight:800;
-
-  letter-spacing:.07em;
+  letter-spacing:.06em;
 
   background:rgba(0,0,0,.28);
 
@@ -384,14 +310,12 @@ nav a:hover{
 
 /* VALUES */
 
-values-upgraded{
+.values-upgraded{
 
   display:grid;
-
   grid-template-columns:1fr;
 
   border-top:1px solid rgba(201,157,84,.18);
-
   border-bottom:1px solid rgba(201,157,84,.18);
 
   background:#090909;
@@ -401,7 +325,6 @@ values-upgraded{
 .value-card{
 
   display:flex;
-
   align-items:center;
 
   gap:42px;
@@ -415,15 +338,11 @@ values-upgraded{
 }
 
 .value-card:last-child{
-
   border-bottom:none;
-
 }
 
 .value-card:hover{
-
   background:rgba(201,157,84,.03);
-
 }
 
 .value-icon-wrap{
@@ -431,13 +350,10 @@ values-upgraded{
   flex-shrink:0;
 
   width:128px;
-
   height:128px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
 }
@@ -445,15 +361,12 @@ values-upgraded{
 .value-medallion{
 
   width:128px;
-
   height:128px;
 
   object-fit:contain;
 
   filter:
-
     drop-shadow(0 0 18px rgba(212,167,93,.16))
-
     drop-shadow(0 0 40px rgba(212,167,93,.08));
 
 }
@@ -487,12 +400,12 @@ values-upgraded{
   max-width:720px;
 
 }
+
 /* MAIN GRID */
 
 .main-grid{
 
   display:grid;
-
   grid-template-columns:1.15fr .9fr 1fr;
 
   border-bottom:1px solid var(--line);
@@ -500,10 +413,14 @@ values-upgraded{
 }
 
 .content-card,
-
 .bottom-card{
 
-  background:linear-gradient(145deg,#121212,#0d0d0f);
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #0d0d0f
+    );
 
   border-right:1px solid rgba(184,137,58,.2);
 
@@ -514,7 +431,6 @@ values-upgraded{
 }
 
 .content-card h2,
-
 .bottom-card h2{
 
   font-family:Cinzel,Georgia,serif;
@@ -530,7 +446,6 @@ values-upgraded{
 }
 
 .content-card p,
-
 .bottom-card p{
 
   color:#cfc7bb;
@@ -548,16 +463,19 @@ values-upgraded{
   min-height:395px;
 
   background:
-
-    linear-gradient(rgba(10,10,10,.25),rgba(10,10,10,.55)),
-
+    linear-gradient(
+      rgba(10,10,10,.25),
+      rgba(10,10,10,.55)
+    ),
     url('assets/hero-stjohns-night.jpg');
 
   background-size:cover;
-
   background-position:center;
 
-  filter:sepia(.35) grayscale(.3) brightness(.65);
+  filter:
+    sepia(.35)
+    grayscale(.3)
+    brightness(.65);
 
   border-right:1px solid rgba(184,137,58,.2);
 
@@ -585,48 +503,6 @@ values-upgraded{
 
 }
 
-.steps div{
-
-  position:relative;
-
-  padding-left:52px;
-
-  margin:22px 0;
-
-}
-
-.steps span{
-
-  position:absolute;
-
-  left:0;
-
-  top:0;
-
-  width:34px;
-
-  height:34px;
-
-  border-radius:50%;
-
-  border:1px solid var(--brass2);
-
-  color:var(--brass2);
-
-  display:grid;
-
-  place-items:center;
-
-}
-
-.steps strong{
-
-  display:block;
-
-  margin-bottom:5px;
-
-}
-
 /* OFFICERS */
 
 .officers-section{
@@ -634,17 +510,11 @@ values-upgraded{
   padding:90px 0;
 
   background:
-
     radial-gradient(
-
       circle at top left,
-
       rgba(193,148,79,.06),
-
       transparent 28%
-
     ),
-
     #090909;
 
   border-bottom:1px solid var(--line);
@@ -658,13 +528,10 @@ values-upgraded{
   margin:0 auto 34px;
 
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 
   gap:20px;
-
   flex-wrap:wrap;
 
 }
@@ -676,7 +543,6 @@ values-upgraded{
   margin:auto;
 
   display:grid;
-
   grid-template-columns:repeat(5,1fr);
 
   gap:26px;
@@ -686,15 +552,10 @@ values-upgraded{
 .officers article{
 
   background:
-
     linear-gradient(
-
       180deg,
-
       rgba(22,22,22,.96),
-
       rgba(8,8,8,.98)
-
     );
 
   border:1px solid rgba(193,148,79,.22);
@@ -702,15 +563,11 @@ values-upgraded{
   padding:18px;
 
   transition:
-
     transform .35s ease,
-
     border-color .35s ease,
-
     box-shadow .35s ease;
 
   position:relative;
-
   overflow:hidden;
 
 }
@@ -732,7 +589,6 @@ values-upgraded{
   aspect-ratio:1 / 1.15;
 
   object-fit:cover;
-
   object-position:center top;
 
   display:block;
@@ -741,7 +597,9 @@ values-upgraded{
 
   border:1px solid rgba(193,148,79,.12);
 
-  filter:brightness(.92) contrast(1.04);
+  filter:
+    brightness(.92)
+    contrast(1.04);
 
   background:#151515;
 
@@ -779,52 +637,6 @@ values-upgraded{
 
 }
 
-.officers a{
-
-  color:#cfc1af;
-
-  font-size:.88rem;
-
-  word-break:break-word;
-
-  opacity:.88;
-
-}
-
-.officers a:hover{
-
-  opacity:1;
-
-  color:var(--brass2);
-
-}
-
-/* BOTTOM GRID */
-
-.bottom-grid{
-
-  display:grid;
-
-  grid-template-columns:1fr 1fr 1fr;
-
-  border-bottom:1px solid var(--line);
-
-}
-
-.image-dark{
-
-  background:
-
-    linear-gradient(rgba(10,10,10,.78),rgba(10,10,10,.92)),
-
-    url('assets/hero-stjohns-night.jpg');
-
-  background-size:cover;
-
-  background-position:right center;
-
-}
-
 /* FOOTER */
 
 footer{
@@ -838,66 +650,9 @@ footer{
 .footer-grid{
 
   display:grid;
-
   grid-template-columns:2fr 1fr 1fr 1fr;
 
   gap:34px;
-
-}
-
-footer img{
-
-  width:62px;
-
-  margin-bottom:14px;
-
-}
-
-footer h3{
-
-  font-family:Cinzel,Georgia,serif;
-
-  font-size:1.15rem;
-
-  font-weight:400;
-
-  margin-bottom:8px;
-
-}
-
-footer p,
-
-footer a{
-
-  color:#a89f95;
-
-  font-size:.85rem;
-
-  line-height:1.8;
-
-  display:block;
-
-}
-
-footer strong{
-
-  color:var(--brass2);
-
-  text-transform:uppercase;
-
-  font-size:.75rem;
-
-  letter-spacing:.12em;
-
-  display:block;
-
-  margin-bottom:12px;
-
-}
-
-footer a:hover{
-
-  color:var(--brass2);
 
 }
 
@@ -920,9 +675,7 @@ footer a:hover{
 @media(max-width:1200px){
 
   .officers{
-
     grid-template-columns:repeat(3,1fr);
-
   }
 
 }
@@ -932,41 +685,28 @@ footer a:hover{
 @media(max-width:1000px){
 
   .header-inner{
-
     height:82px;
-
   }
 
   .brand img{
-
     width:50px;
-
     height:50px;
-
   }
 
   .brand h1{
-
     font-size:1rem;
-
   }
 
   .brand p{
-
     font-size:.65rem;
-
   }
 
   .header-btn{
-
     display:none;
-
   }
 
   .menu-btn{
-
     display:block;
-
   }
 
   nav{
@@ -976,7 +716,6 @@ footer a:hover{
     position:absolute;
 
     left:0;
-
     top:82px;
 
     width:100%;
@@ -986,7 +725,6 @@ footer a:hover{
     padding:20px;
 
     flex-direction:column;
-
     align-items:flex-start;
 
     border-top:1px solid var(--line);
@@ -994,15 +732,12 @@ footer a:hover{
   }
 
   nav.open{
-
     display:flex;
-
   }
 
   .hero{
 
     height:92vh;
-
     min-height:680px;
 
     align-items:flex-end;
@@ -1010,37 +745,25 @@ footer a:hover{
   }
 
   .hero-img{
-
     object-position:60% center;
-
   }
 
   .hero-overlay,
-
   .hero-shade{
 
     background:
 
       linear-gradient(
-
         to bottom,
-
         rgba(8,8,9,.08),
-
         rgba(8,8,9,.45) 42%,
-
         rgba(8,8,9,.96)
-
       ),
 
       linear-gradient(
-
         to right,
-
         rgba(8,8,9,.62),
-
         rgba(8,8,9,.06)
-
       );
 
   }
@@ -1048,15 +771,12 @@ footer a:hover{
   .hero-content{
 
     padding:0 22px 42px;
-
     width:100%;
 
   }
 
   .hero h2{
-
     font-size:2.7rem;
-
   }
 
   .hero p{
@@ -1068,32 +788,21 @@ footer a:hover{
   }
 
   .hero-actions{
-
     flex-direction:column;
-
   }
 
   .hero-actions a{
-
     text-align:center;
-
   }
-
-  .values,
 
   .main-grid,
-
-  .bottom-grid,
-
   .footer-grid{
-
     grid-template-columns:1fr;
-
   }
 
-  
+}
 
-@media (max-width: 768px){
+@media(max-width:768px){
 
   .value-card{
 
@@ -1108,19 +817,13 @@ footer a:hover{
   }
 
   .value-icon-wrap{
-
     width:112px;
-
     height:112px;
-
   }
 
   .value-medallion{
-
     width:112px;
-
     height:112px;
-
   }
 
   .value-text h3{
@@ -1139,106 +842,24 @@ footer a:hover{
 
   }
 
-}
-
-  .icon{
-
-    width:56px;
-
-    height:56px;
-
-    font-size:1.45rem;
-
-  }
-
-  .icon svg{
-
-    width:30px;
-
-    height:30px;
-
-  }
-
-  .content-card,
-
-  .bottom-card,
-
-  .officers-section,
-
-  footer{
-
-    padding:34px 24px;
-
-  }
-
-  .photo-card{
-
-    min-height:300px;
-
-  }
-
-  .section-head{
-
-    display:block;
-
-    width:100%;
-
-  }
-
-  .section-head .text-btn{
-
-    margin-top:14px;
-
-  }
-
   .officers{
-
-    width:100%;
-
     grid-template-columns:1fr 1fr;
-
-    gap:20px;
-
-    margin-top:20px;
-
   }
 
 }
-
-/* SMALL MOBILE */
 
 @media(max-width:560px){
 
   .hero h2{
-
     font-size:2.3rem;
-
   }
 
-  .content-card h2,
-
-  .bottom-card h2{
-
+  .content-card h2{
     font-size:1.7rem;
-
   }
 
   .officers{
-
     grid-template-columns:1fr;
-
-  }
-
-  .officers article{
-
-    padding:16px;
-
-  }
-
-  .officers h3{
-
-    font-size:1.08rem;
-
   }
 
 }
