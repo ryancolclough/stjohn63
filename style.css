@@ -39,23 +39,31 @@ img{
   max-width:100%;
 }
 
-/* HEADER */
+/* MASTER HEADER */
 
 .site-header{
 
   position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:10;
 
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(8,8,9,.94),
-      rgba(8,8,9,.55),
-      transparent
-    );
+  top:0;
+
+  left:0;
+
+  width:100%;
+
+  z-index:20;
+
+  background:linear-gradient(
+
+    to bottom,
+
+    rgba(8,8,9,.96),
+
+    rgba(8,8,9,.68),
+
+    transparent
+
+  );
 
   border-bottom:1px solid rgba(184,137,58,.18);
 
@@ -64,90 +72,125 @@ img{
 .header-inner{
 
   width:min(1500px,94vw);
+
   margin:auto;
 
-  height:96px;
+  height:92px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  gap:28px;
+  gap:26px;
 
 }
 
 .brand{
+
   display:flex;
+
   align-items:center;
-  gap:18px;
+
+  gap:16px;
+
+  min-width:285px;
+
 }
 
 .brand img{
-  width:64px;
-  height:64px;
+
+  width:56px;
+
+  height:56px;
+
+  object-fit:contain;
+
 }
 
 .brand h1{
 
   font-family:Cinzel,Georgia,serif;
-  font-size:1.32rem;
+
+  font-size:1.14rem;
+
   font-weight:500;
-  letter-spacing:.02em;
+
+  letter-spacing:.025em;
+
+  line-height:1.1;
 
 }
 
 .brand p{
 
-  font-size:.78rem;
+  font-size:.68rem;
+
   color:var(--muted);
+
   line-height:1.35;
+
   margin-top:5px;
 
 }
+/* TESTER-STYLE MENU */
 
 nav{
 
   display:flex;
-  gap:26px;
+
+  gap:24px;
+
   align-items:center;
 
   text-transform:uppercase;
 
-  font-size:.72rem;
+  font-size:.68rem;
+
   font-weight:700;
+
   letter-spacing:.06em;
 
 }
 
 nav a{
+
   opacity:.86;
+
+  white-space:nowrap;
+
 }
 
-nav a:hover{
+nav a:hover,
+
+nav a.active{
+
   color:var(--brass2);
+
+  opacity:1;
+
 }
 
-.header-btn,
-.btn.gold{
+.header-btn{
 
-  background:
-    linear-gradient(
-      135deg,
-      var(--brass2),
-      var(--brass)
-    );
+  background:linear-gradient(135deg,var(--brass2),var(--brass));
 
   color:#111;
 
-  font-size:.68rem;
+  font-size:.66rem;
 
   text-transform:uppercase;
+
   font-weight:800;
+
   letter-spacing:.06em;
 
-  padding:13px 20px;
+  padding:13px 18px;
 
   border:1px solid rgba(255,255,255,.12);
+
+  white-space:nowrap;
 
 }
 
@@ -156,18 +199,18 @@ nav a:hover{
   display:none;
 
   background:none;
+
   border:1px solid var(--line);
 
   color:var(--brass2);
 
   width:44px;
+
   height:42px;
 
   font-size:1.3rem;
 
-}
-
-/* HERO */
+}/* HERO */
 
 .hero{
 
