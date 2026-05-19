@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@400;500;700;800&display=swap');
 :root{--black:#090909;--brass:#c1944f;--cream:#eee7dc;--muted:#bdb0a0;--line:rgba(193,148,79,.32)}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:#090909;color:var(--cream);font-family:Cormorant Garamond,Georgia,serif;overflow-x:hidden}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.11;z-index:1000;background-image:radial-gradient(circle at 20% 10%,rgba(255,255,255,.08),transparent 18%),repeating-linear-gradient(0deg,rgba(255,255,255,.025),rgba(255,255,255,.025) 1px,transparent 1px,transparent 4px);mix-blend-mode:screen}
