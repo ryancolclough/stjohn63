@@ -106,3 +106,17 @@
 
 }
 @media(max-width:520px){.hero-content h1{font-size:27px}.start-card p{padding-top:10px}.mobile-seal{width:42px}.answer-area{min-height:auto}}
+@media (max-width: 760px) {
+  .faq-hero {
+    padding-top: 170px;
+  }
+
+  .faq-quicklinks {
+    margin-bottom: 45px;
+  }
+
+  .faq-hero h1 {
+    font-size: 2.4rem;
+    line-height: 1.05;
+  }
+}
