@@ -1,0 +1,274 @@
+/* =========================================================
+   ST. JOHN'S LODGE NO. 63 - GLOBAL GLASS FOOTER V7
+   Assets live in: assets/footer/
+========================================================= */
+
+:root {
+  --sj63-gold: #c69a3c;
+  --sj63-gold-soft: #e1bf73;
+  --sj63-white: #f6f2e9;
+  --sj63-muted: rgba(246, 242, 233, 0.72);
+  --sj63-line: rgba(255,255,255,.07);
+  --sj63-line-soft: rgba(255,255,255,.045);
+}
+
+.sj63-footer {
+  padding: 34px 30px 46px;
+  background: linear-gradient(180deg, #030303, #050505);
+  color: var(--sj63-white);
+  font-family: Inter, Arial, sans-serif;
+}
+
+.sj63-footer * {
+  box-sizing: border-box;
+}
+
+.sj63-footer-panel {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 26px;
+  background: rgba(14,14,14,.72);
+  border: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 20px 60px rgba(0,0,0,.45);
+}
+
+.sj63-footer-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,.16),
+      rgba(255,255,255,.03) 18%,
+      transparent 38%
+    );
+  opacity: .45;
+}
+
+.sj63-footer-grid,
+.sj63-footer-bottom {
+  position: relative;
+  z-index: 3;
+}
+
+.sj63-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr 1.05fr 1.25fr;
+  gap: 48px;
+  padding: 82px 6vw 68px;
+  border-bottom: 1px solid var(--sj63-line);
+}
+
+.sj63-footer-col {
+  min-width: 0;
+}
+
+.sj63-footer-col h3 {
+  margin: 0 0 28px;
+  color: var(--sj63-gold-soft);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.sj63-footer-col a,
+.sj63-footer-col p {
+  color: var(--sj63-muted);
+  font-size: .98rem;
+  line-height: 1.7;
+}
+
+.sj63-footer-col a {
+  display: block;
+  text-decoration: none;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--sj63-line-soft);
+  transition: color .25s ease, padding-left .25s ease;
+}
+
+.sj63-footer-col a:hover {
+  color: var(--sj63-gold-soft);
+  padding-left: 5px;
+}
+
+.sj63-footer-col p {
+  margin: 0 0 18px;
+}
+
+.sj63-contact p {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.sj63-contact p a {
+  border: 0;
+  padding: 0;
+}
+
+.sj63-contact span {
+  color: var(--sj63-gold-soft);
+}
+
+.sj63-footer-btn {
+  margin-top: 26px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 210px;
+  padding: 15px 22px !important;
+  border: 1px solid rgba(198,154,60,.45) !important;
+  color: var(--sj63-gold-soft) !important;
+  font-family: Cinzel, Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  background: rgba(0,0,0,.18);
+}
+
+.sj63-affiliate {
+  padding-left: 44px;
+  border-left: 1px solid var(--sj63-line);
+}
+
+.sj63-affiliate a {
+  display: inline-block;
+  width: auto;
+  border-bottom-color: rgba(198,154,60,.35);
+  color: var(--sj63-gold-soft);
+}
+
+.sj63-footer-bottom {
+  padding: 34px 6vw 44px;
+  text-align: center;
+}
+
+.sj63-policy-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  margin-bottom: 28px;
+}
+
+.sj63-policy-links a,
+.sj63-footer-bottom a {
+  color: var(--sj63-muted);
+  text-decoration: none;
+}
+
+.sj63-policy-links span,
+.sj63-footer-bottom p span {
+  width: 1px;
+  height: 20px;
+  background: rgba(198,154,60,.42);
+  display: inline-block;
+}
+
+.sj63-seal-line {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 28px;
+  align-items: center;
+  margin: 0 auto 26px;
+  max-width: 980px;
+}
+
+.sj63-seal-line i {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(198,154,60,.45));
+}
+
+.sj63-seal-line i:last-child {
+  background: linear-gradient(90deg, rgba(198,154,60,.45), transparent);
+}
+
+.sj63-seal-line img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 18px rgba(0,0,0,.48));
+}
+
+.sj63-footer-bottom p {
+  margin: 0;
+  color: var(--sj63-muted);
+  line-height: 1.7;
+}
+
+.sj63-footer-bottom p span {
+  margin: 0 22px;
+  vertical-align: middle;
+}
+
+/* Keep the old plain footer from interfering if it exists elsewhere */
+footer.sj63-footer {
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  .sj63-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sj63-affiliate {
+    grid-column: span 2;
+    padding-left: 0;
+    padding-top: 34px;
+    border-left: 0;
+    border-top: 1px solid var(--sj63-line);
+  }
+}
+
+@media (max-width: 700px) {
+  .sj63-footer {
+    padding: 18px;
+  }
+
+  .sj63-footer-panel {
+    border-radius: 18px;
+  }
+
+  .sj63-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding: 48px 28px 42px;
+  }
+
+  .sj63-affiliate {
+    grid-column: auto;
+  }
+
+  .sj63-footer-col h3 {
+    margin-bottom: 18px;
+  }
+
+  .sj63-policy-links {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .sj63-footer-bottom p span {
+    display: block;
+    width: 90px;
+    height: 1px;
+    margin: 16px auto;
+  }
+
+  .sj63-seal-line img {
+    width: 82px;
+    height: 82px;
+  }
+}
