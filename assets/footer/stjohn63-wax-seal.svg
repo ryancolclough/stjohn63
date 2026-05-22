@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="wax" cx="35%" cy="28%">
+      <stop offset="0" stop-color="#b74335"/>
+      <stop offset=".42" stop-color="#7f1815"/>
+      <stop offset="1" stop-color="#310707"/>
+    </radialGradient>
+    <filter id="sealShadow"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-opacity=".55"/></filter>
+  </defs>
+  <path filter="url(#sealShadow)" fill="url(#wax)" d="M300 55 C326 72 348 54 373 70 C399 86 425 75 445 98 C465 120 494 117 506 146 C519 174 548 184 550 215 C552 247 576 264 566 295 C556 326 575 351 558 378 C540 405 551 433 526 453 C501 473 500 503 471 516 C442 529 431 557 399 559 C368 561 351 586 320 576 C289 566 264 584 237 568 C210 552 182 562 162 537 C142 512 112 511 99 482 C86 453 59 442 57 410 C55 379 31 361 41 330 C51 299 32 275 49 247 C66 219 56 191 81 171 C106 151 107 121 136 108 C165 95 176 67 208 65 C239 63 257 39 287 49 C292 51 296 53 300 55Z"/>
+  <circle cx="300" cy="300" r="205" fill="none" stroke="#d2a959" stroke-width="7"/>
+  <circle cx="300" cy="300" r="156" fill="none" stroke="#d2a959" stroke-width="4" opacity=".72"/>
+  <text x="300" y="124" text-anchor="middle" fill="#e4c174" font-family="Georgia, serif" font-size="32" letter-spacing="2">ST JOHN'S 63</text>
+  <text x="300" y="500" text-anchor="middle" fill="#e4c174" font-family="Georgia, serif" font-size="24" letter-spacing="1.2">A.F. &amp; A.M. CARLETON PLACE</text>
+  <g stroke="#e4c174" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M205 360 L300 155 L395 360"/>
+    <path d="M190 205 L300 430 L410 205"/>
+    <circle cx="300" cy="145" r="18"/>
+  </g>
+  <text x="300" y="323" text-anchor="middle" fill="#e4c174" font-family="Georgia, serif" font-size="94">G</text>
+</svg>
