@@ -15,6 +15,21 @@
 
 </head>
 
+  <script>
+  const audio = document.getElementById('lodgeAudio');
+  const button = document.querySelector('.audio-btn');
+
+  function toggleAudio() {
+    if (audio.paused) {
+      audio.play();
+      button.innerHTML = '❚❚ Pause Music';
+    } else {
+      audio.pause();
+      button.innerHTML = '▶ Play Music';
+    }
+  }
+</script>
+
 <body>
 
 <header class="site-header">
