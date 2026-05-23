@@ -22,7 +22,24 @@
 html{
   scroll-behavior:smooth;
 }
+.audio-btn {
+  background: rgba(180, 140, 70, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #d4af37;
+  padding: 14px 28px;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
 
+.audio-btn:hover {
+  background: rgba(212, 175, 55, 0.18);
+  border-color: #d4af37;
+  transform: translateY(-2px);
+}
 body{
   background:var(--black);
   color:var(--cream);
