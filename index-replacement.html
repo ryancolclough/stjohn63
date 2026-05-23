@@ -193,7 +193,20 @@
 <audio id="lodgeAudio">
   <source src="assets/audio/lightinthedark.mp3" type="audio/mpeg">
 </audio>
-        
+        <script>
+function toggleAudio() {
+  const audio = document.getElementById('lodgeAudio');
+  const button = document.querySelector('.audio-btn');
+
+  if (audio.paused) {
+    audio.play();
+    button.innerHTML = '❚❚ Pause Music';
+  } else {
+    audio.pause();
+    button.innerHTML = '▶ Play Music';
+  }
+}
+</script>
       </div>
 
     </div>
