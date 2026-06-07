@@ -469,106 +469,7 @@
     
     
 
-/* iPhone / mobile hero centering */
-@media (max-width: 768px) {
-  .page-hero {
-    background-position: 55% center;
-    padding-left: 0;
-    padding-right: 0;
-  }
 
-  .hero-inner {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    justify-items: center;
-  }
-
-  .hero-copy {
-    width: min(92vw, 620px);
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-copy h1 {
-    text-align: center;
-    font-size: clamp(3.2rem, 13vw, 5rem);
-    line-height: 0.92;
-  }
-
-  .hero-lede {
-    width: 92vw;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-stats {
-    width: 92vw;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-/* ======================================
-   MOBILE HERO FIX
-====================================== */
-
-html,
-body {
-  background-color: #020406;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-@media (max-width: 768px){
-
-  .page-hero{
-    min-height: auto;
-    padding-top: 110px;
-    padding-bottom: 60px;
-
-    background-position: center top !important;
-    background-size: cover !important;
-  }
-
-  .hero-inner{
-    width: calc(100% - 30px);
-    max-width: 100%;
-    margin: 0 auto;
-    padding-top: 0;
-    padding-bottom: 0;
-    text-align: center;
-  }
-
-  .eyebrow{
-    max-width: 100%;
-    padding: 0 10px;
-    font-size: 11px;
-    letter-spacing: .18em;
-  }
-
-  h1{
-    max-width: 100%;
-    font-size: clamp(52px,13vw,74px);
-    line-height: .92;
-    letter-spacing: .02em;
-  }
-
-  .hero-copy{
-    width: 100%;
-    padding: 18px;
-  }
-
-  .hero-copy p{
-    font-size: 16px;
-  }
-
-  .hero-stats{
-    width: 100%;
-    grid-template-columns: 1fr;
-  }
-}
 /* Forces iPhone overscroll / bottom browser gap to stay dark */
 body::after {
   content: "";
@@ -582,46 +483,100 @@ body::after {
   pointer-events: none;
 }
 
-/* Mobile hero correction */
-@media (max-width: 768px) {
+}
+/* ======================================
+   FINAL CLEAN MOBILE FIX
+====================================== */
 
-  .officers-hero,
+html,
+body {
+  background-color: #020406;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -120px;
+  height: 160px;
+  background: #020406;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
   .page-hero {
-    background-position: 50% top !important;
+    min-height: auto !important;
+    padding-top: 95px !important;
+    padding-bottom: 60px !important;
+    background-position: center top !important;
     background-size: cover !important;
+    overflow: hidden !important;
   }
 
-  .officers-hero-content,
-  .hero-inner,
+  .hero-inner {
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 auto !important;
+    padding: 0 18px !important;
+    text-align: center !important;
+    justify-items: center !important;
+  }
+
+  .eyebrow {
+    width: 100% !important;
+    max-width: 92vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+    font-size: 10px !important;
+    letter-spacing: 0.16em !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  .page-hero h1 {
+    width: 100% !important;
+    max-width: 92vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: clamp(38px, 10vw, 58px) !important;
+    line-height: 0.92 !important;
+    letter-spacing: 0.005em !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
   .hero-copy {
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: 92vw !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    padding-left: 22px !important;
-    padding-right: 22px !important;
-    text-align: center !important;
-    box-sizing: border-box;
+    padding: 18px 16px !important;
   }
 
-  .officers-hero h1,
-  .page-hero h1,
-  .hero-copy h1 {
-    width: 100% !important;
-    max-width: 100% !important;
+  .hero-copy p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
     text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    font-size: clamp(3.2rem, 12vw, 4.8rem) !important;
-    line-height: 0.92 !important;
   }
 
-  .hero-lede,
   .hero-stats {
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: 92vw !important;
+    grid-template-columns: 1fr !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-button {
+    max-width: 92vw !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 }
-
