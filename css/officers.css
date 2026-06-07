@@ -466,3 +466,59 @@
     @media (prefers-reduced-motion: reduce){
       *,*::before,*::after{animation:none!important; transition:none!important; scroll-behavior:auto!important;}
     }
+    
+    /* ======================================
+   MOBILE FIXES — HERO CENTER + SAFARI WHITE EDGES
+====================================== */
+
+html,
+body {
+  background-color: #020406;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* iPhone / mobile hero centering */
+@media (max-width: 768px) {
+  .page-hero {
+    background-position: 55% center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hero-inner {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .hero-copy {
+    width: min(92vw, 620px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-copy h1 {
+    text-align: center;
+    font-size: clamp(3.2rem, 13vw, 5rem);
+    line-height: 0.92;
+  }
+
+  .hero-lede {
+    width: 92vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-stats {
+    width: 92vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
