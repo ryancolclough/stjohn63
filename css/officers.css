@@ -467,21 +467,7 @@
       *,*::before,*::after{animation:none!important; transition:none!important; scroll-behavior:auto!important;}
     }
     
-    /* ======================================
-   MOBILE FIXES — HERO CENTER + SAFARI WHITE EDGES
-====================================== */
-
-html,
-body {
-  background-color: #020406;
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-}
-
-body {
-  overflow-x: hidden;
-}
+    
 
 /* iPhone / mobile hero centering */
 @media (max-width: 768px) {
@@ -523,22 +509,66 @@ body {
   }
 }
 /* ======================================
-   FINAL MOBILE FIX — HERO CENTER + BLACK EDGES
+   MOBILE HERO FIX
 ====================================== */
 
-:root,
 html,
 body {
-  background: #020406 !important;
-  background-color: #020406 !important;
+  background-color: #020406;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
   overflow-x: hidden;
 }
 
+@media (max-width: 768px){
+
+  .page-hero{
+    min-height: auto;
+    padding-top: 110px;
+    padding-bottom: 60px;
+
+    background-position: center top !important;
+    background-size: cover !important;
+  }
+
+  .hero-inner{
+    width: calc(100% - 30px);
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+  }
+
+  .eyebrow{
+    max-width: 100%;
+    padding: 0 10px;
+    font-size: 11px;
+    letter-spacing: .18em;
+  }
+
+  h1{
+    max-width: 100%;
+    font-size: clamp(52px,13vw,74px);
+    line-height: .92;
+    letter-spacing: .02em;
+  }
+
+  .hero-copy{
+    width: 100%;
+    padding: 18px;
+  }
+
+  .hero-copy p{
+    font-size: 16px;
+  }
+
+  .hero-stats{
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
 /* Forces iPhone overscroll / bottom browser gap to stay dark */
 body::after {
   content: "";
