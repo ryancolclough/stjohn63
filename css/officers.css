@@ -522,3 +522,76 @@ body {
     margin-right: auto;
   }
 }
+/* ======================================
+   FINAL MOBILE FIX — HERO CENTER + BLACK EDGES
+====================================== */
+
+:root,
+html,
+body {
+  background: #020406 !important;
+  background-color: #020406 !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Forces iPhone overscroll / bottom browser gap to stay dark */
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -120px;
+  height: 160px;
+  background: #020406;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Mobile hero correction */
+@media (max-width: 768px) {
+
+  .officers-hero,
+  .page-hero {
+    background-position: 50% top !important;
+    background-size: cover !important;
+  }
+
+  .officers-hero-content,
+  .hero-inner,
+  .hero-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  .officers-hero h1,
+  .page-hero h1,
+  .hero-copy h1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: clamp(3.2rem, 12vw, 4.8rem) !important;
+    line-height: 0.92 !important;
+  }
+
+  .hero-lede,
+  .hero-stats {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
