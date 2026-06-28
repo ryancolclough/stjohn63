@@ -7,96 +7,45 @@
   --sj63-text:#f4efe5;
   --sj63-muted:#c8beb0;
   --sj63-line:rgba(209,166,79,.34);
-  --sj63-glass:rgba(255,255,255,.035);
 }
-
-/* Demo header/footer only.
-   Your existing site header/footer can replace these completely. */
-.demo-only-header{
-  min-height:86px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-  padding:18px clamp(20px,4vw,56px);
-  background:rgba(0,0,0,.88);
-  border-bottom:1px solid var(--sj63-line);
-  color:var(--sj63-text);
-  font-family:Georgia,'Times New Roman',serif;
-}
-.demo-brand{display:flex;align-items:center;gap:16px}
-.demo-mark{
-  width:48px;height:48px;border:1px solid var(--sj63-brass);
-  display:grid;place-items:center;color:var(--sj63-brass);
-  font-weight:800;
-}
-.demo-brand strong{display:block;font-size:1.08rem;letter-spacing:.04em}
-.demo-brand small{display:block;color:var(--sj63-brass);font-size:.82rem;letter-spacing:.08em;margin-top:4px}
-.demo-only-header nav{display:flex;gap:22px;align-items:center}
-.demo-only-header nav a{color:var(--sj63-text);text-decoration:none;text-transform:uppercase;font-size:.78rem;letter-spacing:.08em}
-.demo-only-header nav a.active{color:var(--sj63-brass)}
-.demo-only-footer{
-  background:#030303;
-  color:var(--sj63-muted);
-  border-top:1px solid var(--sj63-line);
-  text-align:center;
-  padding:34px 20px;
-  font-family:Georgia,'Times New Roman',serif;
-}
-.demo-only-footer p{margin:5px 0}
-.demo-only-footer p:first-child{color:var(--sj63-brass);letter-spacing:.1em}
-
-/* =========================================================
-   CONTACT PAGE ONLY
-   Namespaced so it should not break your existing site CSS.
-========================================================= */
 
 .sj63-contact-page{
   background:
-    radial-gradient(circle at 50% 0%, rgba(209,166,79,.13), transparent 34%),
-    linear-gradient(180deg,#050505 0%,#090909 48%,#030303 100%);
+    radial-gradient(circle at 50% 0%, rgba(209,166,79,.12), transparent 32%),
+    linear-gradient(180deg,#050505 0%,#080807 55%,#030303 100%);
   color:var(--sj63-text);
   font-family:Georgia,'Times New Roman',serif;
-  padding:clamp(54px,7vw,86px) clamp(18px,4vw,72px) clamp(62px,8vw,96px);
+  padding:120px 18px 80px;
   overflow:hidden;
 }
 
-.sj63-contact-page *{box-sizing:border-box}
+.sj63-contact-page *{
+  box-sizing:border-box;
+}
 
 .sj63-contact-hero{
-  max-width:980px;
+  max-width:900px;
   margin:0 auto;
   text-align:center;
 }
 
 .sj63-contact-seal{
-  width:clamp(118px,15vw,190px);
+  width:170px;
   height:auto;
   display:block;
   margin:0 auto 22px;
-  filter:drop-shadow(0 18px 28px rgba(0,0,0,.58));
+  filter:drop-shadow(0 18px 32px rgba(0,0,0,.65));
 }
 
 .sj63-contact-rule{
-  width:min(220px,54vw);
+  width:220px;
   height:1px;
-  margin:0 auto 16px;
+  margin:0 auto 18px;
   background:linear-gradient(90deg,transparent,var(--sj63-brass),transparent);
-  position:relative;
-}
-.sj63-contact-rule::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:9px;
-  height:9px;
-  transform:translate(-50%,-50%) rotate(45deg);
-  background:var(--sj63-brass);
 }
 
 .sj63-contact-kicker{
-  margin:0 0 8px;
+  margin:0 0 10px;
   color:var(--sj63-brass);
   text-transform:uppercase;
   letter-spacing:.18em;
@@ -106,12 +55,12 @@
 
 .sj63-contact-hero h1{
   margin:0;
-  font-size:clamp(3rem,7vw,5.7rem);
-  line-height:.98;
+  font-size:clamp(3rem,7vw,5.6rem);
+  line-height:1;
   letter-spacing:-.045em;
   font-weight:500;
   color:#fffaf0;
-  text-shadow:0 4px 30px rgba(0,0,0,.72);
+  text-shadow:0 4px 30px rgba(0,0,0,.7);
 }
 
 .sj63-contact-intro{
@@ -119,20 +68,21 @@
   margin:24px auto 0;
   color:var(--sj63-muted);
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:clamp(1.05rem,1.65vw,1.28rem);
+  font-size:1.18rem;
   line-height:1.65;
 }
+
 .sj63-contact-intro strong{
+  display:block;
   color:var(--sj63-brass-soft);
   font-weight:700;
-  display:block;
 }
 
 .sj63-contact-panel{
   width:min(1120px,100%);
-  margin:clamp(38px,5vw,62px) auto 0;
+  margin:56px auto 0;
   display:grid;
-  grid-template-columns:minmax(0,1.55fr) minmax(300px,.85fr);
+  grid-template-columns:minmax(0,1.35fr) minmax(300px,.75fr);
   gap:26px;
   align-items:stretch;
 }
@@ -144,7 +94,6 @@
     rgba(6,6,6,.72);
   border:1px solid var(--sj63-line);
   box-shadow:0 24px 80px rgba(0,0,0,.48);
-  border-radius:0;
   backdrop-filter:blur(14px);
 }
 
@@ -158,9 +107,11 @@
 .sj63-contact-form label{
   display:block;
 }
+
 .sj63-contact-form label span{
   position:absolute;
-  width:1px;height:1px;
+  width:1px;
+  height:1px;
   overflow:hidden;
   clip:rect(0,0,0,0);
 }
@@ -168,27 +119,26 @@
 .sj63-contact-form input,
 .sj63-contact-form textarea{
   width:100%;
-  min-height:64px;
-  border:1px solid rgba(209,166,79,.36);
+  min-height:68px;
+  border:1px solid rgba(209,166,79,.38);
   background:rgba(0,0,0,.38);
   color:#fff;
-  border-radius:4px;
+  border-radius:3px;
   padding:0 22px;
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:1.05rem;
+  font-size:1.08rem;
   outline:none;
-  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
 .sj63-contact-form textarea{
-  min-height:214px;
+  min-height:220px;
   padding-top:20px;
   resize:vertical;
 }
 
 .sj63-contact-form input::placeholder,
 .sj63-contact-form textarea::placeholder{
-  color:rgba(244,239,229,.7);
+  color:rgba(244,239,229,.72);
 }
 
 .sj63-contact-form input:focus,
@@ -205,20 +155,19 @@
 
 .sj63-send-button{
   grid-column:1 / -1;
-  min-height:70px;
+  min-height:76px;
   border:0;
   background:linear-gradient(135deg,#bd8434 0%,#efc978 45%,#c8923c 100%);
   color:#080808;
   text-transform:uppercase;
-  letter-spacing:.09em;
+  letter-spacing:.1em;
   font-weight:900;
-  font-size:1.08rem;
+  font-size:1.12rem;
   cursor:pointer;
-  transition:transform .2s ease, filter .2s ease;
 }
+
 .sj63-send-button:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.06);
+  filter:brightness(1.08);
 }
 
 .sj63-honeypot{
@@ -226,7 +175,7 @@
 }
 
 .sj63-contact-info{
-  padding:36px 30px;
+  padding:38px 30px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -239,8 +188,8 @@
   font-size:.9rem;
   text-align:center;
   margin:0 0 30px;
-  position:relative;
 }
+
 .sj63-info-title::after{
   content:"";
   display:block;
@@ -259,22 +208,33 @@
   border-bottom:1px solid rgba(209,166,79,.18);
   color:var(--sj63-muted);
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:1.02rem;
+  font-size:1.03rem;
   line-height:1.6;
 }
-.sj63-info-block p{margin:0}
-.sj63-info-block strong{color:#fff}
+
+.sj63-info-block p{
+  margin:0;
+}
+
+.sj63-info-block strong{
+  color:#fff;
+}
+
 .sj63-info-icon{
   color:var(--sj63-brass);
-  font-size:1.85rem;
+  font-size:1.8rem;
   line-height:1;
   text-align:center;
 }
+
 .sj63-info-block a{
   color:var(--sj63-text);
   text-decoration:none;
 }
-.sj63-info-block a:hover{color:var(--sj63-brass-soft)}
+
+.sj63-info-block a:hover{
+  color:var(--sj63-brass-soft);
+}
 
 .sj63-info-actions{
   display:grid;
@@ -282,8 +242,9 @@
   gap:14px;
   margin-top:28px;
 }
+
 .sj63-info-actions a{
-  min-height:58px;
+  min-height:60px;
   display:grid;
   place-items:center;
   border:1px solid var(--sj63-line);
@@ -291,39 +252,43 @@
   text-decoration:none;
   text-transform:uppercase;
   letter-spacing:.1em;
-  font-size:.88rem;
+  font-size:.9rem;
   font-weight:800;
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
+
 .sj63-info-actions a:hover{
   background:rgba(209,166,79,.09);
 }
 
+/* MOBILE */
 @media(max-width:900px){
-  .demo-only-header nav{display:none}
 
   .sj63-contact-page{
-    padding:34px 20px 58px;
+    padding:105px 18px 64px;
   }
 
   .sj63-contact-seal{
-    width:118px;
-    margin-bottom:18px;
+    width:132px;
+    margin-bottom:20px;
   }
 
+  .sj63-contact-rule,
   .sj63-contact-kicker{
     display:none;
   }
 
   .sj63-contact-hero h1{
-    font-size:clamp(2.75rem,12vw,4rem);
-    line-height:1.03;
+    font-size:3rem;
+    line-height:1.04;
+    letter-spacing:-.045em;
   }
 
   .sj63-contact-intro{
-    font-size:1.12rem;
+    max-width:335px;
+    font-size:1.05rem;
     line-height:1.55;
-    margin-top:22px;
+    margin-top:20px;
   }
 
   .sj63-contact-panel{
@@ -336,19 +301,19 @@
     background:transparent;
     border:0;
     box-shadow:none;
-    backdrop-filter:none;
     display:grid;
     grid-template-columns:1fr;
-    gap:13px;
+    gap:14px;
   }
 
   .sj63-contact-form input,
   .sj63-contact-form textarea{
-    min-height:72px;
-    font-size:1.12rem;
+    min-height:74px;
+    font-size:1.18rem;
     padding:0 22px;
-    border-color:rgba(209,166,79,.46);
+    border-radius:2px;
     background:rgba(255,255,255,.025);
+    border:1px solid rgba(209,166,79,.5);
   }
 
   .sj63-contact-form textarea{
@@ -362,14 +327,14 @@
   }
 
   .sj63-send-button{
-    min-height:76px;
-    font-size:1.16rem;
-    margin-top:6px;
+    min-height:78px;
+    font-size:1.15rem;
+    margin-top:8px;
   }
 
   .sj63-contact-info{
     margin-top:44px;
-    padding:36px 0 0;
+    padding:0;
     background:transparent;
     border:0;
     box-shadow:none;
@@ -381,28 +346,30 @@
   }
 
   .sj63-info-block{
-    grid-template-columns:1fr;
-    gap:8px;
-    padding:14px 0;
+    display:block;
+    padding:10px 0;
     border:0;
     font-size:1.05rem;
   }
 
   .sj63-info-icon{
-    font-size:1.7rem;
+    display:none;
   }
 
   .sj63-info-actions{
-    margin-top:20px;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:22px;
   }
 
   .sj63-info-actions a{
     min-height:64px;
-    font-size:.96rem;
+    font-size:.92rem;
   }
 }
 
 @media(max-width:430px){
+
   .sj63-contact-page{
     padding-left:16px;
     padding-right:16px;
@@ -418,7 +385,7 @@
 
   .sj63-contact-form input,
   .sj63-contact-form textarea{
-    font-size:1.05rem;
-    min-height:68px;
+    font-size:1.08rem;
+    min-height:70px;
   }
 }
