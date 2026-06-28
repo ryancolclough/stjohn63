@@ -1,0 +1,584 @@
+:root{
+  --black:#050505;
+  --charcoal:#0d0d0d;
+  --stone:#15130f;
+  --brass:#d1a64f;
+  --brass-soft:#efc978;
+  --text:#f4efe5;
+  --muted:#beb4a4;
+  --line:rgba(209,166,79,.28);
+  --glass:rgba(255,255,255,.045);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:#050505;
+  color:var(--text);
+  font-family:Georgia,'Times New Roman',serif;
+}
+
+/* HEADER - matches the St. John's dark/brass system */
+.site-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:50;
+  min-height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:18px clamp(20px,4vw,56px);
+  background:linear-gradient(180deg,rgba(0,0,0,.94),rgba(0,0,0,.76));
+  border-bottom:1px solid rgba(209,166,79,.22);
+  backdrop-filter:blur(18px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:var(--text);
+  text-decoration:none;
+}
+
+.brand-mark{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--brass);
+  color:var(--brass-soft);
+  font-weight:800;
+  font-size:1.3rem;
+  box-shadow:inset 0 0 20px rgba(209,166,79,.12);
+}
+
+.brand-copy strong{
+  display:block;
+  color:#fff8eb;
+  letter-spacing:.055em;
+  font-size:1.02rem;
+}
+
+.brand-copy small{
+  display:block;
+  color:var(--brass);
+  margin-top:4px;
+  letter-spacing:.09em;
+  font-size:.76rem;
+}
+
+.site-nav{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.site-nav a{
+  color:rgba(244,239,229,.86);
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:.11em;
+  font-size:.76rem;
+  transition:color .2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active{
+  color:var(--brass-soft);
+}
+
+.nav-toggle{
+  display:none;
+  width:46px;
+  height:42px;
+  background:transparent;
+  border:1px solid rgba(209,166,79,.35);
+  padding:9px;
+}
+
+.nav-toggle span{
+  display:block;
+  height:2px;
+  background:var(--brass-soft);
+  margin:5px 0;
+}
+
+/* PAGE */
+.contact-page{
+  min-height:100vh;
+  padding:150px clamp(18px,4vw,72px) 90px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(209,166,79,.13), transparent 31%),
+    radial-gradient(circle at 8% 38%, rgba(209,166,79,.055), transparent 24%),
+    radial-gradient(circle at 92% 58%, rgba(209,166,79,.045), transparent 22%),
+    linear-gradient(180deg,#050505 0%,#090908 52%,#030303 100%);
+  overflow:hidden;
+}
+
+.contact-hero{
+  max-width:940px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.contact-seal{
+  width:clamp(136px,14vw,190px);
+  height:auto;
+  display:block;
+  margin:0 auto 20px;
+  filter:drop-shadow(0 22px 34px rgba(0,0,0,.72));
+}
+
+.eyebrow{
+  margin:0 0 12px;
+  color:var(--brass);
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+.eyebrow::before,
+.eyebrow::after{
+  content:"";
+  display:inline-block;
+  width:64px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--brass));
+  vertical-align:middle;
+  margin:0 16px 4px 0;
+}
+
+.eyebrow::after{
+  background:linear-gradient(90deg,var(--brass),transparent);
+  margin:0 0 4px 16px;
+}
+
+.contact-hero h1{
+  margin:0;
+  font-size:clamp(3.4rem,7vw,6rem);
+  line-height:.96;
+  letter-spacing:-.052em;
+  font-weight:500;
+  color:#fff8eb;
+  text-shadow:0 6px 36px rgba(0,0,0,.78);
+}
+
+.contact-intro{
+  max-width:720px;
+  margin:26px auto 0;
+  color:var(--muted);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:clamp(1.08rem,1.6vw,1.25rem);
+  line-height:1.65;
+}
+
+.contact-intro span{
+  display:block;
+  color:var(--brass-soft);
+  font-weight:700;
+}
+
+.contact-shell{
+  width:min(1120px,100%);
+  margin:58px auto 0;
+  display:grid;
+  grid-template-columns:minmax(0,1.38fr) minmax(310px,.72fr);
+  gap:26px;
+  align-items:stretch;
+}
+
+.contact-form,
+.contact-info{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.017)),
+    rgba(6,6,6,.76);
+  border:1px solid var(--line);
+  box-shadow:
+    0 32px 90px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.055);
+  backdrop-filter:blur(16px);
+}
+
+.contact-form{
+  padding:26px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.contact-form label{
+  display:block;
+}
+
+.contact-form label span{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  min-height:70px;
+  border:1px solid rgba(209,166,79,.4);
+  border-radius:2px;
+  background:rgba(0,0,0,.38);
+  color:#fff;
+  padding:0 22px;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:1.1rem;
+  outline:none;
+  transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.contact-form textarea{
+  min-height:225px;
+  padding-top:22px;
+  resize:vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+  color:rgba(244,239,229,.72);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:var(--brass-soft);
+  background:rgba(0,0,0,.6);
+  box-shadow:0 0 0 3px rgba(209,166,79,.15);
+}
+
+.message-field{
+  grid-column:2;
+  grid-row:1 / span 4;
+}
+
+.hidden-field{
+  display:none!important;
+}
+
+.contact-form button{
+  grid-column:1 / -1;
+  min-height:78px;
+  border:0;
+  background:linear-gradient(135deg,#b77a2e 0%,#efc978 42%,#c58a35 100%);
+  color:#070707;
+  text-transform:uppercase;
+  letter-spacing:.11em;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-weight:900;
+  font-size:1.14rem;
+  cursor:pointer;
+  box-shadow:0 18px 44px rgba(0,0,0,.38);
+}
+
+.contact-form button:hover{
+  filter:brightness(1.08);
+}
+
+.contact-info{
+  padding:40px 32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.contact-info > div{
+  padding:0 0 24px;
+  margin-bottom:24px;
+  border-bottom:1px solid rgba(209,166,79,.18);
+}
+
+.contact-info > div:last-of-type{
+  border-bottom:0;
+  margin-bottom:0;
+  padding-bottom:0;
+}
+
+.info-label{
+  margin:0 0 8px;
+  color:var(--brass);
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.78rem;
+  font-weight:800;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.contact-info p{
+  margin:0;
+  color:var(--muted);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;
+  font-size:1.04rem;
+}
+
+.contact-info strong{
+  color:#fff8eb;
+}
+
+.contact-info a{
+  color:#fff8eb;
+  text-decoration:none;
+}
+
+.contact-info a:hover{
+  color:var(--brass-soft);
+}
+
+.info-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.info-buttons a{
+  min-height:60px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(209,166,79,.36);
+  color:var(--brass-soft);
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-size:.86rem;
+  font-weight:800;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.info-buttons a:hover{
+  background:rgba(209,166,79,.08);
+}
+
+.desktop-note{
+  margin-top:30px!important;
+  padding-top:28px;
+  border-top:1px solid rgba(209,166,79,.18);
+  color:rgba(200,190,176,.82)!important;
+}
+
+/* FOOTER */
+.site-footer{
+  position:relative;
+  background:#030303;
+  border-top:1px solid rgba(209,166,79,.24);
+  color:var(--muted);
+  text-align:center;
+  padding:42px 20px;
+}
+
+.footer-seal{
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 14px;
+  border:1px solid rgba(209,166,79,.45);
+  color:var(--brass-soft);
+}
+
+.footer-title{
+  color:var(--brass);
+  letter-spacing:.16em;
+  font-weight:700;
+}
+
+.site-footer p{
+  margin:6px 0;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .site-header{
+    min-height:76px;
+    padding:14px 18px;
+  }
+
+  .brand-mark{
+    width:42px;
+    height:42px;
+  }
+
+  .brand-copy strong{
+    font-size:.9rem;
+  }
+
+  .brand-copy small{
+    display:none;
+  }
+
+  .nav-toggle{
+    display:block;
+  }
+
+  .site-nav{
+    position:fixed;
+    left:18px;
+    right:18px;
+    top:82px;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:12px;
+    background:rgba(5,5,5,.96);
+    border:1px solid rgba(209,166,79,.28);
+    box-shadow:0 22px 60px rgba(0,0,0,.55);
+  }
+
+  .nav-open .site-nav{
+    display:flex;
+  }
+
+  .site-nav a{
+    padding:16px 12px;
+    border-bottom:1px solid rgba(209,166,79,.12);
+    font-size:.86rem;
+  }
+
+  .site-nav a:last-child{
+    border-bottom:0;
+  }
+
+  .contact-page{
+    padding:112px 18px 64px;
+  }
+
+  .contact-seal{
+    width:136px;
+    margin-bottom:22px;
+  }
+
+  .eyebrow{
+    display:none;
+  }
+
+  .contact-hero h1{
+    font-size:3.05rem;
+    line-height:1.02;
+    letter-spacing:-.05em;
+  }
+
+  .contact-intro{
+    max-width:340px;
+    margin-top:20px;
+    font-size:1.06rem;
+    line-height:1.55;
+  }
+
+  .contact-shell{
+    display:block;
+    margin-top:36px;
+  }
+
+  .contact-form{
+    padding:0;
+    background:transparent;
+    border:0;
+    box-shadow:none;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .contact-form input,
+  .contact-form textarea{
+    min-height:76px;
+    font-size:1.18rem;
+    padding:0 22px;
+    background:rgba(255,255,255,.026);
+    border:1px solid rgba(209,166,79,.5);
+  }
+
+  .contact-form textarea{
+    min-height:194px;
+    padding-top:22px;
+  }
+
+  .message-field{
+    grid-column:auto;
+    grid-row:auto;
+  }
+
+  .contact-form button{
+    min-height:80px;
+    font-size:1.16rem;
+    margin-top:8px;
+  }
+
+  .contact-info{
+    margin-top:46px;
+    padding:0;
+    background:transparent;
+    border:0;
+    box-shadow:none;
+    text-align:center;
+  }
+
+  .contact-info > div{
+    border-bottom:0;
+    margin-bottom:18px;
+    padding-bottom:0;
+  }
+
+  .info-label{
+    display:none;
+  }
+
+  .contact-info p{
+    font-size:1.05rem;
+  }
+
+  .info-buttons{
+    margin-top:22px;
+    gap:12px;
+  }
+
+  .info-buttons a{
+    min-height:66px;
+    font-size:.92rem;
+  }
+
+  .desktop-note{
+    display:none;
+  }
+
+  .site-footer{
+    padding:34px 18px;
+  }
+}
+
+@media(max-width:430px){
+
+  .contact-page{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .contact-hero h1{
+    font-size:2.72rem;
+  }
+
+  .contact-intro{
+    font-size:1.02rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea{
+    font-size:1.08rem;
+    min-height:70px;
+  }
+}
