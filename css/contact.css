@@ -190,6 +190,7 @@ body{
   font-weight:700;
 }
 
+/* FORM AREA */
 .contact-layout{
   width:min(1120px,100%);
   margin:58px auto 0;
@@ -230,8 +231,10 @@ body{
   clip:rect(0,0,0,0);
 }
 
+/* MATCHED FIELD STYLES */
 .contact-form input,
-.contact-form textarea{
+.contact-form textarea,
+.contact-form select{
   width:100%;
   min-height:70px;
   border:1px solid rgba(209,166,79,.4);
@@ -245,6 +248,31 @@ body{
   transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 
+.contact-form select{
+  appearance:none;
+  -webkit-appearance:none;
+  cursor:pointer;
+  padding-right:58px;
+  background:
+    linear-gradient(45deg, transparent 50%, var(--brass) 50%),
+    linear-gradient(135deg, var(--brass) 50%, transparent 50%),
+    rgba(0,0,0,.38);
+  background-position:
+    calc(100% - 26px) 50%,
+    calc(100% - 18px) 50%,
+    0 0;
+  background-size:
+    8px 8px,
+    8px 8px,
+    100% 100%;
+  background-repeat:no-repeat;
+}
+
+.contact-form select option{
+  background:#0b0b0b;
+  color:#fff;
+}
+
 .contact-form textarea{
   min-height:225px;
   padding-top:22px;
@@ -252,20 +280,22 @@ body{
 }
 
 .contact-form input::placeholder,
-.contact-form textarea::placeholder{
+.contact-form textarea::placeholder,
+.contact-form select:invalid{
   color:rgba(244,239,229,.72);
 }
 
 .contact-form input:focus,
-.contact-form textarea:focus{
+.contact-form textarea:focus,
+.contact-form select:focus{
   border-color:var(--brass-soft);
-  background:rgba(0,0,0,.6);
+  background-color:rgba(0,0,0,.6);
   box-shadow:0 0 0 3px rgba(209,166,79,.15);
 }
 
 .message-field{
   grid-column:2;
-  grid-row:1 / span 4;
+  grid-row:1 / span 5;
 }
 
 .honeypot{
@@ -291,6 +321,7 @@ body{
   filter:brightness(1.08);
 }
 
+/* INFO PANEL */
 .contact-info{
   padding:40px 32px;
   display:flex;
@@ -364,9 +395,6 @@ body{
   border-top:1px solid rgba(209,166,79,.18);
   color:rgba(200,190,176,.82)!important;
 }
-
-/* FOOTER */
-
 
 /* MOBILE */
 @media(max-width:900px){
@@ -464,12 +492,17 @@ body{
   }
 
   .contact-form input,
-  .contact-form textarea{
+  .contact-form textarea,
+  .contact-form select{
     min-height:76px;
     font-size:1.18rem;
-    padding:0 22px;
-    background:rgba(255,255,255,.026);
+    padding-left:22px;
+    background-color:rgba(255,255,255,.026);
     border:1px solid rgba(209,166,79,.5);
+  }
+
+  .contact-form select{
+    padding-right:58px;
   }
 
   .contact-form textarea{
@@ -524,7 +557,6 @@ body{
   .info-note{
     display:none;
   }
-
 }
 
 @media(max-width:430px){
@@ -543,54 +575,9 @@ body{
   }
 
   .contact-form input,
-  .contact-form textarea{
+  .contact-form textarea,
+  .contact-form select{
     font-size:1.08rem;
     min-height:70px;
   }
-  .contact-form select{
-
-    width:100%;
-    min-height:70px;
-
-    padding:0 22px;
-
-    background:rgba(0,0,0,.38);
-
-    color:#fff;
-
-    border:1px solid rgba(209,166,79,.40);
-
-    border-radius:2px;
-
-    font-size:1.1rem;
-
-    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-
-    appearance:none;
-
-    cursor:pointer;
-
-    background-image:
-        linear-gradient(45deg, transparent 50%, #d1a64f 50%),
-        linear-gradient(135deg, #d1a64f 50%, transparent 50%);
-
-    background-position:
-        calc(100% - 24px) 31px,
-        calc(100% - 18px) 31px;
-
-    background-size:6px 6px;
-
-    background-repeat:no-repeat;
-
-}
-
-.contact-form select:focus{
-
-    outline:none;
-
-    border-color:var(--brass-soft);
-
-    box-shadow:0 0 0 3px rgba(209,166,79,.15);
-
-}
 }
