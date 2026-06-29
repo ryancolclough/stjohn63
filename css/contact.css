@@ -313,7 +313,11 @@ body{
 
 /* MOBILE */
 @media(max-width:900px){
-
+  .site-nav.active,
+  body.nav-open .site-nav{
+    display:flex;
+  }
+}
 
   .contact-page{
     padding:112px 18px 64px;
