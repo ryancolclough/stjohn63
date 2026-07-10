@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
+  <title id="title">ORE Morning Star 63 emblem</title>
+  <desc id="desc">A fine-line brass morning star with the number 63 at its centre.</desc>
+  <g fill="none" stroke="#d1aa5a" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="100" cy="100" r="54" stroke-opacity=".18"/>
+    <path d="M100 16V184M16 100H184" stroke-width="1.5" stroke-opacity=".68"/>
+    <path d="M100 28 113 77 160 40 123 87 172 100 123 113 160 160 113 123 100 172 87 123 40 160 77 113 28 100 77 87 40 40 87 77Z" stroke-width="1.35" stroke-opacity=".9"/>
+    <path d="M100 52 111 89 148 100 111 111 100 148 89 111 52 100 89 89Z" stroke-width="1.7"/>
+    <circle cx="100" cy="100" r="25" fill="#080808" stroke-width="1.5"/>
+    <path d="M80 136c12 8 28 8 40 0M80 64c12-8 28-8 40 0" stroke-width="1" stroke-opacity=".55"/>
+  </g>
+  <text x="100" y="108" text-anchor="middle" fill="#d1aa5a" font-family="Georgia, 'Times New Roman', serif" font-size="26" letter-spacing="2">63</text>
+</svg>
