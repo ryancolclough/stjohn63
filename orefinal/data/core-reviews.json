@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "publication": "Carleton Place Masonic Temple Corporation Corporate By-Laws",
+  "generatedAt": "2026-07-10",
+  "reviews": {
+    "1.1": {
+      "reviewId": "CORE-DEMO-0001",
+      "status": "complete",
+      "reviewDate": "2026-07-10",
+      "reviewedBy": "Demonstration record only",
+      "authorities": [
+        "Ontario Not-for-Profit Corporations Act, 2010",
+        "Grand Lodge governance documents",
+        "Articles of Incorporation",
+        "Temple Board Corporate By-Laws"
+      ],
+      "notes": "Interface demonstration only. This is not a legal compliance determination and must be replaced after the formal CORE governance review.",
+      "nextReview": "To be established"
+    }
+  }
+}
