@@ -769,11 +769,11 @@ window.ORE_DATA = {
     {
       "id": "bylaw-review",
       "name": "Bylaw Review Committee",
-      "chair": "To be confirmed",
+      "chair": "Ryan Colclough",
       "members": [],
-      "targetMembers": 3,
+      "targetMembers": 2,
       "term": "2026–2027",
-      "status": "Recruiting",
+      "status": "Active",
       "mandate": "Reviews the Corporate By-Laws and recommends amendments when clarification, modernization, or compliance updates are required.",
       "responsibilities": [
         "Maintain the amendment record",
