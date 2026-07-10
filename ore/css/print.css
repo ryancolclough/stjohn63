@@ -1,0 +1,10 @@
+@media print{
+  :root{--dock-h:0px}
+  body{background:#fff}
+  .global-dock,.toast,.sheet,.copy-link,.begin{display:none!important}
+  .screen{min-height:auto;display:block;break-after:page}
+  .cover{min-height:100vh;break-after:page}
+  .page{width:100%;max-width:none;box-shadow:none;padding:0.65in}
+  .local-pager{display:none}
+  a{text-decoration:none}
+}
