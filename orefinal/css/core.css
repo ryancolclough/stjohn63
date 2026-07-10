@@ -1,0 +1,157 @@
+/* ORE v1.1 — CORE review integration
+   Adds only the subtle review record between the existing section pager links. */
+
+.local-pager.has-core-review{
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+}
+
+.core-review-trigger{
+  align-self:center;
+  justify-self:center;
+  min-width:92px;
+  max-width:150px;
+  border:0;
+  background:transparent;
+  color:#746d62;
+  padding:10px 8px;
+  cursor:pointer;
+  text-align:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:10px;
+  line-height:1.25;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:color .16s ease,opacity .16s ease;
+  opacity:.76;
+}
+
+.core-review-trigger:hover,
+.core-review-trigger:focus-visible{
+  color:var(--gold);
+  opacity:1;
+  outline:none;
+}
+
+.core-review-trigger .core-id{
+  display:block;
+  white-space:nowrap;
+}
+
+.core-review-trigger .core-state{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  margin-top:3px;
+  font-size:9px;
+  letter-spacing:.06em;
+  text-transform:none;
+}
+
+.core-status-mark{
+  display:inline-grid;
+  place-items:center;
+  width:10px;
+  height:10px;
+  flex:0 0 10px;
+  border-radius:50%;
+  font-size:9px;
+  line-height:1;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+}
+
+.core-status-complete .core-status-mark{
+  width:auto;
+  height:auto;
+  border-radius:0;
+  color:#2e7447;
+}
+.core-status-in-review .core-status-mark{background:#cf8c24;color:transparent}
+.core-status-overdue .core-status-mark{background:#a9473e;color:transparent}
+.core-status-not-reviewed .core-status-mark{border:1px solid var(--gold);background:transparent;color:transparent}
+
+.core-review-detail{
+  max-width:650px;
+  margin:0 auto;
+}
+
+.core-review-summary{
+  padding:0 0 18px;
+  margin-bottom:4px;
+  border-bottom:1px solid var(--line);
+}
+
+.core-review-summary strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#2b2925;
+  font-size:17px;
+  font-weight:600;
+}
+
+.core-review-grid{
+  margin-top:0;
+}
+
+.core-review-row{
+  display:grid;
+  grid-template-columns:minmax(120px,170px) minmax(0,1fr);
+  gap:20px;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  font-size:15px;
+  line-height:1.5;
+}
+
+.core-review-row dt{
+  color:var(--gold);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:11px;
+}
+
+.core-review-row dd{
+  margin:0;
+  color:#302d28;
+}
+
+.core-review-authorities{
+  margin:0;
+  padding-left:18px;
+}
+
+.core-review-authorities li{margin:0 0 6px}
+
+.core-review-footer{
+  margin:20px 0 0;
+  text-align:center;
+  color:#80796e;
+  font-size:10px;
+  line-height:1.45;
+  font-style:italic;
+}
+
+@media(max-width:620px){
+  .local-pager.has-core-review{
+    grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr);
+    gap:8px;
+  }
+  .core-review-trigger{
+    min-width:0;
+    max-width:88px;
+    padding:8px 2px;
+    font-size:8px;
+    letter-spacing:.045em;
+  }
+  .core-review-trigger .core-state{
+    font-size:8px;
+    gap:3px;
+  }
+  .core-review-row{
+    grid-template-columns:1fr;
+    gap:5px;
+    padding:12px 0;
+  }
+}
