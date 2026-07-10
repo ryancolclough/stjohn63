@@ -773,7 +773,7 @@ window.ORE_DATA = {
       "members": [  "Ryan Colclough – Chair, By-Law Review Committee",
  "Greg Forsyth – Temple Board President (Ex Officio)"
   ],
-      "targetMembers": 1,
+      "targetMembers": 2,
       "term": "2026–2027",
       "status": "Active",
       "mandate": "Reviews the Corporate By-Laws and recommends amendments when clarification, modernization, or compliance updates are required.",
