@@ -770,7 +770,9 @@ window.ORE_DATA = {
       "id": "bylaw-review",
       "name": "Bylaw Review Committee",
       "chair": "Ryan Colclough",
-      "members": [],
+      "members": [  "Ryan Colclough – Chair, By-Law Review Committee",
+ "Greg Forsyth – Temple Board President (Ex Officio)"
+  ],
       "targetMembers": 2,
       "term": "2026–2027",
       "status": "Active",
