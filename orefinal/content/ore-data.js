@@ -712,7 +712,7 @@ window.ORE_DATA = {
     {
       "id": "finance",
       "name": "Finance Committee",
-      "chair": "Treasurer / to be confirmed",
+      "chair": "Treasurer Mark Dorland",
       "members": [],
       "targetMembers": 3,
       "term": "2026–2027",
