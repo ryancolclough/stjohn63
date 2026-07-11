@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "product": "CORE",
+    "version": "0.1",
+    "note": "Starter schema only. The running application stores reviews in localStorage and exports this same general structure."
+  },
+  "reviews": {}
+}
