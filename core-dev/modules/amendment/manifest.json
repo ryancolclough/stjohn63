@@ -1,0 +1,11 @@
+{
+  "id": "amendment",
+  "name": "Amendment Engine",
+  "version": "1.0.0",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "review",
+    "storage",
+    "history"
+  ]
+}
