@@ -1,0 +1,13 @@
+{
+  "id": "amendment",
+  "name": "Amendment Engine",
+  "version": "1.2.2",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "review",
+    "storage",
+    "history"
+  ],
+  "navigation": true,
+  "description": "Drafting, board approval, voting, and ORE publication workflow."
+}

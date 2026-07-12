@@ -1,0 +1,10 @@
+{
+  "id": "export",
+  "name": "Export Engine",
+  "version": "1.3.2",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "storage",
+    "review"
+  ]
+}
