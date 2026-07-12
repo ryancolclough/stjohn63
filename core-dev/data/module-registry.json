@@ -2,35 +2,35 @@
   {
     "id": "dashboard",
     "name": "Dashboard",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "entry": "../modules/dashboard/dashboard.js",
     "enabled": true
   },
   {
     "id": "review",
     "name": "Review Engine",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "entry": "../modules/review/review.js",
     "enabled": true
   },
   {
     "id": "amendment",
     "name": "Amendment Engine",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "entry": "../modules/amendment/amendment.js",
     "enabled": true
   },
   {
     "id": "export",
     "name": "Export Engine",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "entry": "../modules/export/export.js",
     "enabled": true
   },
   {
     "id": "settings",
     "name": "Settings",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "entry": "../modules/settings/settings.js",
     "enabled": true
   }

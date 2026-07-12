@@ -1,0 +1,32 @@
+CORE-DEV 1.2.2-dev — AMENDMENT WORKFLOW
+
+RECOMMENDED:
+Replace the entire contents of stjohn63/core-dev/ with the included folder.
+
+UPLOAD ORDER:
+1. sdk/
+2. modules/
+3. css/
+4. data/
+5. docs/
+6. js/
+7. index.html LAST
+
+TEST URL:
+https://ryancolclough.github.io/stjohn63/core-dev/
+
+CONFIRM:
+- Amber banner: 1.2.2-dev
+- Build: 20260712.001
+- Bottom navigation now includes Amendments
+- Settings shows Amendment Engine 1.2.0
+- Platform Health shows 100%
+
+QUICK TEST:
+1. Review → choose any section.
+2. Select Amendment Recommended.
+3. Enter proposed wording and reason.
+4. Check Analysis Complete.
+5. Save Review.
+6. Open Amendments from the bottom dock.
+7. Reopen the amendment and continue the workflow.

@@ -20,7 +20,9 @@ export default function register(ctx){
           ${about("Theme",document.documentElement.dataset.theme)}
           ${about("Module Registry",platform.modules.length ? "OK" : "Unavailable")}
           ${about("Review Records",Object.keys(state.reviews).length)}
-          ${about("Platform Health",state.articles.length && platform.modules.length ? "100%" : "Attention")}
+          ${about("Amendment Records",state.amendmentItems().length)}
+          ${about("Event Bus","Operational")}
+          ${about("Platform Health",state.articles.length && platform.modules.length === 5 ? "100%" : "Attention")}
         </div>
       </section>
 

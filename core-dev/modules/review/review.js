@@ -71,8 +71,25 @@ export default function register(ctx){
 
     const existing = state.getReview(section);
     const now=new Date().toISOString().slice(0,10); const history=Array.isArray(existing?.history)?[...existing.history]:[];
-    if(existing?.reviewId && (existing.status!==status || existing.notes!==String(data.get("notes")||""))) history.unshift({reviewId:existing.reviewId,status:existing.status,reviewDate:existing.reviewDate,reviewedBy:existing.reviewedBy,notes:existing.notes||""});
-    const record={reviewId:existing?.reviewId||state.nextReviewId(),type:"bylaw-section",article:article.roman,section:String(section.number),title:section.title,status,importedDate:existing?.importedDate||now,reviewDate:now,nextReview:`${new Date().getFullYear()+1}-${now.slice(5)}`,reviewedBy:String(data.get("reviewedBy")||"Temple Board"),responsibleCommittee:String(data.get("responsibleCommittee")||"By-Laws Committee"),authorities:data.getAll("authority"),notes:String(data.get("notes")||""),institutionalKnowledge:String(data.get("institutionalKnowledge")||""),relatedRecords:{meeting:String(data.get("meeting")||""),motion:String(data.get("motion")||""),amendment:String(data.get("amendment")||""),orePublication:String(data.get("orePublication")||"")},history,amendment:events.emit("amendment:collect",{form,existing})||existing?.amendment||null};
+    if(existing?.reviewId && (
+      existing.status !== status ||
+      existing.notes !== String(data.get("notes") || "") ||
+      existing.institutionalKnowledge !== String(data.get("institutionalKnowledge") || "")
+    )){
+      history.unshift({
+        reviewId:existing.reviewId,
+        status:existing.status,
+        reviewDate:existing.reviewDate,
+        reviewedBy:existing.reviewedBy,
+        notes:existing.notes || "",
+        institutionalKnowledge:existing.institutionalKnowledge || "",
+        amendmentId:existing.amendment?.amendmentId || ""
+      });
+    }
+    const record={reviewId:existing?.reviewId||state.nextReviewId(),type:"bylaw-section",article:article.roman,section:String(section.number),title:section.title,status,importedDate:existing?.importedDate||now,reviewDate:now,nextReview:`${new Date().getFullYear()+1}-${now.slice(5)}`,reviewedBy:String(data.get("reviewedBy")||"Temple Board"),responsibleCommittee:String(data.get("responsibleCommittee")||"By-Laws Committee"),authorities:data.getAll("authority"),notes:String(data.get("notes")||""),institutionalKnowledge:String(data.get("institutionalKnowledge")||""),relatedRecords:{meeting:String(data.get("meeting")||""),motion:String(data.get("motion")||""),amendment:String(data.get("amendment")||""),orePublication:String(data.get("orePublication")||"")},history,
+      amendment:events.emit("amendment:collect",{form,existing}) ?? existing?.amendment ?? null,
+      published:Boolean(existing?.published)
+    };
 
     state.setReview(section, record);
     toast(`${record.reviewId} saved.`);
