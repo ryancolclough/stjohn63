@@ -1,13 +1,16 @@
-CORE-DEV 1.5.0-dev — ACTIONS ROUTING HOTFIX
+CORE-DEV 1.5.0-dev — MOBILE ACTION FORM HOTFIX
 
 Replace the complete core-dev folder.
 Upload index.html LAST.
 
-Confirm:
-- Build 20260712.007
-- Tap Actions in the bottom navigation
-- Page heading says Action Centre
-- Eyebrow says Temple Board Work · Action Centre Module
-- Settings still opens only from Settings
+Confirm build:
+20260712.008
 
-This build includes cache-busting to prevent Safari from mixing old and new module files.
+Test:
+1. Open Actions.
+2. Tap New Action.
+3. Tap Assigned Officer.
+4. The keyboard should open and the bottom dock should slide away.
+5. Type a name.
+6. Tap Priority, Status, Due Date, and Source Reference.
+7. None of these controls should open Settings.

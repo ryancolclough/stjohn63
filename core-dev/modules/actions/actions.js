@@ -4,6 +4,33 @@ export default function register(ctx){
   const { router, state, renderShell, toast, events } = ctx;
   router.register("actions", () => renderActions());
 
+  document.addEventListener("focusin", e => {
+    if(e.target.closest(".action-editor") && e.target.matches("input, textarea, select")){
+      document.body.classList.add("core-form-focus");
+      setTimeout(() => {
+        e.target.scrollIntoView({block:"center", behavior:"smooth"});
+      }, 180);
+    }
+  });
+
+  document.addEventListener("focusout", e => {
+    if(e.target.closest(".action-editor") && e.target.matches("input, textarea, select")){
+      setTimeout(() => {
+        if(!document.activeElement?.closest(".action-editor")){
+          document.body.classList.remove("core-form-focus");
+        }
+      }, 120);
+    }
+  });
+
+  document.addEventListener("pointerdown", e => {
+    if(e.target.matches("#action-officer, #action-title, #action-description, #action-due, #action-source, #action-committee, #action-priority, #action-status")){
+      e.stopPropagation();
+    }
+  }, true);
+
+
+
   events.on("actions:create-from-review", detail => {
     const items = state.actionItems();
     const action = {
