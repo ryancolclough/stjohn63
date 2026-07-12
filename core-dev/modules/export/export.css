@@ -1,5 +1,0 @@
-
-.utility-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.utility-card{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-.utility-card h3{margin:0 0 8px;font-size:18px;font-weight:500}.utility-card p{margin:0 0 16px;color:var(--muted);line-height:1.5;font-size:13px}
-@media(max-width:760px){.utility-grid{grid-template-columns:1fr}}
