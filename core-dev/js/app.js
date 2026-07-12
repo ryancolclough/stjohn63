@@ -6,8 +6,8 @@ import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
   version:"1.3.0-dev",
-  build:"20260712.003",
-  releaseId:"CORE-DEV-REL-004-HF1",
+  build:"20260712.004",
+  releaseId:"CORE-DEV-REL-004-HF2",
   environment:"Development",
   modules:[]
 };
@@ -60,6 +60,52 @@ const state = {
     let n=1; let id;
     do{id=`CORE-${this.reviewYear}-${String(n++).padStart(4,"0")}`;}while(used.includes(id));
     return id;
+  },
+  annualSettings(){
+    return storage.get("ANNUAL", {
+      year:this.reviewYear,
+      status:"in_progress",
+      startedDate:new Date().toISOString().slice(0,10),
+      targetCompletionDate:`${this.reviewYear}-12-15`,
+      meetingTarget:4,
+      notes:"",
+      recessMonths:[7,8]
+    });
+  },
+  saveAnnualSettings(value){
+    storage.set("ANNUAL", value);
+  },
+  annualQueue(){
+    const attention = this.allSections
+      .filter(item => ["discussion","amendment"].includes(this.getReview(item.section)?.status))
+      .map(item => ({
+        ...item,
+        queueReason:this.getReview(item.section).status === "amendment"
+          ? "Amendment recommended"
+          : "Discussion required"
+      }));
+
+    const notReviewed = this.allSections
+      .filter(item => !this.getReview(item.section))
+      .map(item => ({
+        ...item,
+        queueReason:"Not reviewed"
+      }));
+
+    return [...attention, ...notReviewed];
+  },
+  annualArticleProgress(){
+    return this.articles.map((article, articleIndex) => {
+      const reviewed = article.sections.filter(section => this.getReview(section)).length;
+      const total = article.sections.length;
+      return {
+        article,
+        articleIndex,
+        reviewed,
+        total,
+        percent:total ? Math.round((reviewed / total) * 100) : 0
+      };
+    });
   },
   metrics(){
     const total=this.allSections.length;

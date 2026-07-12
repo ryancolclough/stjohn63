@@ -1,19 +1,13 @@
-CORE-DEV 1.3.0-dev — ANNUAL DASHBOARD PATCH
+CORE-DEV 1.3.0-dev — ANNUAL QUEUE HOTFIX 2
 
-REPLACE THE ENTIRE core-dev FOLDER.
+REPLACE THE COMPLETE core-dev FOLDER.
 
-UPLOAD ORDER:
-1. modules/
-2. js/
-3. docs/
-4. index.html LAST
+UPLOAD index.html LAST.
 
-TEST:
-1. Open Dashboard.
-2. Confirm a large Annual Governance Manager card appears below Governance Health.
-3. Tap the card.
-4. Confirm the Annual module opens.
-5. Confirm Export is back in the bottom navigation.
-
-BUILD:
-20260712.003
+CONFIRM:
+- Build: 20260712.004
+- Dashboard loads without a module failure
+- Annual Governance Manager card appears
+- Annual module opens
+- Settings shows six modules
+- Platform Health shows 100%
