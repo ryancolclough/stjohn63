@@ -6,8 +6,8 @@ import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
   version:"1.5.0-dev",
-  build:"20260712.006",
-  releaseId:"CORE-DEV-REL-006",
+  build:"20260712.007",
+  releaseId:"CORE-DEV-REL-006-HF1",
   environment:"Development",
   modules:[]
 };
@@ -270,22 +270,43 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json").then(r=>r.json());
+  const registry = await fetch("data/module-registry.json?v=20260712.007", {cache:"no-store"}).then(r=>{
+    if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
+    return r.json();
+  });
   for(const item of registry.filter(x=>x.enabled)){
-    const mod = await import(item.entry);
+    const mod = await import(`${item.entry}?v=20260712.007`);
     PLATFORM.modules.push(item);
     mod.default({router,state,storage,events,themes,dialogs,renderShell,toast,platform:PLATFORM});
   }
   if(!router.routes.has("amendments")) router.register("amendments",()=>toast("Amendment module unavailable."));
   if(!router.routes.has("annual")) router.register("annual",()=>toast("Annual Governance Manager unavailable."));
   if(!router.routes.has("intelligence")) router.register("intelligence",()=>toast("Governance Intelligence unavailable."));
-  if(!router.routes.has("actions")) router.register("actions",()=>toast("Action Centre unavailable."));
+  if(!router.routes.has("actions")){
+    router.register("actions",()=>{
+      toast("Action Centre failed to register. Refresh this build.");
+      console.error("CORE diagnostics: actions route missing", PLATFORM.modules);
+    });
+  }
+  console.info("CORE loaded routes:", [...router.routes.keys()]);
+  console.info("CORE loaded modules:", PLATFORM.modules.map(module => `${module.id}@${module.version}`));
   router.go("dashboard");
 }
 
 document.addEventListener("click",e=>{
-  const r=e.target.closest("[data-route]")?.dataset.route;
-  if(r){ try{router.go(r)}catch(err){console.error(err);toast("Module route unavailable.");} }
+  const routeButton = e.target.closest("[data-route]");
+  const r = routeButton?.dataset.route;
+  if(r){
+    e.preventDefault();
+    e.stopPropagation();
+    try{
+      router.go(r);
+    }catch(err){
+      console.error(`CORE route failure: ${r}`, err);
+      toast(`${r} module route unavailable.`);
+    }
+    return;
+  }
   if(e.target.closest("[data-close-modal]")||e.target.id==="core-modal") dialogs.close();
 });
 

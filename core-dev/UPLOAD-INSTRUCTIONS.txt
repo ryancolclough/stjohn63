@@ -1,7 +1,13 @@
-CORE-DEV 1.5.0-dev — ACTION CENTRE
+CORE-DEV 1.5.0-dev — ACTIONS ROUTING HOTFIX
 
-Replace the complete core-dev folder. Upload index.html last.
+Replace the complete core-dev folder.
+Upload index.html LAST.
 
-Confirm banner 1.5.0-dev, build 20260712.006, 8 modules loaded, Platform Health 100%.
+Confirm:
+- Build 20260712.007
+- Tap Actions in the bottom navigation
+- Page heading says Action Centre
+- Eyebrow says Temple Board Work · Action Centre Module
+- Settings still opens only from Settings
 
-Test: create, edit, complete, and reopen an action. Then create one from a reviewed section and open its Source link.
+This build includes cache-busting to prevent Safari from mixing old and new module files.
