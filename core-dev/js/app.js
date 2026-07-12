@@ -40,6 +40,21 @@ const state = {
   setReview(section,record){ this.reviews[String(section.number)] = record; storage.set("REVIEWS",this.reviews); },
   removeReview(section){ delete this.reviews[String(section.number)]; storage.set("REVIEWS",this.reviews); },
   attentionItems(){ return this.allSections.map(x=>({ ...x, review:this.getReview(x.section) })).filter(x=>x.review && ["discussion","amendment"].includes(x.review.status)); },
+  amendmentItems(){
+    return this.allSections
+      .map(x=>({ ...x, review:this.getReview(x.section) }))
+      .filter(x=>x.review?.status === "amendment" || x.review?.amendment);
+  },
+  amendmentStage(record){
+    const a = record?.amendment || {};
+    if(a.archived) return "archived";
+    if(a.publishedToORE) return "published";
+    if(a.boardApproved) return "ready_to_publish";
+    if(a.boardDiscussed) return "awaiting_approval";
+    if(a.committeeReviewed) return "awaiting_board";
+    if(a.analysisComplete || a.proposedText) return "drafting";
+    return "not_started";
+  },
   nextReviewId(){
     const used=Object.values(this.reviews).map(r=>r?.reviewId).filter(Boolean);
     let n=1; let id;
