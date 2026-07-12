@@ -1,30 +1,19 @@
-CORE-DEV 1.3.0-dev — ANNUAL GOVERNANCE MANAGER
+CORE-DEV 1.3.0-dev — ANNUAL DASHBOARD PATCH
 
-REPLACE:
-Replace the entire contents of stjohn63/core-dev/
+REPLACE THE ENTIRE core-dev FOLDER.
 
 UPLOAD ORDER:
-1. sdk/
-2. modules/
-3. css/
-4. data/
-5. docs/
-6. js/
-7. index.html LAST
+1. modules/
+2. js/
+3. docs/
+4. index.html LAST
 
-TEST URL:
-https://ryancolclough.github.io/stjohn63/core-dev/
+TEST:
+1. Open Dashboard.
+2. Confirm a large Annual Governance Manager card appears below Governance Health.
+3. Tap the card.
+4. Confirm the Annual module opens.
+5. Confirm Export is back in the bottom navigation.
 
-CONFIRM:
-- Banner: 1.3.0-dev
-- Build: 20260712.002
-- Annual appears in the bottom dock
-- Settings shows 6 modules loaded
-- Annual Governance Manager version 1.0.0
-- Platform Health 100%
-
-QUICK TEST:
-1. Tap Annual.
-2. Confirm progress and review queue.
-3. Tap Start Next.
-4. Return to Annual and save Cycle Settings.
+BUILD:
+20260712.003

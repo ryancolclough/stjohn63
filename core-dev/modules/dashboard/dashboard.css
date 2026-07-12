@@ -10,3 +10,67 @@
 
 .health-card{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;border:1px solid var(--line);background:var(--surface);border-radius:22px;padding:22px;margin:0 0 18px;box-shadow:var(--shadow)}
 .health-card span{display:block;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}.health-card strong{display:block;color:var(--brass-soft);font-size:42px;font-weight:500;margin-top:8px}.health-card small{display:block;color:var(--muted);margin-top:5px}.health-ring{--score:0;width:82px;height:82px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--brass) calc(var(--score)*1%),var(--surface-2) 0);position:relative}.health-ring::before{content:"";position:absolute;width:62px;height:62px;border-radius:50%;background:var(--surface)}.health-ring b{position:relative;color:var(--text);font-size:18px}.attention-row{width:100%;display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:12px;align-items:center;padding:15px 18px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--text);text-align:left}.attention-row:last-child{border-bottom:0}.attention-row small{display:block;color:var(--muted);margin-top:4px}.attention-mark{width:9px;height:9px;border-radius:50%}.attention-mark.discussion{background:var(--warn)}.attention-mark.amendment{background:var(--danger)}.empty-state{padding:28px 20px;text-align:center;color:var(--muted)}
+
+.annual-launch-card{
+  width:100%;
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr) auto;
+  align-items:center;
+  gap:16px;
+  margin:0 0 18px;
+  padding:20px;
+  border:1px solid var(--brass);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 0% 0%,rgba(200,164,93,.14),transparent 45%),
+    var(--surface);
+  color:var(--text);
+  text-align:left;
+  box-shadow:var(--shadow);
+}
+.annual-launch-card:hover{
+  background:
+    radial-gradient(circle at 0% 0%,rgba(200,164,93,.20),transparent 50%),
+    color-mix(in srgb,var(--surface) 93%,var(--brass));
+}
+.annual-launch-icon{
+  width:46px;height:46px;
+  display:grid;place-items:center;
+  border:1px solid var(--line);
+  border-radius:14px;
+  color:var(--brass-soft);
+  font-size:24px;
+}
+.annual-launch-card small{
+  display:block;
+  color:var(--brass);
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.annual-launch-card strong{
+  display:block;
+  margin-top:5px;
+  font-size:21px;
+  font-weight:500;
+}
+.annual-launch-card em{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:12px;
+  font-style:normal;
+}
+.annual-launch-card b{
+  color:var(--brass-soft);
+  font-size:13px;
+  white-space:nowrap;
+}
+@media(max-width:560px){
+  .annual-launch-card{
+    grid-template-columns:42px minmax(0,1fr);
+  }
+  .annual-launch-card b{
+    grid-column:2;
+  }
+}

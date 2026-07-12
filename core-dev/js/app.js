@@ -6,8 +6,8 @@ import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
   version:"1.3.0-dev",
-  build:"20260712.002",
-  releaseId:"CORE-DEV-REL-004",
+  build:"20260712.003",
+  releaseId:"CORE-DEV-REL-004-HF1",
   environment:"Development",
   modules:[]
 };
@@ -105,7 +105,7 @@ function renderShell(content,active="dashboard"){
         ${dock("dashboard","Home",active)}
         ${dock("review","Review",active)}
         ${dock("amendments","Amendments",active)}
-        ${dock("annual","Annual",active)}
+        ${dock("export","Export",active)}
         ${dock("settings","Settings",active)}
       </nav>
       <div id="core-modal" class="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><h2 id="modal-title"></h2><button data-close-modal>×</button></div><div id="modal-body"></div></div></div>

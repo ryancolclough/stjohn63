@@ -53,6 +53,16 @@ export default function register(ctx){
         <article class="summary-card"><span>Ready to Publish</span><strong>${stages.ready}</strong><small>approved amendments</small></article>
       </section>
 
+      <button class="annual-launch-card" data-route="annual">
+        <span class="annual-launch-icon">▣</span>
+        <span>
+          <small>Annual Governance Manager</small>
+          <strong>${state.reviewYear} Review Cycle</strong>
+          <em>${m.reviewed} of ${m.total} sections reviewed · ${state.annualQueue().length} in queue</em>
+        </span>
+        <b>Open →</b>
+      </button>
+
       <section class="panel">
         <div class="panel-head">
           <div><h2>${state.reviewYear} Governance Review</h2><p>${state.articles.length} Articles · ${m.total} Sections</p></div>
