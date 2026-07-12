@@ -5,9 +5,9 @@ import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
-  version:"1.4.0-dev",
-  build:"20260712.005",
-  releaseId:"CORE-DEV-REL-005",
+  version:"1.5.0-dev",
+  build:"20260712.006",
+  releaseId:"CORE-DEV-REL-006",
   environment:"Development",
   modules:[]
 };
@@ -194,6 +194,29 @@ const state = {
     agenda.push({type:"standard",title:"Actions, New Business and Adjournment",minutes:5});
     return {items:agenda,totalMinutes:agenda.reduce((sum,x)=>sum+x.minutes,0),limitMinutes};
   },
+  actionItems(){
+    return storage.get("ACTIONS", []);
+  },
+  saveActionItems(items){
+    storage.set("ACTIONS", items);
+  },
+  nextActionId(){
+    const used = this.actionItems().map(item => item.id).filter(Boolean);
+    let n = 1; let id;
+    do{ id = `ACT-${this.reviewYear}-${String(n++).padStart(4,"0")}`; }while(used.includes(id));
+    return id;
+  },
+  actionSummary(){
+    const items = this.actionItems();
+    const today = new Date().toISOString().slice(0,10);
+    return {
+      total:items.length,
+      open:items.filter(x => !["completed","archived"].includes(x.status)).length,
+      overdue:items.filter(x => !["completed","archived"].includes(x.status) && x.dueDate && x.dueDate < today).length,
+      dueThisMonth:items.filter(x => !["completed","archived"].includes(x.status) && x.dueDate?.slice(0,7) === today.slice(0,7)).length,
+      completed:items.filter(x => x.status === "completed").length
+    };
+  },
   metrics(){
     const total=this.allSections.length;
     const records=this.allSections.map(x=>this.getReview(x.section)).filter(Boolean);
@@ -237,7 +260,7 @@ function renderShell(content,active="dashboard"){
       <nav class="dock">
         ${dock("dashboard","Home",active)}
         ${dock("review","Review",active)}
-        ${dock("amendments","Amendments",active)}
+        ${dock("actions","Actions",active)}
         ${dock("export","Export",active)}
         ${dock("settings","Settings",active)}
       </nav>
@@ -256,6 +279,7 @@ async function boot(){
   if(!router.routes.has("amendments")) router.register("amendments",()=>toast("Amendment module unavailable."));
   if(!router.routes.has("annual")) router.register("annual",()=>toast("Annual Governance Manager unavailable."));
   if(!router.routes.has("intelligence")) router.register("intelligence",()=>toast("Governance Intelligence unavailable."));
+  if(!router.routes.has("actions")) router.register("actions",()=>toast("Action Centre unavailable."));
   router.go("dashboard");
 }
 

@@ -1,0 +1,13 @@
+{
+  "id": "actions",
+  "name": "Action Centre",
+  "version": "1.0.0",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "storage",
+    "events",
+    "review",
+    "amendment"
+  ],
+  "description": "Create, assign, track, complete, and archive Temple Board action items."
+}

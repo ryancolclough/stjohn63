@@ -13,6 +13,8 @@ export default function register(ctx){
       published: amendments.filter(x => state.amendmentStage(x.review) === "published").length
     };
 
+    const actions = state.actionSummary();
+
     const score = m.total
       ? Math.round(((m.complete + m.discussion * .55 + m.amendment * .35) / m.total) * 100)
       : 0;
@@ -50,7 +52,7 @@ export default function register(ctx){
         <article class="summary-card"><span>Governance Review</span><strong>${m.reviewed} / ${m.total}</strong><small>sections reviewed</small></article>
         <article class="summary-card"><span>Review Progress</span><strong>${m.percent}%</strong><small>${m.total-m.reviewed} remaining</small><div class="progress-track"><i style="width:${m.percent}%"></i></div></article>
         <article class="summary-card"><span>Awaiting Approval</span><strong>${stages.awaitingApproval + stages.awaitingBoard}</strong><small>amendments</small></article>
-        <article class="summary-card"><span>Ready to Publish</span><strong>${stages.ready}</strong><small>approved amendments</small></article>
+        <article class="summary-card"><span>Open Actions</span><strong>${actions.open}</strong><small>${actions.overdue} overdue</small></article>
       </section>
 
       <button class="intelligence-launch-card" data-route="intelligence">
@@ -79,6 +81,7 @@ export default function register(ctx){
           <button class="btn" data-route="review">${m.reviewed ? "Continue Review" : "Begin Review"}</button>
         </div>
         <div class="panel-body">
+          <button class="menu-row" data-route="actions"><span><span class="row-title">Action Centre</span><span class="row-sub">${actions.open} open · ${actions.overdue} overdue · ${actions.dueThisMonth} due this month</span></span></button>
           <button class="menu-row" data-route="review"><span><span class="row-title">Corporate By-Laws</span><span class="row-sub">Review all Articles and Sections.</span></span></button>
           <button class="menu-row" data-route="annual"><span><span class="row-title">Annual Governance Manager</span><span class="row-sub">${m.reviewed} of ${m.total} sections reviewed · ${state.annualQueue().length} in queue</span></span></button>
           <button class="menu-row" data-route="amendments"><span><span class="row-title">Amendment Centre</span><span class="row-sub">${amendments.length} amendment record${amendments.length === 1 ? "" : "s"} · ${stages.ready} ready to publish</span></span></button>

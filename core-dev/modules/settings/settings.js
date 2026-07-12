@@ -25,7 +25,9 @@ export default function register(ctx){
           ${about("Annual Queue",state.annualQueue().length)}
           ${about("High-Risk Sections",state.intelligenceSummary().high.length)}
           ${about("Estimated Work",state.intelligenceSummary().estimated + " min")}
-          ${about("Platform Health",state.articles.length && platform.modules.length === 7 ? "100%" : "Attention")}
+          ${about("Open Actions",state.actionSummary().open)}
+          ${about("Overdue Actions",state.actionSummary().overdue)}
+          ${about("Platform Health",state.articles.length && platform.modules.length === 8 ? "100%" : "Attention")}
         </div>
       </section>
 

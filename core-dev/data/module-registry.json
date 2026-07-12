@@ -2,50 +2,57 @@
   {
     "id": "dashboard",
     "name": "Dashboard",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "entry": "../modules/dashboard/dashboard.js",
     "enabled": true
   },
   {
     "id": "review",
     "name": "Review Engine",
-    "version": "1.4.1",
+    "version": "1.5.0",
     "entry": "../modules/review/review.js",
     "enabled": true
   },
   {
     "id": "amendment",
     "name": "Amendment Engine",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "entry": "../modules/amendment/amendment.js",
     "enabled": true
   },
   {
     "id": "export",
     "name": "Export Engine",
-    "version": "1.3.2",
+    "version": "1.4.0",
     "entry": "../modules/export/export.js",
     "enabled": true
   },
   {
     "id": "settings",
     "name": "Settings",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "entry": "../modules/settings/settings.js",
     "enabled": true
   },
   {
     "id": "annual",
     "name": "Annual Governance Manager",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "entry": "../modules/annual/annual.js",
     "enabled": true
   },
   {
     "id": "intelligence",
     "name": "Governance Intelligence",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "entry": "../modules/intelligence/intelligence.js",
+    "enabled": true
+  },
+  {
+    "id": "actions",
+    "name": "Action Centre",
+    "version": "1.0.0",
+    "entry": "../modules/actions/actions.js",
     "enabled": true
   }
 ]

@@ -1,30 +1,7 @@
-CORE-DEV 1.4.0-dev — GOVERNANCE INTELLIGENCE
+CORE-DEV 1.5.0-dev — ACTION CENTRE
 
-REPLACE:
-Replace the entire contents of stjohn63/core-dev/
+Replace the complete core-dev folder. Upload index.html last.
 
-UPLOAD ORDER:
-1. sdk/
-2. modules/
-3. css/
-4. data/
-5. docs/
-6. js/
-7. index.html LAST
+Confirm banner 1.5.0-dev, build 20260712.006, 8 modules loaded, Platform Health 100%.
 
-TEST URL:
-https://ryancolclough.github.io/stjohn63/core-dev/
-
-CONFIRM:
-- Banner: 1.4.0-dev
-- Build: 20260712.005
-- Dashboard has Governance Intelligence card
-- Settings shows 7 modules loaded
-- Platform Health shows 100%
-
-QUICK TEST:
-1. Open Governance Intelligence.
-2. Change agenda duration to 45 minutes.
-3. Generate agenda.
-4. Save Draft.
-5. Tap a risk item and confirm the correct section opens.
+Test: create, edit, complete, and reopen an action. Then create one from a reviewed section and open its Source link.
