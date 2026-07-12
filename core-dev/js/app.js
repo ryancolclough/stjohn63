@@ -5,9 +5,9 @@ import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
-  version:"1.2.2-dev",
-  build:"20260712.001",
-  releaseId:"CORE-DEV-REL-003",
+  version:"1.3.0-dev",
+  build:"20260712.002",
+  releaseId:"CORE-DEV-REL-004",
   environment:"Development",
   modules:[]
 };
@@ -86,6 +86,7 @@ const icons={
   review:'<svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
   actions:'<svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="m8 9 2 2 4-4M8 15h8"/></svg>',
   amendments:'<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h4"/></svg>',
+  annual:'<svg viewBox="0 0 24 24"><path d="M4 5h16v15H4z"/><path d="M8 3v4M16 3v4M4 9h16"/><path d="M8 13h3M13 13h3M8 17h3"/></svg>',
   export:'<svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>',
   settings:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1A8 8 0 0 0 15 6l-.3-2.6h-4L10.4 6A8 8 0 0 0 8.9 7.1l-2.4-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.4-1A8 8 0 0 0 10.4 18l.3 2.6h4L15 18a8 8 0 0 0 1.5-1.1l2.4 1 2-3.4-2-1.5a7 7 0 0 0 .1-1z"/></svg>'
 };
@@ -104,7 +105,7 @@ function renderShell(content,active="dashboard"){
         ${dock("dashboard","Home",active)}
         ${dock("review","Review",active)}
         ${dock("amendments","Amendments",active)}
-        ${dock("export","Export",active)}
+        ${dock("annual","Annual",active)}
         ${dock("settings","Settings",active)}
       </nav>
       <div id="core-modal" class="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><h2 id="modal-title"></h2><button data-close-modal>×</button></div><div id="modal-body"></div></div></div>
@@ -120,6 +121,7 @@ async function boot(){
     mod.default({router,state,storage,events,themes,dialogs,renderShell,toast,platform:PLATFORM});
   }
   if(!router.routes.has("amendments")) router.register("amendments",()=>toast("Amendment module unavailable."));
+  if(!router.routes.has("annual")) router.register("annual",()=>toast("Annual Governance Manager unavailable."));
   router.go("dashboard");
 }
 

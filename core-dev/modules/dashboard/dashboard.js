@@ -60,6 +60,7 @@ export default function register(ctx){
         </div>
         <div class="panel-body">
           <button class="menu-row" data-route="review"><span><span class="row-title">Corporate By-Laws</span><span class="row-sub">Review all Articles and Sections.</span></span></button>
+          <button class="menu-row" data-route="annual"><span><span class="row-title">Annual Governance Manager</span><span class="row-sub">${m.reviewed} of ${m.total} sections reviewed · ${state.annualQueue().length} in queue</span></span></button>
           <button class="menu-row" data-route="amendments"><span><span class="row-title">Amendment Centre</span><span class="row-sub">${amendments.length} amendment record${amendments.length === 1 ? "" : "s"} · ${stages.ready} ready to publish</span></span></button>
           <button class="menu-row" data-route="export"><span><span class="row-title">Review Data & Publication</span><span class="row-sub">Back up CORE or generate the ORE review file.</span></span></button>
           <button class="menu-row" data-route="settings"><span><span class="row-title">Platform & Modules</span><span class="row-sub">View installed modules, versions, and system health.</span></span></button>

@@ -1,7 +1,7 @@
-CORE-DEV 1.2.2-dev — AMENDMENT WORKFLOW
+CORE-DEV 1.3.0-dev — ANNUAL GOVERNANCE MANAGER
 
-RECOMMENDED:
-Replace the entire contents of stjohn63/core-dev/ with the included folder.
+REPLACE:
+Replace the entire contents of stjohn63/core-dev/
 
 UPLOAD ORDER:
 1. sdk/
@@ -16,17 +16,15 @@ TEST URL:
 https://ryancolclough.github.io/stjohn63/core-dev/
 
 CONFIRM:
-- Amber banner: 1.2.2-dev
-- Build: 20260712.001
-- Bottom navigation now includes Amendments
-- Settings shows Amendment Engine 1.2.0
-- Platform Health shows 100%
+- Banner: 1.3.0-dev
+- Build: 20260712.002
+- Annual appears in the bottom dock
+- Settings shows 6 modules loaded
+- Annual Governance Manager version 1.0.0
+- Platform Health 100%
 
 QUICK TEST:
-1. Review → choose any section.
-2. Select Amendment Recommended.
-3. Enter proposed wording and reason.
-4. Check Analysis Complete.
-5. Save Review.
-6. Open Amendments from the bottom dock.
-7. Reopen the amendment and continue the workflow.
+1. Tap Annual.
+2. Confirm progress and review queue.
+3. Tap Start Next.
+4. Return to Annual and save Cycle Settings.

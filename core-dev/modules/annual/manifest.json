@@ -1,0 +1,13 @@
+{
+  "id": "annual",
+  "name": "Annual Governance Manager",
+  "version": "1.0.0",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "review",
+    "amendment",
+    "storage",
+    "events"
+  ],
+  "description": "Annual review cycle, queue, schedule, priorities, and year-end readiness."
+}

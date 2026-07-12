@@ -56,7 +56,7 @@ export default function register(ctx){
       platformVersion:platform.version,
       build:platform.build,
       exportedAt:new Date().toISOString(),
-      reviews:state.reviews
+      annualReview:state.annualSettings(),reviews:state.reviews
     }, `CORE-backup-${new Date().toISOString().slice(0,10)}.json`);
     toast("CORE backup downloaded.");
   }

@@ -22,7 +22,8 @@ export default function register(ctx){
           ${about("Review Records",Object.keys(state.reviews).length)}
           ${about("Amendment Records",state.amendmentItems().length)}
           ${about("Event Bus","Operational")}
-          ${about("Platform Health",state.articles.length && platform.modules.length === 5 ? "100%" : "Attention")}
+          ${about("Annual Queue",state.annualQueue().length)}
+          ${about("Platform Health",state.articles.length && platform.modules.length === 6 ? "100%" : "Attention")}
         </div>
       </section>
 
