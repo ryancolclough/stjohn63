@@ -1,14 +1,29 @@
-# CORE Platform 1.3.0-dev Hotfix 2
+# CORE Platform 1.4.0-dev
 
-Build: `20260712.004`  
-Release ID: `CORE-DEV-REL-004-HF2`
+Build: `20260712.005`  
+Release ID: `CORE-DEV-REL-005`
 
-## Fixed
-- Restored missing `state.annualSettings()`
-- Restored missing `state.saveAnnualSettings()`
-- Restored missing `state.annualQueue()`
-- Restored missing `state.annualArticleProgress()`
-- Annual Dashboard card can now calculate the queue without crashing the platform
+## Added
+- Governance Intelligence module
+- Rules-based section risk engine
+- Estimated review time
+- Estimated total work remaining
+- Smart meeting agenda generator
+- 30, 45, 60, and 90 minute agenda modes
+- Saved draft meeting agendas
+- Highest-risk section list
+- Developer Diagnostics panel
+- Dashboard launch card for Governance Intelligence
+- Meeting data included in private CORE backup
 
-## Cause
-The Annual module loaded correctly, but its required state helpers were not present in the deployed `app.js`.
+## Module Versions
+- Dashboard `1.4.0`
+- Review Engine `1.4.1`
+- Amendment Engine `1.2.2`
+- Annual Governance Manager `1.1.0`
+- Export Engine `1.3.2`
+- Settings `1.4.0`
+- Governance Intelligence `1.0.0`
+
+## Important
+Risk and time estimates are internal planning aids. They are not legal conclusions or professional certifications.

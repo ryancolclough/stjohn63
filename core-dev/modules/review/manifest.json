@@ -1,7 +1,7 @@
 {
   "id": "review",
   "name": "Review Engine",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "coreCompatibility": "1.x",
   "dependencies": [
     "storage",

@@ -5,9 +5,9 @@ import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
-  version:"1.3.0-dev",
-  build:"20260712.004",
-  releaseId:"CORE-DEV-REL-004-HF2",
+  version:"1.4.0-dev",
+  build:"20260712.005",
+  releaseId:"CORE-DEV-REL-005",
   environment:"Development",
   modules:[]
 };
@@ -107,6 +107,93 @@ const state = {
       };
     });
   },
+  sectionRisk(item){
+    const review = this.getReview(item.section);
+    if(!review) return {level:"medium",score:55,reasons:["Not yet reviewed"]};
+
+    const reasons = [];
+    let score = 15;
+
+    if(review.status === "discussion"){ score += 30; reasons.push("Board discussion required"); }
+    if(review.status === "amendment"){ score += 45; reasons.push("Amendment recommended"); }
+    if(review.amendment && !review.amendment.boardApproved){ score += 15; reasons.push("Amendment not yet approved"); }
+    if(review.amendment?.boardApproved && !review.amendment?.publishedToORE){ score += 10; reasons.push("Approved amendment not yet published"); }
+    if((review.authorities || []).length < 3){ score += 15; reasons.push("Authority review incomplete"); }
+    if(!review.institutionalKnowledge){ score += 5; reasons.push("Institutional knowledge not recorded"); }
+
+    const reviewedDate = review.reviewDate ? new Date(review.reviewDate) : null;
+    if(reviewedDate && !Number.isNaN(reviewedDate.getTime())){
+      const ageDays = Math.floor((Date.now() - reviewedDate.getTime()) / 86400000);
+      if(ageDays > 730){ score += 25; reasons.push("Last review more than two years ago"); }
+      else if(ageDays > 365){ score += 12; reasons.push("Last review more than one year ago"); }
+    }
+
+    score = Math.min(100, score);
+    const level = score >= 70 ? "high" : score >= 40 ? "medium" : "low";
+    if(!reasons.length) reasons.push("Current review record has no unresolved issues");
+    return {level,score,reasons};
+  },
+  estimatedReviewMinutes(item){
+    const review = this.getReview(item.section);
+    let minutes = 4;
+    const length = (item.section.paragraphs || []).join(" ").length;
+    minutes += Math.min(8, Math.ceil(length / 500));
+    if(!review) minutes += 2;
+    if(review?.status === "discussion") minutes += 6;
+    if(review?.status === "amendment") minutes += 10;
+    if(review?.amendment && !review.amendment.boardApproved) minutes += 4;
+    return minutes;
+  },
+  intelligenceSummary(){
+    const queue = this.annualQueue();
+    const risks = this.allSections.map(item => ({...item,risk:this.sectionRisk(item)}));
+    const high = risks.filter(x => x.risk.level === "high");
+    const medium = risks.filter(x => x.risk.level === "medium");
+    const estimated = queue.reduce((sum,item)=>sum+this.estimatedReviewMinutes(item),0);
+    return {queue,risks,high,medium,estimated};
+  },
+  generateAgenda(limitMinutes=45){
+    const queue = this.annualQueue();
+    const amendments = this.amendmentItems().filter(x => !["published","archived"].includes(this.amendmentStage(x.review)));
+    const agenda = [];
+    let used = 8;
+
+    agenda.push({type:"standard",title:"Call to Order and Approval of Previous Minutes",minutes:8});
+
+    for(const item of queue){
+      const minutes = this.estimatedReviewMinutes(item);
+      if(used + minutes > limitMinutes - 5) break;
+      agenda.push({
+        type:"review",
+        title:`Review Section ${item.section.number} — ${item.section.title}`,
+        minutes,
+        articleIndex:item.articleIndex,
+        sectionIndex:item.sectionIndex,
+        reason:item.queueReason
+      });
+      used += minutes;
+    }
+
+    for(const item of amendments){
+      const title = item.review?.amendment?.amendmentId
+        ? `Amendment ${item.review.amendment.amendmentId}`
+        : `Amendment for Section ${item.section.number}`;
+      if(agenda.some(x => x.articleIndex===item.articleIndex && x.sectionIndex===item.sectionIndex)) continue;
+      if(used + 8 > limitMinutes - 5) break;
+      agenda.push({
+        type:"amendment",
+        title,
+        minutes:8,
+        articleIndex:item.articleIndex,
+        sectionIndex:item.sectionIndex,
+        reason:"Pending amendment workflow"
+      });
+      used += 8;
+    }
+
+    agenda.push({type:"standard",title:"Actions, New Business and Adjournment",minutes:5});
+    return {items:agenda,totalMinutes:agenda.reduce((sum,x)=>sum+x.minutes,0),limitMinutes};
+  },
   metrics(){
     const total=this.allSections.length;
     const records=this.allSections.map(x=>this.getReview(x.section)).filter(Boolean);
@@ -168,6 +255,7 @@ async function boot(){
   }
   if(!router.routes.has("amendments")) router.register("amendments",()=>toast("Amendment module unavailable."));
   if(!router.routes.has("annual")) router.register("annual",()=>toast("Annual Governance Manager unavailable."));
+  if(!router.routes.has("intelligence")) router.register("intelligence",()=>toast("Governance Intelligence unavailable."));
   router.go("dashboard");
 }
 

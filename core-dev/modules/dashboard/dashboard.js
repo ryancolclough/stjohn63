@@ -53,6 +53,16 @@ export default function register(ctx){
         <article class="summary-card"><span>Ready to Publish</span><strong>${stages.ready}</strong><small>approved amendments</small></article>
       </section>
 
+      <button class="intelligence-launch-card" data-route="intelligence">
+        <span class="intelligence-launch-icon">◎</span>
+        <span>
+          <small>Governance Intelligence</small>
+          <strong>Meeting Guidance & Risk</strong>
+          <em>${state.intelligenceSummary().high.length} high-risk · ${state.intelligenceSummary().estimated} estimated minutes remaining</em>
+        </span>
+        <b>Open →</b>
+      </button>
+
       <button class="annual-launch-card" data-route="annual">
         <span class="annual-launch-icon">▣</span>
         <span>
