@@ -1,26 +1,13 @@
-window.addEventListener("error", event => {
-  const appNode = document.querySelector("#core-app");
-  if(appNode && !appNode.innerHTML.trim()){
-    appNode.innerHTML = `<main class="main"><section class="hero">
-      <div class="eyebrow">CORE startup error</div>
-      <h1>The development build could not start.</h1>
-      <p>${String(event.message || "Unknown startup error")}</p>
-    </section></main>`;
-  }
-});
-
 import { StorageService } from "../sdk/storage.js";
 import { EventBus } from "../sdk/events.js";
 import { Router } from "../sdk/router.js";
 import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
-
 const PLATFORM = {
-  moduleLoadLog:[],
-  version:"1.6.2.3-dev",
-  build:"20260713.004",
-  releaseId:"CORE-DEV-REL-009-HF3",
+  version:"1.6.2-dev",
+  build:"20260713.005",
+  releaseId:"CORE-DEV-REL-009-CLEAN",
   environment:"Development",
   modules:[]
 };
@@ -279,53 +266,6 @@ const state = {
       completed:items.filter(item => item.status === "completed").length
     };
   },
-  diagnosticSnapshot(){
-    const errors = storage.get("ERROR_LOG", []);
-    const reviews = Object.keys(this.reviews || {}).length;
-    const actions = this.actionItems ? this.actionItems().length : 0;
-    const annualTasks = this.annualTasks ? this.annualTasks().length : 0;
-    const meetings = storage.get("MEETINGS", []).length;
-    const settingsCount = Object.keys(storage.get("SETTINGS", {})).length;
-    const loadLog = Array.isArray(PLATFORM.moduleLoadLog) ? PLATFORM.moduleLoadLog : [];
-    const failed = loadLog.filter(item => item.status === "failed").length;
-    return {
-      platform:PLATFORM.version,
-      build:PLATFORM.build,
-      releaseId:PLATFORM.releaseId,
-      modulesExpected:registry.filter(item => item.enabled).length,
-      modulesLoaded:loadLog.filter(item => item.status === "loaded").length,
-      modulesFailed:failed,
-      moduleLoadLog:[...loadLog],
-      storageAvailable:Boolean(window.localStorage),
-      reviews,
-      actions,
-      annualTasks,
-      meetings,
-      settingsCount,
-      errors,
-      online:navigator.onLine,
-      userAgent:navigator.userAgent,
-      timestamp:new Date().toISOString()
-    };
-  },
-  platformValidation(){
-    const snapshot = this.diagnosticSnapshot();
-    const checks = [
-      {id:"registry",label:"Module registry valid",pass:snapshot.modulesExpected > 0},
-      {id:"modules",label:"All enabled modules loaded",pass:snapshot.modulesFailed === 0 && snapshot.modulesLoaded === snapshot.modulesExpected},
-      {id:"storage",label:"Local storage readable",pass:snapshot.storageAvailable},
-      {id:"reviews",label:"Review data valid",pass:this.reviews && typeof this.reviews === "object" && !Array.isArray(this.reviews)},
-      {id:"actions",label:"Action data valid",pass:Array.isArray(this.actionItems ? this.actionItems() : [])},
-      {id:"annual",label:"Annual task data valid",pass:Array.isArray(this.annualTasks ? this.annualTasks() : [])},
-      {id:"routes",label:"Core routes registered",pass:["dashboard","review","annual","actions","export","settings"].every(route => router.routes.has(route))}
-    ];
-    return {
-      checks,
-      passed:checks.filter(check => check.pass).length,
-      total:checks.length,
-      overall:checks.every(check => check.pass) ? "PASS" : "ATTENTION"
-    };
-  },
   metrics(){
     const total=this.allSections.length;
     const records=this.allSections.map(x=>this.getReview(x.section)).filter(Boolean);
@@ -350,7 +290,6 @@ const icons={
   dashboard:'<svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v10H3z"/><path d="M9 21v-7h6v7"/></svg>',
   review:'<svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
   actions:'<svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="m8 9 2 2 4-4M8 15h8"/></svg>',
-  developer:'<svg viewBox="0 0 24 24"><path d="M8 5 3 12l5 7M16 5l5 7-5 7M14 3l-4 18"/></svg>',
   amendments:'<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h4"/></svg>',
   annual:'<svg viewBox="0 0 24 24"><path d="M4 5h16v15H4z"/><path d="M8 3v4M16 3v4M4 9h16"/><path d="M8 13h3M13 13h3M8 17h3"/></svg>',
   export:'<svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>',
@@ -380,80 +319,25 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json?v=20260713.004.003.002", {cache:"no-store"}).then(r=>{
+  const registry = await fetch("data/module-registry.json?v=20260713.005", {cache:"no-store"}).then(r=>{
     if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
     return r.json();
   });
-
-  for(const item of registry.filter(module=>module.enabled)){
-    const started = performance.now();
-    try{
-      const mod = await import(`${item.entry}?v=20260713.002`);
-      const ctx={router,state,storage,events,themes,dialogs,renderShell,toast,platform:PLATFORM};
-      await mod.default(ctx,item);
-      PLATFORM.modules.push(item);
-      PLATFORM.moduleLoadLog.push({
-        id:item.id,
-        name:item.name,
-        version:item.version,
-        status:"loaded",
-        loadMs:Math.round(performance.now()-started),
-        loadedAt:new Date().toISOString()
-      });
-    }catch(err){
-      console.error(`Module ${item.id} failed`,err);
-      PLATFORM.moduleLoadLog.push({
-        id:item.id,
-        name:item.name,
-        version:item.version,
-        status:"failed",
-        loadMs:Math.round(performance.now()-started),
-        loadedAt:new Date().toISOString(),
-        error:String(err?.stack || err?.message || err)
-      });
-      const errors=storage.get("ERROR_LOG",[]);
-      errors.unshift({
-        time:new Date().toISOString(),
-        module:item.id,
-        message:String(err?.message || err),
-        stack:String(err?.stack || "")
-      });
-      storage.set("ERROR_LOG",errors.slice(0,100));
-      toast(`${item.name} module unavailable.`);
-    }
+  for(const item of registry.filter(x=>x.enabled)){
+    const mod = await import(`${item.entry}?v=20260713.005`);
+    PLATFORM.modules.push(item);
+    mod.default({router,state,storage,events,themes,dialogs,renderShell,toast,platform:PLATFORM});
   }
-
   if(!router.routes.has("amendments")) router.register("amendments",()=>toast("Amendment module unavailable."));
   if(!router.routes.has("annual")) router.register("annual",()=>toast("Annual Governance Manager unavailable."));
   if(!router.routes.has("intelligence")) router.register("intelligence",()=>toast("Governance Intelligence unavailable."));
   if(!router.routes.has("actions")) router.register("actions",()=>toast("Action Centre unavailable."));
-  if(!router.routes.has("developer")) router.register("developer",()=>toast("Developer Console unavailable."));
-
   router.go("dashboard");
 }
 
 document.addEventListener("click",e=>{
-  const routeButton=e.target.closest("[data-route]");
-  const route=routeButton?.dataset.route;
-  if(route){
-    e.preventDefault();
-    e.stopPropagation();
-    try{
-      router.go(route);
-    }catch(err){
-      console.error(`CORE route failure: ${route}`,err);
-      const errors=storage.get("ERROR_LOG",[]);
-      errors.unshift({
-        time:new Date().toISOString(),
-        module:route,
-        message:String(err?.message || err),
-        stack:String(err?.stack || "")
-      });
-      storage.set("ERROR_LOG",errors.slice(0,100));
-      toast(`${route} could not open. Check Developer & Diagnostics.`);
-    }
-    return;
-  }
+  const r=e.target.closest("[data-route]")?.dataset.route;
+  if(r){ try{router.go(r)}catch(err){console.error(err);toast("Module route unavailable.");} }
   if(e.target.closest("[data-close-modal]")||e.target.id==="core-modal") dialogs.close();
 });
 

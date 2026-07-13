@@ -1,5 +1,5 @@
 export default function register(ctx){
-  const { router, state, renderShell, events } = ctx;
+  const { router, state, renderShell, events, platform } = ctx;
 
   router.register("dashboard", () => {
     const m = state.metrics();
@@ -14,12 +14,6 @@ export default function register(ctx){
     };
 
     const actions = state.actionSummary();
-    const diagnosticSnapshotSafe = typeof state.diagnosticSnapshot === "function"
-      ? state.diagnosticSnapshot()
-      : {modulesLoaded:platform.modules.length,modulesExpected:platform.modules.length,errors:[]};
-    const validationSafe = typeof state.platformValidation === "function"
-      ? state.platformValidation()
-      : {overall:"STARTING"};
 
     const score = m.total
       ? Math.round(((m.complete + m.discussion * .55 + m.amendment * .35) / m.total) * 100)
@@ -82,8 +76,12 @@ export default function register(ctx){
       </button>
 
       <button class="system-health-card" data-route="developer">
-        <span><small>System Health</small><strong>${validationSafe.overall}</strong><em>${diagnosticSnapshotSafe.modulesLoaded} / ${diagnosticSnapshotSafe.modulesExpected} modules loaded · ${diagnosticSnapshotSafe.errors.length} errors</em></span>
-        <b>Diagnostics →</b>
+        <span>
+          <small>System Health</small>
+          <strong>${platform.modules.length === 9 ? "Healthy" : "Attention"}</strong>
+          <em>${platform.modules.length} / 9 modules loaded · diagnostics isolated from startup</em>
+        </span>
+        <b>Open Diagnostics →</b>
       </button>
 
       <section class="panel">

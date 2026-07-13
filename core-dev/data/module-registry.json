@@ -2,7 +2,7 @@
   {
     "id": "dashboard",
     "name": "Dashboard",
-    "version": "1.6.2.3",
+    "version": "1.6.2",
     "entry": "../modules/dashboard/dashboard.js",
     "enabled": true
   },
@@ -37,14 +37,14 @@
   {
     "id": "developer",
     "name": "Developer & Diagnostics",
-    "version": "1.0.3",
+    "version": "1.0.0",
     "entry": "../modules/developer/developer.js",
     "enabled": true
   },
   {
     "id": "settings",
     "name": "Settings",
-    "version": "1.6.2.3",
+    "version": "1.6.2",
     "entry": "../modules/settings/settings.js",
     "enabled": true
   },

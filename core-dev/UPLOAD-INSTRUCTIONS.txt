@@ -1,18 +1,30 @@
-CORE-DEV 1.6.2.3 — BLACK SCREEN HOTFIX
+CORE-DEV 1.6.2 — CLEAN DEVELOPER & DIAGNOSTICS
 
-Replace the complete core-dev folder.
-Upload index.html LAST.
+This package was rebuilt from the last known-good CORE 1.6.1 release.
+It does not contain any of the broken 1.6.2.x bootloader patches.
 
-Confirm:
-- Platform 1.6.2.3
-- Build 20260713.004
+REPLACE:
+Replace the complete contents of stjohn63/core-dev/
 
-Open:
-https://ryancolclough.github.io/stjohn63/core-dev/?v=20260713.004
+UPLOAD ORDER:
+1. sdk/
+2. modules/
+3. css/
+4. data/
+5. docs/
+6. js/
+7. index.html LAST
 
-Test:
-1. Confirm Dashboard loads.
+CONFIRM:
+- Platform 1.6.2
+- Build 20260713.005
+
+TEST:
+1. Dashboard must load before testing diagnostics.
 2. Open Settings.
-3. Open Developer & Diagnostics.
-4. Confirm 9 of 9 modules loaded.
+3. Tap Open Diagnostics.
+4. Confirm 9 / 9 modules loaded.
 5. Run Platform Validation.
+6. Confirm PASS.
+7. Copy the Support Report.
+8. Test Annual, Actions, Review, Export, and Settings again.

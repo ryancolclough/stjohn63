@@ -12,16 +12,12 @@ export default function register(ctx){
       <section class="panel">
         <div class="panel-head"><div><h2>CORE Platform</h2><p>${platform.environment}</p></div></div>
         <div class="about-grid">
-          ${about("Platform Version","1.6.2.3")}
+          ${about("Platform Version","1.6.2")}
           ${about("Build",platform.build)}
           ${about("Release ID",platform.releaseId)}
           ${about("ORE Connection",state.articles.length?"Connected":"Unavailable")}
           ${about("Storage","Available")}
           ${about("Theme",document.documentElement.dataset.theme)}
-          <button class="settings-link-card" data-route="developer">
-            <span><strong>Developer & Diagnostics</strong><small>Module health, validation, errors, releases, and support reports.</small></span>
-            <b>Open →</b>
-          </button>
           ${about("Module Registry",platform.modules.length ? "OK" : "Unavailable")}
           ${about("Review Records",Object.keys(state.reviews).length)}
           ${about("Amendment Records",state.amendmentItems().length)}
@@ -32,6 +28,17 @@ export default function register(ctx){
           ${about("Open Actions",state.actionSummary().open)}
           ${about("Overdue Actions",state.actionSummary().overdue)}
           ${about("Platform Health",state.articles.length && platform.modules.length === 9 ? "100%" : "Attention")}
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><div><h2>Developer & Diagnostics</h2><p>Isolated health and support tools.</p></div></div>
+        <div class="settings-diagnostic-launch">
+          <span>
+            <strong>Open Developer Console</strong>
+            <small>Module health, validation, runtime errors, releases, and support reports.</small>
+          </span>
+          <button class="btn" data-route="developer">Open Diagnostics</button>
         </div>
       </section>
 
