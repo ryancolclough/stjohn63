@@ -6,8 +6,8 @@ import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
   version:"1.5.0-dev",
-  build:"20260712.010",
-  releaseId:"CORE-DEV-REL-006-CLEAN",
+  build:"20260712.011",
+  releaseId:"CORE-DEV-REL-006-HF5",
   environment:"Development",
   modules:[]
 };
@@ -273,7 +273,7 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json?v=20260712.010", {cache:"no-store"}).then(r=>{
+  const registry = await fetch("data/module-registry.json?v=20260712.011.010", {cache:"no-store"}).then(r=>{
     if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
     return r.json();
   });

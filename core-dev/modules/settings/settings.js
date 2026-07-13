@@ -46,8 +46,10 @@ export default function register(ctx){
   });
 
   document.addEventListener("click",e=>{
-    const b=e.target.closest("[data-theme]");
-    if(!b) return;
+    const b=e.target.closest("button[data-theme]");
+    if(!b || !b.closest(".theme-options")) return;
+    e.preventDefault();
+    e.stopPropagation();
     themes.set(b.dataset.theme);
     router.go("settings");
   });

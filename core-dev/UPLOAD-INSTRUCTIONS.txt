@@ -1,16 +1,19 @@
-CORE-DEV 1.5.0-dev — CLEAN ACTION REBUILD
-
-IMPORTANT:
-This is a clean rebuild from the last stable 1.4.0 package, not another patch on the broken Action editor.
+CORE-DEV 1.5.0-dev — SETTINGS CLICK HOTFIX
 
 Replace the complete core-dev folder.
 Upload index.html LAST.
 
-Confirm:
-- Build 20260712.010
-- Bottom menu remains visible
-- Actions opens Action Centre
-- New Action opens a centred modal
-- Every form field stays inside the modal
-- Assigned Officer, Priority, Status, Due Date, Save and Cancel work
-- Settings opens only when you intentionally tap Settings
+Confirm build:
+20260712.011
+
+Test:
+1. Tap Actions.
+2. Tap New Action.
+3. Confirm the Create Action modal opens.
+4. Test every Action form field.
+5. Save and Cancel.
+6. Test Active, Overdue, Completed, and All.
+7. Open Settings intentionally.
+8. Confirm Light, Dark, and System still work.
+
+This fixes the global redirect at its actual source.
