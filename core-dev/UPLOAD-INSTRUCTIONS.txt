@@ -1,18 +1,13 @@
-CORE-DEV 1.6.1 — ANNUAL GOVERNANCE
+CORE-DEV 1.6.2 — DEVELOPER & DIAGNOSTICS
 
 Replace the complete core-dev folder.
 Upload index.html LAST.
 
 Confirm:
-- Platform 1.6.1
-- Build 20260712.013
-
-Quick test:
-1. Open Annual Governance.
-2. Tap Fire and life-safety records review.
-3. Add evidence and notes.
-4. Save.
-5. Reopen and create an Action.
-6. Confirm the Action appears in Action Centre.
-7. Mark the annual task complete.
-8. Confirm the health score changes.
+- Platform 1.6.2
+- Build 20260713.001
+- Settings contains Developer & Diagnostics
+- Dashboard contains System Health
+- Diagnostics lists all modules
+- Platform Validation returns PASS
+- Support Report copies or downloads successfully

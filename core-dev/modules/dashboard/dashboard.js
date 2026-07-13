@@ -75,6 +75,11 @@ export default function register(ctx){
         <b>Open →</b>
       </button>
 
+      <button class="system-health-card" data-route="developer">
+        <span><small>System Health</small><strong>${state.platformValidation().overall}</strong><em>${state.diagnosticSnapshot().modulesLoaded} / ${state.diagnosticSnapshot().modulesExpected} modules loaded · ${state.diagnosticSnapshot().errors.length} errors</em></span>
+        <b>Diagnostics →</b>
+      </button>
+
       <section class="panel">
         <div class="panel-head">
           <div><h2>${state.reviewYear} Governance Review</h2><p>${state.articles.length} Articles · ${m.total} Sections</p></div>

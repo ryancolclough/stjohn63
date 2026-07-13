@@ -8,3 +8,8 @@
 .module-list{display:grid}.module-row{display:flex;justify-content:space-between;gap:16px;padding:15px 18px;border-bottom:1px solid var(--line)}
 .module-row:last-child{border-bottom:0}.module-row strong,.module-row small{display:block}.module-row small{color:var(--muted);margin-top:3px}.module-row b{color:var(--brass-soft)}
 @media(max-width:700px){.about-grid{grid-template-columns:1fr 1fr}.theme-options{grid-template-columns:1fr}}
+
+.settings-link-card{width:100%;display:flex;justify-content:space-between;gap:14px;align-items:center;border:1px solid var(--brass);background:var(--surface-2);color:var(--text);border-radius:14px;padding:14px;text-align:left}
+.settings-link-card strong,.settings-link-card small{display:block}
+.settings-link-card small{color:var(--muted);margin-top:4px}
+.settings-link-card b{color:var(--brass-soft);white-space:nowrap}

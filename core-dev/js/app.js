@@ -5,9 +5,9 @@ import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
-  version:"1.6.1-dev",
-  build:"20260712.013",
-  releaseId:"CORE-DEV-REL-008",
+  version:"1.6.2-dev",
+  build:"20260713.001",
+  releaseId:"CORE-DEV-REL-009",
   environment:"Development",
   modules:[]
 };
@@ -266,6 +266,52 @@ const state = {
       completed:items.filter(item => item.status === "completed").length
     };
   },
+  diagnosticSnapshot(){
+    const errors = storage.get("ERROR_LOG", []);
+    const reviews = Object.keys(this.reviews || {}).length;
+    const actions = this.actionItems ? this.actionItems().length : 0;
+    const annualTasks = this.annualTasks ? this.annualTasks().length : 0;
+    const meetings = storage.get("MEETINGS", []).length;
+    const settingsCount = Object.keys(storage.get("SETTINGS", {})).length;
+    const failed = moduleLoadLog.filter(item => item.status === "failed").length;
+    return {
+      platform:PLATFORM.version,
+      build:PLATFORM.build,
+      releaseId:PLATFORM.releaseId,
+      modulesExpected:registry.filter(item => item.enabled).length,
+      modulesLoaded:moduleLoadLog.filter(item => item.status === "loaded").length,
+      modulesFailed:failed,
+      moduleLoadLog:[...moduleLoadLog],
+      storageAvailable:Boolean(window.localStorage),
+      reviews,
+      actions,
+      annualTasks,
+      meetings,
+      settingsCount,
+      errors,
+      online:navigator.onLine,
+      userAgent:navigator.userAgent,
+      timestamp:new Date().toISOString()
+    };
+  },
+  platformValidation(){
+    const snapshot = this.diagnosticSnapshot();
+    const checks = [
+      {id:"registry",label:"Module registry valid",pass:snapshot.modulesExpected > 0},
+      {id:"modules",label:"All enabled modules loaded",pass:snapshot.modulesFailed === 0 && snapshot.modulesLoaded === snapshot.modulesExpected},
+      {id:"storage",label:"Local storage readable",pass:snapshot.storageAvailable},
+      {id:"reviews",label:"Review data valid",pass:this.reviews && typeof this.reviews === "object" && !Array.isArray(this.reviews)},
+      {id:"actions",label:"Action data valid",pass:Array.isArray(this.actionItems ? this.actionItems() : [])},
+      {id:"annual",label:"Annual task data valid",pass:Array.isArray(this.annualTasks ? this.annualTasks() : [])},
+      {id:"routes",label:"Core routes registered",pass:["dashboard","review","annual","actions","export","settings"].every(route => router.routes.has(route))}
+    ];
+    return {
+      checks,
+      passed:checks.filter(check => check.pass).length,
+      total:checks.length,
+      overall:checks.every(check => check.pass) ? "PASS" : "ATTENTION"
+    };
+  },
   metrics(){
     const total=this.allSections.length;
     const records=this.allSections.map(x=>this.getReview(x.section)).filter(Boolean);
@@ -290,6 +336,7 @@ const icons={
   dashboard:'<svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v10H3z"/><path d="M9 21v-7h6v7"/></svg>',
   review:'<svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
   actions:'<svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="m8 9 2 2 4-4M8 15h8"/></svg>',
+  developer:'<svg viewBox="0 0 24 24"><path d="M8 5 3 12l5 7M16 5l5 7-5 7M14 3l-4 18"/></svg>',
   amendments:'<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h4"/></svg>',
   annual:'<svg viewBox="0 0 24 24"><path d="M4 5h16v15H4z"/><path d="M8 3v4M16 3v4M4 9h16"/><path d="M8 13h3M13 13h3M8 17h3"/></svg>',
   export:'<svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>',
@@ -319,7 +366,7 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json?v=20260712.013.012.011.010", {cache:"no-store"}).then(r=>{
+  const registry = await fetch("data/module-registry.json?v=20260713.001.013.012.011.010", {cache:"no-store"}).then(r=>{
     if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
     return r.json();
   });
@@ -332,6 +379,7 @@ async function boot(){
   if(!router.routes.has("annual")) router.register("annual",()=>toast("Annual Governance Manager unavailable."));
   if(!router.routes.has("intelligence")) router.register("intelligence",()=>toast("Governance Intelligence unavailable."));
   if(!router.routes.has("actions")) router.register("actions",()=>toast("Action Centre unavailable."));
+  if(!router.routes.has("developer")) router.register("developer",()=>toast("Developer Console unavailable."));
   router.go("dashboard");
 }
 

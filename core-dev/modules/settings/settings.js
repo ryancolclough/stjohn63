@@ -18,6 +18,10 @@ export default function register(ctx){
           ${about("ORE Connection",state.articles.length?"Connected":"Unavailable")}
           ${about("Storage","Available")}
           ${about("Theme",document.documentElement.dataset.theme)}
+          <button class="settings-link-card" data-route="developer">
+            <span><strong>Developer & Diagnostics</strong><small>Module health, validation, errors, releases, and support reports.</small></span>
+            <b>Open →</b>
+          </button>
           ${about("Module Registry",platform.modules.length ? "OK" : "Unavailable")}
           ${about("Review Records",Object.keys(state.reviews).length)}
           ${about("Amendment Records",state.amendmentItems().length)}

@@ -2,7 +2,7 @@
   {
     "id": "dashboard",
     "name": "Dashboard",
-    "version": "1.6.1",
+    "version": "1.6.2",
     "entry": "../modules/dashboard/dashboard.js",
     "enabled": true
   },
@@ -35,16 +35,23 @@
     "enabled": true
   },
   {
+    "id": "developer",
+    "name": "Developer & Diagnostics",
+    "version": "1.0.0",
+    "entry": "../modules/developer/developer.js",
+    "enabled": true
+  },
+  {
     "id": "settings",
     "name": "Settings",
-    "version": "1.6.1",
+    "version": "1.6.2",
     "entry": "../modules/settings/settings.js",
     "enabled": true
   },
   {
     "id": "annual",
     "name": "Annual Governance Manager",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "entry": "../modules/annual/annual.js",
     "enabled": true
   },
