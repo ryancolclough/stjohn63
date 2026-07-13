@@ -109,8 +109,17 @@ export default function register(ctx){
     if(e.target.closest("[data-back-article]")) return sectionList(state.articleIndex);
     if(e.target.closest("[data-save-next]")) return saveReview(true);
     if(e.target.closest("[data-create-review-action]")){
-      const article=state.articles[state.articleIndex],section=article.sections[state.sectionIndex],record=state.getReview(section)||{};
-      events.emit("actions:create-from-review",{title:`Follow up Section ${section.number} — ${section.title}`,description:record.notes||record.institutionalKnowledge||"",section:String(section.number),articleIndex:state.articleIndex,sectionIndex:state.sectionIndex,assignedCommittee:record.responsibleCommittee||"By-Laws Committee",dueDate:""});
+      const article = state.articles[state.articleIndex];
+      const section = article.sections[state.sectionIndex];
+      const record = state.getReview(section) || {};
+      events.emit("actions:create-from-review",{
+        title:`Follow up Section ${section.number} — ${section.title}`,
+        description:record.notes || record.institutionalKnowledge || "",
+        section:String(section.number),
+        articleIndex:state.articleIndex,
+        sectionIndex:state.sectionIndex,
+        assignedCommittee:record.responsibleCommittee || "By-Laws Committee"
+      });
       return;
     }
     if(e.target.closest("[data-clear-current]")){const section=state.articles[state.articleIndex].sections[state.sectionIndex];state.removeReview(section);toast("Review record cleared.");return reviewScreen(state.articleIndex,state.sectionIndex);}

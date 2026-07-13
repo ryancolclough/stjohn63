@@ -6,8 +6,8 @@
   "dependencies": [
     "storage",
     "events",
-    "review",
-    "amendment"
+    "dialogs",
+    "review"
   ],
-  "description": "Create, assign, track, complete, and archive Temple Board action items."
+  "description": "Temple Board action tracking with modal editing."
 }

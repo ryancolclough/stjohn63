@@ -1,14 +1,17 @@
-# CORE Platform 1.5.0-dev — Hotfix 2
+# CORE Platform 1.5.0-dev — Clean Action Rebuild
 
-Build: `20260712.008`  
-Release ID: `CORE-DEV-REL-006-HF2`
+Build: `20260712.010`  
+Release ID: `CORE-DEV-REL-006-CLEAN`
 
-## Fixed
-- Tapping Assigned Officer could activate the fixed Settings control on iPhone.
-- Bottom navigation now hides while an Action form field is focused.
-- Focused fields scroll into the visible area above the iPhone keyboard.
-- Form controls receive isolated touch handling.
-- Added extra bottom clearance to the Action editor.
+## Rebuilt
+- Action Centre rebuilt from the stable CORE 1.4.0 base.
+- Action editing now opens in CORE's modal dialog layer.
+- Fixed navigation remains visible and is no longer modified.
+- Form fields cannot sit beneath the top Settings control or bottom dock.
 
-## Cause
-The fixed bottom dock could overlap the mobile form during keyboard activation and intercept the tap.
+## Added
+- Create, edit, complete, reopen, and delete actions
+- Assigned committee and officer
+- Priority, status, due date, source reference
+- Create Action from Review Record
+- Action data in CORE backup

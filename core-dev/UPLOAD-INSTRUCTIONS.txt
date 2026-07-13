@@ -1,16 +1,16 @@
-CORE-DEV 1.5.0-dev — MOBILE ACTION FORM HOTFIX
+CORE-DEV 1.5.0-dev — CLEAN ACTION REBUILD
+
+IMPORTANT:
+This is a clean rebuild from the last stable 1.4.0 package, not another patch on the broken Action editor.
 
 Replace the complete core-dev folder.
 Upload index.html LAST.
 
-Confirm build:
-20260712.008
-
-Test:
-1. Open Actions.
-2. Tap New Action.
-3. Tap Assigned Officer.
-4. The keyboard should open and the bottom dock should slide away.
-5. Type a name.
-6. Tap Priority, Status, Due Date, and Source Reference.
-7. None of these controls should open Settings.
+Confirm:
+- Build 20260712.010
+- Bottom menu remains visible
+- Actions opens Action Centre
+- New Action opens a centred modal
+- Every form field stays inside the modal
+- Assigned Officer, Priority, Status, Due Date, Save and Cancel work
+- Settings opens only when you intentionally tap Settings
