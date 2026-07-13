@@ -1,7 +1,7 @@
 {
   "id": "developer",
   "name": "Developer & Diagnostics",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "coreCompatibility": "1.x",
   "dependencies": [
     "storage",

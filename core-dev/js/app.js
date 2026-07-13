@@ -1,3 +1,14 @@
+window.addEventListener("error", event => {
+  const appNode = document.querySelector("#core-app");
+  if(appNode && !appNode.innerHTML.trim()){
+    appNode.innerHTML = `<main class="main"><section class="hero">
+      <div class="eyebrow">CORE startup error</div>
+      <h1>The development build could not start.</h1>
+      <p>${String(event.message || "Unknown startup error")}</p>
+    </section></main>`;
+  }
+});
+
 import { StorageService } from "../sdk/storage.js";
 import { EventBus } from "../sdk/events.js";
 import { Router } from "../sdk/router.js";
@@ -6,10 +17,10 @@ import { DialogService } from "../sdk/dialogs.js";
 
 
 const PLATFORM = {
-  PLATFORM.moduleLoadLog:[],
-  version:"1.6.2.2-dev",
-  build:"20260713.003",
-  releaseId:"CORE-DEV-REL-009-HF2",
+  moduleLoadLog:[],
+  version:"1.6.2.3-dev",
+  build:"20260713.004",
+  releaseId:"CORE-DEV-REL-009-HF3",
   environment:"Development",
   modules:[]
 };
@@ -284,7 +295,7 @@ const state = {
       modulesExpected:registry.filter(item => item.enabled).length,
       modulesLoaded:loadLog.filter(item => item.status === "loaded").length,
       modulesFailed:failed,
-      PLATFORM.moduleLoadLog:[...moduleLoadLog],
+      moduleLoadLog:[...loadLog],
       storageAvailable:Boolean(window.localStorage),
       reviews,
       actions,
@@ -369,7 +380,7 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json?v=20260713.003.002", {cache:"no-store"}).then(r=>{
+  const registry = await fetch("data/module-registry.json?v=20260713.004.003.002", {cache:"no-store"}).then(r=>{
     if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
     return r.json();
   });

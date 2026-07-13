@@ -12,7 +12,7 @@ export default function register(ctx){
       <section class="panel">
         <div class="panel-head"><div><h2>CORE Platform</h2><p>${platform.environment}</p></div></div>
         <div class="about-grid">
-          ${about("Platform Version","1.6.2.2")}
+          ${about("Platform Version","1.6.2.3")}
           ${about("Build",platform.build)}
           ${about("Release ID",platform.releaseId)}
           ${about("ORE Connection",state.articles.length?"Connected":"Unavailable")}

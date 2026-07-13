@@ -1,14 +1,18 @@
-# CORE Platform 1.6.2.2
+# CORE Platform 1.6.2.3
 
-Build: `20260713.003`
-Release ID: `CORE-DEV-REL-009-HF2`
+Build: `20260713.004`
+Release ID: `CORE-DEV-REL-009-HF3`
 
 ## Fixed
-- Removed the fragile global `moduleLoadLog` variable.
-- Module telemetry now lives permanently at `PLATFORM.moduleLoadLog`.
-- Diagnostics can initialize safely before module telemetry has finished loading.
-- Dashboard System Health cannot crash the platform during startup.
-- Added another cache-key change so Safari loads the complete matching build.
+- Corrected two malformed telemetry properties that prevented Safari from parsing `app.js`.
+- Restored the platform `moduleLoadLog` array.
+- Corrected the diagnostic snapshot property to use the safe `loadLog` value.
+- Added a visible startup error fallback.
+- Updated cache keys and patch versions.
 
 ## Root Cause
-Safari loaded a mixed release in which diagnostics referenced `moduleLoadLog`, but the matching declaration was not available in the active platform script. Telemetry is now stored directly on the platform object, eliminating that dependency.
+The previous build contained invalid object-literal syntax:
+- `PLATFORM.moduleLoadLog:[]`
+- `PLATFORM.moduleLoadLog:[...moduleLoadLog]`
+
+Those entries prevented the application script from parsing, resulting in a black screen.

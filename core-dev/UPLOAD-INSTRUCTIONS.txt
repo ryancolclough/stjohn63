@@ -1,17 +1,18 @@
-CORE-DEV 1.6.2.2 — STARTUP DIAGNOSTICS HOTFIX
+CORE-DEV 1.6.2.3 — BLACK SCREEN HOTFIX
 
 Replace the complete core-dev folder.
 Upload index.html LAST.
 
 Confirm:
-- Platform 1.6.2.2
-- Build 20260713.003
+- Platform 1.6.2.3
+- Build 20260713.004
 
-After upload:
-1. Wait for GitHub Pages to finish rebuilding.
-2. Open:
-   https://ryancolclough.github.io/stjohn63/core-dev/?v=20260713.003
-3. Confirm Dashboard loads.
-4. Open Settings → Developer & Diagnostics.
-5. Confirm 9 of 9 modules loaded.
-6. Run Platform Validation.
+Open:
+https://ryancolclough.github.io/stjohn63/core-dev/?v=20260713.004
+
+Test:
+1. Confirm Dashboard loads.
+2. Open Settings.
+3. Open Developer & Diagnostics.
+4. Confirm 9 of 9 modules loaded.
+5. Run Platform Validation.
