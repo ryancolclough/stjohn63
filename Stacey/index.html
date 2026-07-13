@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#171717" />
+  <title>Stacey's Schedule</title>
+  <style>
+    :root {
+      --bg: #0f0f10;
+      --panel: #19191b;
+      --panel-2: #222225;
+      --text: #f7f3ea;
+      --muted: #a9a5a0;
+      --brass: #c7a45a;
+      --brass-light: #e2c786;
+      --work: #4d8fd6;
+      --kids: #b06bc8;
+      --both: #4fa77a;
+      --danger: #d15d5d;
+      --border: rgba(255,255,255,.09);
+      --shadow: 0 14px 40px rgba(0,0,0,.28);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, rgba(199,164,90,.12), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    button {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .app {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 18px 14px 110px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      color: var(--brass-light);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.85rem, 6vw, 2.7rem);
+      letter-spacing: -.03em;
+    }
+
+    .subtitle {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .icon-btn, .primary-btn, .secondary-btn, .danger-btn {
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 14px;
+      min-height: 44px;
+      padding: 10px 14px;
+      background: var(--panel-2);
+      font-weight: 750;
+    }
+
+    .icon-btn {
+      width: 46px;
+      padding: 0;
+      font-size: 1.25rem;
+      flex: 0 0 auto;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--brass-light), var(--brass));
+      color: #15120d;
+      border-color: transparent;
+    }
+
+    .secondary-btn { background: var(--panel-2); }
+    .danger-btn { background: rgba(209,93,93,.12); color: #ffb1b1; border-color: rgba(209,93,93,.25); }
+
+    .month-panel, .upcoming-panel {
+      background: rgba(25,25,27,.92);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .month-head {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .month-title {
+      text-align: center;
+      font-weight: 850;
+      font-size: 1.05rem;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      padding: 12px 16px 2px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .dot { width: 9px; height: 9px; border-radius: 999px; display: inline-block; }
+    .dot.work { background: var(--work); }
+    .dot.kids { background: var(--kids); }
+    .dot.both { background: var(--both); }
+
+    .weekdays, .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .weekdays {
+      padding: 10px 10px 4px;
+      color: var(--muted);
+      font-size: .68rem;
+      text-align: center;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .calendar {
+      padding: 6px 10px 14px;
+      gap: 5px;
+    }
+
+    .day {
+      min-height: 82px;
+      border: 1px solid var(--border);
+      background: #151517;
+      color: var(--text);
+      border-radius: 13px;
+      padding: 7px 6px;
+      text-align: left;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .day.empty {
+      opacity: .25;
+      pointer-events: none;
+      background: transparent;
+      border-color: transparent;
+    }
+
+    .day.today { border-color: var(--brass); box-shadow: inset 0 0 0 1px rgba(199,164,90,.25); }
+    .day.selected { background: #26231d; border-color: var(--brass-light); }
+
+    .day-number {
+      font-weight: 900;
+      font-size: .8rem;
+      margin-bottom: 5px;
+    }
+
+    .event-chip {
+      display: block;
+      width: 100%;
+      margin-top: 3px;
+      border-radius: 7px;
+      padding: 3px 5px;
+      font-size: .61rem;
+      line-height: 1.15;
+      font-weight: 800;
+      color: white;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .event-chip.work { background: var(--work); }
+    .event-chip.kids { background: var(--kids); }
+    .event-chip.both { background: var(--both); }
+
+    .more-count {
+      color: var(--muted);
+      font-size: .59rem;
+      margin-top: 3px;
+      text-align: center;
+    }
+
+    .selected-day {
+      margin-top: 16px;
+      padding: 16px;
+      background: rgba(25,25,27,.92);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .day-events {
+      display: grid;
+      gap: 9px;
+    }
+
+    .empty-state {
+      color: var(--muted);
+      text-align: center;
+      padding: 22px 10px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+    }
+
+    .event-card {
+      display: grid;
+      grid-template-columns: 6px 1fr auto;
+      gap: 11px;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--panel-2);
+    }
+
+    .event-bar { width: 6px; align-self: stretch; border-radius: 999px; }
+    .event-bar.work { background: var(--work); }
+    .event-bar.kids { background: var(--kids); }
+    .event-bar.both { background: var(--both); }
+
+    .event-title { font-weight: 850; }
+    .event-meta, .event-notes { color: var(--muted); font-size: .8rem; margin-top: 3px; }
+    .edit-mini {
+      border: 0;
+      border-radius: 10px;
+      padding: 8px 10px;
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      font-weight: 800;
+    }
+
+    .fab {
+      position: fixed;
+      right: max(18px, calc((100vw - 980px) / 2 + 18px));
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 0;
+      background: linear-gradient(135deg, var(--brass-light), var(--brass));
+      color: #17120b;
+      font-size: 2rem;
+      line-height: 1;
+      box-shadow: 0 15px 35px rgba(0,0,0,.4);
+      font-weight: 500;
+    }
+
+    dialog {
+      width: min(calc(100% - 24px), 500px);
+      max-height: calc(100vh - 32px);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 0;
+      background: var(--panel);
+      color: var(--text);
+      box-shadow: 0 25px 80px rgba(0,0,0,.6);
+    }
+
+    dialog::backdrop {
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-head h2 { margin: 0; font-size: 1.1rem; }
+
+    .modal-body {
+      padding: 17px;
+      display: grid;
+      gap: 13px;
+      overflow-y: auto;
+      max-height: calc(100vh - 155px);
+    }
+
+    .field { display: grid; gap: 6px; }
+    .field label {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #111113;
+      color: var(--text);
+      border-radius: 12px;
+      padding: 12px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus { border-color: var(--brass); }
+    textarea { min-height: 82px; resize: vertical; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .modal-actions .right {
+      display: flex;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .settings-grid { display: grid; gap: 10px; }
+    .settings-grid button { width: 100%; text-align: left; }
+
+    .notice {
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 640px) {
+      .app { padding: 14px 9px 100px; }
+      .day { min-height: 70px; padding: 6px 4px; border-radius: 10px; }
+      .event-chip { font-size: .54rem; padding: 3px; }
+      .calendar { gap: 3px; padding-inline: 6px; }
+      .weekdays { padding-inline: 6px; }
+      .month-head { padding: 12px 10px; }
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">Shared Planner</div>
+        <h1>Stacey’s Schedule</h1>
+        <p class="subtitle">Her recurring work shifts, Tuesday baseball, and 50/50 kids schedule. <small style="opacity:.65">v4</small></p>
+      </div>
+      <button class="icon-btn" id="settingsBtn" aria-label="Open settings">⚙</button>
+    </header>
+
+    <section class="month-panel">
+      <div class="month-head">
+        <button class="icon-btn" id="prevMonth" aria-label="Previous month">‹</button>
+        <div class="month-title" id="monthTitle"></div>
+        <button class="icon-btn" id="nextMonth" aria-label="Next month">›</button>
+      </div>
+
+      <div class="legend">
+        <span><i class="dot work"></i> Work</span>
+        <span><i class="dot kids"></i> Kids</span>
+        <span><i class="dot both"></i> Work + Kids</span>
+      </div>
+
+      <div class="weekdays">
+        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+      </div>
+      <div class="calendar" id="calendar"></div>
+    </section>
+
+    <section class="selected-day">
+      <div class="section-head">
+        <h2 id="selectedDateTitle">Today</h2>
+        <button class="primary-btn" id="addForDayBtn">+ Add</button>
+      </div>
+      <div class="day-events" id="dayEvents"></div>
+    </section>
+  </main>
+
+  <button class="fab" id="fab" aria-label="Add schedule item">+</button>
+
+  <dialog id="eventDialog">
+    <form id="eventForm">
+      <div class="modal-head">
+        <h2 id="eventDialogTitle">Add Schedule Item</h2>
+        <button type="button" class="icon-btn" id="closeEventDialog" aria-label="Close">×</button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="eventId" />
+
+        <div class="field">
+          <label for="eventType">Type</label>
+          <select id="eventType" required>
+            <option value="work">Work</option>
+            <option value="kids">Kids</option>
+            <option value="both">Work + Kids</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="eventTitle">Title</label>
+          <input id="eventTitle" maxlength="70" placeholder="Example: Work shift or Kids overnight" required />
+        </div>
+
+        <div class="field">
+          <label for="eventDate">Date</label>
+          <input id="eventDate" type="date" required />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="startTime">Start time</label>
+            <input id="startTime" type="time" />
+          </div>
+          <div class="field">
+            <label for="endTime">End time</label>
+            <input id="endTime" type="time" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="eventNotes">Notes</label>
+          <textarea id="eventNotes" maxlength="300" placeholder="Optional details"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="danger-btn" id="deleteEventBtn" hidden>Delete</button>
+          <div class="right">
+            <button type="button" class="secondary-btn" id="cancelEventBtn">Cancel</button>
+            <button type="submit" class="primary-btn">Save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog">
+    <div class="modal-head">
+      <h2>Schedule Settings</h2>
+      <button type="button" class="icon-btn" id="closeSettingsDialog" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="settings-grid">
+        <button class="secondary-btn" id="todayBtn">Jump to Today</button>
+        <button class="secondary-btn" id="exportBtn">Export Backup</button>
+        <button class="secondary-btn" id="importBtn">Import Backup</button>
+        <button class="secondary-btn" id="restorePresetBtn">Restore Stacey’s Recurring Schedule</button>
+        <button class="danger-btn" id="clearBtn">Clear All Schedule Data</button>
+        <input type="file" id="importFile" accept=".json,application/json" hidden />
+      </div>
+      <p class="notice">
+        The schedule saves on this device automatically. Export a backup if you plan to move it to another phone or browser.
+      </p>
+    </div>
+  </dialog>
+
+  <script>
+    // =========================
+    // DATA & DATE HELPERS
+    // =========================
+    const STORAGE_KEY = "staceySchedule.v2";
+    const state = {
+      viewDate: new Date(),
+      selectedDate: toDateKey(new Date()),
+      events: loadEvents()
+    };
+
+    function loadEvents() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+
+      // First launch: automatically load Stacey's recurring schedule.
+      if (saved === null) {
+        const preset = generateStaceySchedule();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(preset));
+        return preset;
+      }
+
+      try {
+        return JSON.parse(saved) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveEvents() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.events));
+    }
+
+    function makePresetEvent(type, title, date, startTime = "", endTime = "", notes = "") {
+      return {
+        id: `preset-${date}-${type}-${title}-${startTime}`.replace(/[^a-zA-Z0-9-]/g, "-"),
+        type,
+        title,
+        date,
+        startTime,
+        endTime,
+        notes
+      };
+    }
+
+    function generateStaceySchedule() {
+      const events = [];
+      const start = new Date(2026, 0, 1);
+      const end = new Date(2028, 11, 31);
+
+      // This is the first confirmed weekend Stacey has the kids.
+      const kidsWeekendAnchor = new Date(2026, 6, 18); // Saturday, July 18, 2026
+
+      for (let date = new Date(start); date <= end; date.setDate(date.getDate() + 1)) {
+        const current = new Date(date);
+        const key = toDateKey(current);
+        const day = current.getDay();
+
+        // Work schedule
+        if (day === 1) {
+          events.push(makePresetEvent("work", "Work", key, "12:00", "20:00"));
+        }
+
+        if (day === 2) {
+          events.push(makePresetEvent("work", "Work", key, "10:00", "17:00"));
+          events.push(makePresetEvent("kids", "Baseball", key));
+        }
+
+        if (day === 3) {
+          events.push(makePresetEvent("work", "Work", key, "10:00", "17:00"));
+        }
+
+        if (day === 5) {
+          events.push(makePresetEvent("work", "Work", key, "10:00", "18:00"));
+        }
+
+        // Stacey has the kids every Wednesday and Thursday.
+        if (day === 3 || day === 4) {
+          events.push(makePresetEvent("kids", "Kids", key));
+        }
+
+        // Alternating Saturday/Sunday weekends, anchored to July 18–19, 2026.
+        if (day === 6 || day === 0) {
+          const saturday = new Date(current);
+          if (day === 0) saturday.setDate(saturday.getDate() - 1);
+
+          const daysFromAnchor = Math.round(
+            (new Date(saturday.getFullYear(), saturday.getMonth(), saturday.getDate()) - kidsWeekendAnchor)
+            / 86400000
+          );
+
+          const isKidsWeekend = ((daysFromAnchor % 14) + 14) % 14 === 0;
+
+          if (isKidsWeekend) {
+            events.push(makePresetEvent("kids", "Kids Weekend", key));
+
+            // On the Saturday of her kids weekend, Stacey works 10:00 AM–4:00 PM.
+            if (day === 6) {
+              events.push(makePresetEvent("work", "Work", key, "10:00", "16:00"));
+            }
+          }
+        }
+      }
+
+      return events;
+    }
+
+    function toDateKey(date) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, "0");
+      const d = String(date.getDate()).padStart(2, "0");
+      return `${y}-${m}-${d}`;
+    }
+
+    function fromDateKey(key) {
+      const [y, m, d] = key.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function formatLongDate(key) {
+      return fromDateKey(key).toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+    }
+
+    function formatTime(value) {
+      if (!value) return "";
+      const [hours, minutes] = value.split(":").map(Number);
+      return new Date(2000, 0, 1, hours, minutes).toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit"
+      });
+    }
+
+    function uid() {
+      return crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+    }
+
+    // =========================
+    // ELEMENTS
+    // =========================
+    const calendar = document.getElementById("calendar");
+    const monthTitle = document.getElementById("monthTitle");
+    const selectedDateTitle = document.getElementById("selectedDateTitle");
+    const dayEvents = document.getElementById("dayEvents");
+
+    const eventDialog = document.getElementById("eventDialog");
+    const eventForm = document.getElementById("eventForm");
+    const eventDialogTitle = document.getElementById("eventDialogTitle");
+    const eventId = document.getElementById("eventId");
+    const eventType = document.getElementById("eventType");
+    const eventTitle = document.getElementById("eventTitle");
+    const eventDate = document.getElementById("eventDate");
+    const startTime = document.getElementById("startTime");
+    const endTime = document.getElementById("endTime");
+    const eventNotes = document.getElementById("eventNotes");
+    const deleteEventBtn = document.getElementById("deleteEventBtn");
+
+    const settingsDialog = document.getElementById("settingsDialog");
+    const importFile = document.getElementById("importFile");
+
+    // =========================
+    // RENDERING
+    // =========================
+    function render() {
+      renderCalendar();
+      renderSelectedDay();
+    }
+
+    function renderCalendar() {
+      calendar.innerHTML = "";
+
+      const year = state.viewDate.getFullYear();
+      const month = state.viewDate.getMonth();
+      const firstDay = new Date(year, month, 1);
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const startOffset = firstDay.getDay();
+      const todayKey = toDateKey(new Date());
+
+      monthTitle.textContent = firstDay.toLocaleDateString(undefined, {
+        month: "long",
+        year: "numeric"
+      });
+
+      for (let i = 0; i < startOffset; i++) {
+        const empty = document.createElement("div");
+        empty.className = "day empty";
+        calendar.appendChild(empty);
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const key = toDateKey(new Date(year, month, day));
+        const events = state.events
+          .filter(event => event.date === key)
+          .sort((a, b) => (a.startTime || "").localeCompare(b.startTime || ""));
+
+        const button = document.createElement("button");
+        button.className = "day";
+        if (key === todayKey) button.classList.add("today");
+        if (key === state.selectedDate) button.classList.add("selected");
+        button.type = "button";
+        button.dataset.date = key;
+
+        const number = document.createElement("div");
+        number.className = "day-number";
+        number.textContent = day;
+        button.appendChild(number);
+
+        events.slice(0, 2).forEach(event => {
+          const chip = document.createElement("span");
+          chip.className = `event-chip ${event.type}`;
+          chip.textContent = event.title;
+          button.appendChild(chip);
+        });
+
+        if (events.length > 2) {
+          const more = document.createElement("div");
+          more.className = "more-count";
+          more.textContent = `+${events.length - 2} more`;
+          button.appendChild(more);
+        }
+
+        button.addEventListener("click", () => {
+          state.selectedDate = key;
+          render();
+        });
+
+        calendar.appendChild(button);
+      }
+    }
+
+    function renderSelectedDay() {
+      selectedDateTitle.textContent = formatLongDate(state.selectedDate);
+
+      const events = state.events
+        .filter(event => event.date === state.selectedDate)
+        .sort((a, b) => (a.startTime || "").localeCompare(b.startTime || ""));
+
+      dayEvents.innerHTML = "";
+
+      if (!events.length) {
+        dayEvents.innerHTML = `<div class="empty-state">Nothing scheduled for this day.</div>`;
+        return;
+      }
+
+      events.forEach(event => {
+        const card = document.createElement("article");
+        card.className = "event-card";
+
+        const bar = document.createElement("div");
+        bar.className = `event-bar ${event.type}`;
+
+        const content = document.createElement("div");
+        const timeText = event.startTime
+          ? `${formatTime(event.startTime)}${event.endTime ? ` – ${formatTime(event.endTime)}` : ""}`
+          : "All day";
+
+        content.innerHTML = `
+          <div class="event-title"></div>
+          <div class="event-meta"></div>
+          ${event.notes ? `<div class="event-notes"></div>` : ""}
+        `;
+        content.querySelector(".event-title").textContent = event.title;
+        content.querySelector(".event-meta").textContent = timeText;
+        if (event.notes) content.querySelector(".event-notes").textContent = event.notes;
+
+        const edit = document.createElement("button");
+        edit.className = "edit-mini";
+        edit.type = "button";
+        edit.textContent = "Edit";
+        edit.addEventListener("click", () => openEventDialog(event));
+
+        card.append(bar, content, edit);
+        dayEvents.appendChild(card);
+      });
+    }
+
+    // =========================
+    // EVENT EDITOR
+    // =========================
+    function openEventDialog(existingEvent = null) {
+      eventForm.reset();
+      deleteEventBtn.hidden = !existingEvent;
+
+      if (existingEvent) {
+        eventDialogTitle.textContent = "Edit Schedule Item";
+        eventId.value = existingEvent.id;
+        eventType.value = existingEvent.type;
+        eventTitle.value = existingEvent.title;
+        eventDate.value = existingEvent.date;
+        startTime.value = existingEvent.startTime || "";
+        endTime.value = existingEvent.endTime || "";
+        eventNotes.value = existingEvent.notes || "";
+      } else {
+        eventDialogTitle.textContent = "Add Schedule Item";
+        eventId.value = "";
+        eventDate.value = state.selectedDate;
+        eventType.value = "work";
+      }
+
+      eventDialog.showModal();
+      setTimeout(() => eventTitle.focus(), 50);
+    }
+
+    function closeEventDialog() {
+      eventDialog.close();
+    }
+
+    eventForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const record = {
+        id: eventId.value || uid(),
+        type: eventType.value,
+        title: eventTitle.value.trim(),
+        date: eventDate.value,
+        startTime: startTime.value,
+        endTime: endTime.value,
+        notes: eventNotes.value.trim()
+      };
+
+      const existingIndex = state.events.findIndex(item => item.id === record.id);
+      if (existingIndex >= 0) {
+        state.events[existingIndex] = record;
+      } else {
+        state.events.push(record);
+      }
+
+      state.selectedDate = record.date;
+      state.viewDate = fromDateKey(record.date);
+      saveEvents();
+      closeEventDialog();
+      render();
+    });
+
+    deleteEventBtn.addEventListener("click", () => {
+      if (!eventId.value) return;
+      if (!confirm("Delete this schedule item?")) return;
+
+      state.events = state.events.filter(item => item.id !== eventId.value);
+      saveEvents();
+      closeEventDialog();
+      render();
+    });
+
+    // =========================
+    // CONTROLS
+    // =========================
+    document.getElementById("prevMonth").addEventListener("click", () => {
+      state.viewDate = new Date(state.viewDate.getFullYear(), state.viewDate.getMonth() - 1, 1);
+      renderCalendar();
+    });
+
+    document.getElementById("nextMonth").addEventListener("click", () => {
+      state.viewDate = new Date(state.viewDate.getFullYear(), state.viewDate.getMonth() + 1, 1);
+      renderCalendar();
+    });
+
+    document.getElementById("fab").addEventListener("click", () => openEventDialog());
+    document.getElementById("addForDayBtn").addEventListener("click", () => openEventDialog());
+    document.getElementById("closeEventDialog").addEventListener("click", closeEventDialog);
+    document.getElementById("cancelEventBtn").addEventListener("click", closeEventDialog);
+
+    document.getElementById("settingsBtn").addEventListener("click", () => settingsDialog.showModal());
+    document.getElementById("closeSettingsDialog").addEventListener("click", () => settingsDialog.close());
+
+    document.getElementById("todayBtn").addEventListener("click", () => {
+      const today = new Date();
+      state.viewDate = today;
+      state.selectedDate = toDateKey(today);
+      settingsDialog.close();
+      render();
+    });
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const data = {
+        app: "Stacey's Schedule",
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        events: state.events
+      };
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `stacey-schedule-backup-${toDateKey(new Date())}.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById("importBtn").addEventListener("click", () => importFile.click());
+
+    importFile.addEventListener("change", async () => {
+      const file = importFile.files[0];
+      if (!file) return;
+
+      try {
+        const data = JSON.parse(await file.text());
+        const importedEvents = Array.isArray(data) ? data : data.events;
+        if (!Array.isArray(importedEvents)) throw new Error("Invalid backup");
+
+        state.events = importedEvents;
+        saveEvents();
+        settingsDialog.close();
+        render();
+        alert("Schedule imported successfully.");
+      } catch {
+        alert("That file is not a valid Stacey's Schedule backup.");
+      } finally {
+        importFile.value = "";
+      }
+    });
+
+    document.getElementById("restorePresetBtn").addEventListener("click", () => {
+      if (!confirm("Replace the current schedule with Stacey’s recurring work and kids schedule?")) return;
+      state.events = generateStaceySchedule();
+      saveEvents();
+      settingsDialog.close();
+      render();
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      if (!confirm("Clear every schedule item from this device?")) return;
+      state.events = [];
+      saveEvents();
+      settingsDialog.close();
+      render();
+    });
+
+    // =========================
+    // START APP
+    // =========================
+    render();
+  </script>
+</body>
+</html>
