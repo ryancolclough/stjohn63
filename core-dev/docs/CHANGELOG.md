@@ -1,18 +1,14 @@
-# CORE Platform 1.6.2.1
+# CORE Platform 1.6.2.2
 
-Build: `20260713.002`
-Release ID: `CORE-DEV-REL-009-HF1`
+Build: `20260713.003`
+Release ID: `CORE-DEV-REL-009-HF2`
 
 ## Fixed
-- Developer & Diagnostics button now opens correctly.
-- Added the missing module telemetry store used by the diagnostics module.
-- Rebuilt module startup logging for all nine modules.
-- Module failures are now preserved in the Error Log.
-- Route failures now write a diagnostic entry instead of silently failing.
-- Settings now expects nine loaded modules.
-- Full patch version is displayed.
+- Removed the fragile global `moduleLoadLog` variable.
+- Module telemetry now lives permanently at `PLATFORM.moduleLoadLog`.
+- Diagnostics can initialize safely before module telemetry has finished loading.
+- Dashboard System Health cannot crash the platform during startup.
+- Added another cache-key change so Safari loads the complete matching build.
 
-## Module Versions
-- Developer & Diagnostics 1.0.1
-- Dashboard 1.6.2.1
-- Settings 1.6.2.1
+## Root Cause
+Safari loaded a mixed release in which diagnostics referenced `moduleLoadLog`, but the matching declaration was not available in the active platform script. Telemetry is now stored directly on the platform object, eliminating that dependency.

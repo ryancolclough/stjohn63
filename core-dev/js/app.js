@@ -4,12 +4,12 @@ import { Router } from "../sdk/router.js";
 import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
-const moduleLoadLog = [];
 
 const PLATFORM = {
-  version:"1.6.2.1-dev",
-  build:"20260713.002",
-  releaseId:"CORE-DEV-REL-009-HF1",
+  PLATFORM.moduleLoadLog:[],
+  version:"1.6.2.2-dev",
+  build:"20260713.003",
+  releaseId:"CORE-DEV-REL-009-HF2",
   environment:"Development",
   modules:[]
 };
@@ -275,15 +275,16 @@ const state = {
     const annualTasks = this.annualTasks ? this.annualTasks().length : 0;
     const meetings = storage.get("MEETINGS", []).length;
     const settingsCount = Object.keys(storage.get("SETTINGS", {})).length;
-    const failed = moduleLoadLog.filter(item => item.status === "failed").length;
+    const loadLog = Array.isArray(PLATFORM.moduleLoadLog) ? PLATFORM.moduleLoadLog : [];
+    const failed = loadLog.filter(item => item.status === "failed").length;
     return {
       platform:PLATFORM.version,
       build:PLATFORM.build,
       releaseId:PLATFORM.releaseId,
       modulesExpected:registry.filter(item => item.enabled).length,
-      modulesLoaded:moduleLoadLog.filter(item => item.status === "loaded").length,
+      modulesLoaded:loadLog.filter(item => item.status === "loaded").length,
       modulesFailed:failed,
-      moduleLoadLog:[...moduleLoadLog],
+      PLATFORM.moduleLoadLog:[...moduleLoadLog],
       storageAvailable:Boolean(window.localStorage),
       reviews,
       actions,
@@ -368,7 +369,7 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json?v=20260713.002", {cache:"no-store"}).then(r=>{
+  const registry = await fetch("data/module-registry.json?v=20260713.003.002", {cache:"no-store"}).then(r=>{
     if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
     return r.json();
   });
@@ -380,7 +381,7 @@ async function boot(){
       const ctx={router,state,storage,events,themes,dialogs,renderShell,toast,platform:PLATFORM};
       await mod.default(ctx,item);
       PLATFORM.modules.push(item);
-      moduleLoadLog.push({
+      PLATFORM.moduleLoadLog.push({
         id:item.id,
         name:item.name,
         version:item.version,
@@ -390,7 +391,7 @@ async function boot(){
       });
     }catch(err){
       console.error(`Module ${item.id} failed`,err);
-      moduleLoadLog.push({
+      PLATFORM.moduleLoadLog.push({
         id:item.id,
         name:item.name,
         version:item.version,
