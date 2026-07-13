@@ -1,13 +1,17 @@
-CORE-DEV 1.6.2 — DEVELOPER & DIAGNOSTICS
+CORE-DEV 1.6.2.1 — DIAGNOSTICS OPENING HOTFIX
 
 Replace the complete core-dev folder.
 Upload index.html LAST.
 
 Confirm:
-- Platform 1.6.2
-- Build 20260713.001
-- Settings contains Developer & Diagnostics
-- Dashboard contains System Health
-- Diagnostics lists all modules
-- Platform Validation returns PASS
-- Support Report copies or downloads successfully
+- Platform 1.6.2.1
+- Build 20260713.002
+
+Test:
+1. Open Settings.
+2. Tap Developer & Diagnostics.
+3. Confirm the diagnostics page opens.
+4. Confirm 9 of 9 modules loaded.
+5. Run Platform Validation.
+6. Confirm PASS.
+7. Copy the Support Report.

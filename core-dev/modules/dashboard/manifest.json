@@ -1,7 +1,7 @@
 {
   "id": "dashboard",
   "name": "Dashboard",
-  "version": "1.6.2",
+  "version": "1.6.2.1",
   "coreCompatibility": "1.x",
   "dependencies": [
     "review",

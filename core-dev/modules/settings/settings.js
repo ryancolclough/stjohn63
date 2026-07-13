@@ -12,7 +12,7 @@ export default function register(ctx){
       <section class="panel">
         <div class="panel-head"><div><h2>CORE Platform</h2><p>${platform.environment}</p></div></div>
         <div class="about-grid">
-          ${about("Platform Version","1.6.1")}
+          ${about("Platform Version","1.6.2.1")}
           ${about("Build",platform.build)}
           ${about("Release ID",platform.releaseId)}
           ${about("ORE Connection",state.articles.length?"Connected":"Unavailable")}
@@ -31,7 +31,7 @@ export default function register(ctx){
           ${about("Estimated Work",state.intelligenceSummary().estimated + " min")}
           ${about("Open Actions",state.actionSummary().open)}
           ${about("Overdue Actions",state.actionSummary().overdue)}
-          ${about("Platform Health",state.articles.length && platform.modules.length === 8 ? "100%" : "Attention")}
+          ${about("Platform Health",state.articles.length && platform.modules.length === 9 ? "100%" : "Attention")}
         </div>
       </section>
 

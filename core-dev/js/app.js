@@ -4,10 +4,12 @@ import { Router } from "../sdk/router.js";
 import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
+const moduleLoadLog = [];
+
 const PLATFORM = {
-  version:"1.6.2-dev",
-  build:"20260713.001",
-  releaseId:"CORE-DEV-REL-009",
+  version:"1.6.2.1-dev",
+  build:"20260713.002",
+  releaseId:"CORE-DEV-REL-009-HF1",
   environment:"Development",
   modules:[]
 };
@@ -366,26 +368,80 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json?v=20260713.001.013.012.011.010", {cache:"no-store"}).then(r=>{
+  const registry = await fetch("data/module-registry.json?v=20260713.002", {cache:"no-store"}).then(r=>{
     if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
     return r.json();
   });
-  for(const item of registry.filter(x=>x.enabled)){
-    const mod = await import(`${item.entry}?v=20260712.010`);
-    PLATFORM.modules.push(item);
-    mod.default({router,state,storage,events,themes,dialogs,renderShell,toast,platform:PLATFORM});
+
+  for(const item of registry.filter(module=>module.enabled)){
+    const started = performance.now();
+    try{
+      const mod = await import(`${item.entry}?v=20260713.002`);
+      const ctx={router,state,storage,events,themes,dialogs,renderShell,toast,platform:PLATFORM};
+      await mod.default(ctx,item);
+      PLATFORM.modules.push(item);
+      moduleLoadLog.push({
+        id:item.id,
+        name:item.name,
+        version:item.version,
+        status:"loaded",
+        loadMs:Math.round(performance.now()-started),
+        loadedAt:new Date().toISOString()
+      });
+    }catch(err){
+      console.error(`Module ${item.id} failed`,err);
+      moduleLoadLog.push({
+        id:item.id,
+        name:item.name,
+        version:item.version,
+        status:"failed",
+        loadMs:Math.round(performance.now()-started),
+        loadedAt:new Date().toISOString(),
+        error:String(err?.stack || err?.message || err)
+      });
+      const errors=storage.get("ERROR_LOG",[]);
+      errors.unshift({
+        time:new Date().toISOString(),
+        module:item.id,
+        message:String(err?.message || err),
+        stack:String(err?.stack || "")
+      });
+      storage.set("ERROR_LOG",errors.slice(0,100));
+      toast(`${item.name} module unavailable.`);
+    }
   }
+
   if(!router.routes.has("amendments")) router.register("amendments",()=>toast("Amendment module unavailable."));
   if(!router.routes.has("annual")) router.register("annual",()=>toast("Annual Governance Manager unavailable."));
   if(!router.routes.has("intelligence")) router.register("intelligence",()=>toast("Governance Intelligence unavailable."));
   if(!router.routes.has("actions")) router.register("actions",()=>toast("Action Centre unavailable."));
   if(!router.routes.has("developer")) router.register("developer",()=>toast("Developer Console unavailable."));
+
   router.go("dashboard");
 }
 
 document.addEventListener("click",e=>{
-  const r=e.target.closest("[data-route]")?.dataset.route;
-  if(r){ try{router.go(r)}catch(err){console.error(err);toast("Module route unavailable.");} }
+  const routeButton=e.target.closest("[data-route]");
+  const route=routeButton?.dataset.route;
+  if(route){
+    e.preventDefault();
+    e.stopPropagation();
+    try{
+      router.go(route);
+    }catch(err){
+      console.error(`CORE route failure: ${route}`,err);
+      const errors=storage.get("ERROR_LOG",[]);
+      errors.unshift({
+        time:new Date().toISOString(),
+        module:route,
+        message:String(err?.message || err),
+        stack:String(err?.stack || "")
+      });
+      storage.set("ERROR_LOG",errors.slice(0,100));
+      toast(`${route} could not open. Check Developer & Diagnostics.`);
+    }
+    return;
+  }
   if(e.target.closest("[data-close-modal]")||e.target.id==="core-modal") dialogs.close();
 });
 
