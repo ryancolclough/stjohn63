@@ -5,9 +5,9 @@ import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
-  version:"1.5.0-dev",
-  build:"20260712.011",
-  releaseId:"CORE-DEV-REL-006-HF5",
+  version:"1.6.1-dev",
+  build:"20260712.013",
+  releaseId:"CORE-DEV-REL-008",
   environment:"Development",
   modules:[]
 };
@@ -93,6 +93,52 @@ const state = {
       }));
 
     return [...attention, ...notReviewed];
+  },
+  annualTasks(){
+    const year = this.annualSettings().year || this.reviewYear;
+    const saved = storage.get("ANNUAL_TASKS", []);
+    if(saved.length) return saved;
+
+    const defaults = [
+      ["ANNUAL-01","Annual governance review begins",1,31,"By-Laws Committee","high",45],
+      ["ANNUAL-02","Corporate records and filing check",2,28,"Secretary / Temple Board","high",30],
+      ["ANNUAL-03","Fire and life-safety records review",3,31,"Building Committee","high",45],
+      ["ANNUAL-04","Financial statements and insurance review",4,30,"Finance Committee","high",60],
+      ["ANNUAL-05","Annual meeting preparation",5,31,"Executive Committee","medium",45],
+      ["ANNUAL-06","Committee reports and summer handoff",6,30,"Temple Board","medium",30],
+      ["ANNUAL-07","Summer recess review",7,31,"Temple Board","low",10],
+      ["ANNUAL-08","September preparation",8,31,"Executive Committee","medium",30],
+      ["ANNUAL-09","Governance cycle resumes",9,30,"By-Laws Committee","high",45],
+      ["ANNUAL-10","Budget and contract planning",10,31,"Finance Committee","high",60],
+      ["ANNUAL-11","Committee appointments and annual reports",11,30,"Temple Board","medium",45],
+      ["ANNUAL-12","Year-end archive and certification",12,15,"Secretary / Temple Board","high",60]
+    ];
+
+    return defaults.map(([id,title,month,day,committee,priority,minutes]) => ({
+      id,title,
+      dueDate:`${year}-${String(month).padStart(2,"0")}-${String(day).padStart(2,"0")}`,
+      committee,priority,minutes,
+      status:"not_started",
+      notes:"",
+      evidence:"",
+      completedDate:"",
+      linkedActionId:"",
+      history:[]
+    }));
+  },
+  saveAnnualTasks(tasks){
+    storage.set("ANNUAL_TASKS", tasks);
+  },
+  annualTaskSummary(){
+    const tasks = this.annualTasks();
+    const today = new Date().toISOString().slice(0,10);
+    return {
+      total:tasks.length,
+      completed:tasks.filter(task => task.status === "complete").length,
+      overdue:tasks.filter(task => task.status !== "complete" && task.dueDate && task.dueDate < today).length,
+      upcoming:tasks.filter(task => task.status !== "complete" && task.dueDate && task.dueDate >= today).length,
+      estimatedMinutes:tasks.filter(task => task.status !== "complete").reduce((sum,task)=>sum+(Number(task.minutes)||0),0)
+    };
   },
   annualArticleProgress(){
     return this.articles.map((article, articleIndex) => {
@@ -273,7 +319,7 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json?v=20260712.011.010", {cache:"no-store"}).then(r=>{
+  const registry = await fetch("data/module-registry.json?v=20260712.013.012.011.010", {cache:"no-store"}).then(r=>{
     if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
     return r.json();
   });

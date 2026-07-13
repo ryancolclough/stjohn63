@@ -1,19 +1,18 @@
-CORE-DEV 1.5.0-dev — SETTINGS CLICK HOTFIX
+CORE-DEV 1.6.1 — ANNUAL GOVERNANCE
 
 Replace the complete core-dev folder.
 Upload index.html LAST.
 
-Confirm build:
-20260712.011
+Confirm:
+- Platform 1.6.1
+- Build 20260712.013
 
-Test:
-1. Tap Actions.
-2. Tap New Action.
-3. Confirm the Create Action modal opens.
-4. Test every Action form field.
-5. Save and Cancel.
-6. Test Active, Overdue, Completed, and All.
-7. Open Settings intentionally.
-8. Confirm Light, Dark, and System still work.
-
-This fixes the global redirect at its actual source.
+Quick test:
+1. Open Annual Governance.
+2. Tap Fire and life-safety records review.
+3. Add evidence and notes.
+4. Save.
+5. Reopen and create an Action.
+6. Confirm the Action appears in Action Centre.
+7. Mark the annual task complete.
+8. Confirm the health score changes.

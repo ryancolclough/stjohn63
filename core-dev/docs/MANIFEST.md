@@ -1,18 +1,14 @@
-# CORE-DEV Upgrade Manifest
+# CORE-DEV 1.6.1 Upgrade Manifest
 
-## Platform
-- Version: `1.4.0-dev`
-- Build: `20260712.005`
-- Release ID: `CORE-DEV-REL-005`
+Platform: 1.6.1
+Build: 20260712.013
+Release ID: CORE-DEV-REL-008
 
-## Upload
-Replace the complete `core-dev` folder. Upload `index.html` last.
-
-## Test
-1. Confirm the banner shows `1.4.0-dev` and build `20260712.005`.
-2. Dashboard shows Governance Intelligence.
-3. Open Governance Intelligence.
-4. Generate a 45-minute agenda.
-5. Save the agenda.
-6. Open one risk item and confirm the correct Review Record opens.
-7. Settings shows seven modules and Platform Health 100%.
+Test:
+1. Open Annual Governance.
+2. Confirm 12 annual tasks appear.
+3. Open a task and save notes/evidence.
+4. Create a linked Action Centre item.
+5. Mark the task complete.
+6. Confirm Annual Health updates.
+7. Export a backup and confirm annualTasks are included.

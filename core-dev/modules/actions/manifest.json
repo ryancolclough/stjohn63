@@ -1,7 +1,7 @@
 {
   "id": "actions",
   "name": "Action Centre",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "coreCompatibility": "1.x",
   "dependencies": [
     "storage",
