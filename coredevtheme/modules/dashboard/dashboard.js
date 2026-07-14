@@ -31,60 +31,73 @@ export default function register(ctx){
         </button>`).join("")
       : `<div class="empty-state">Nothing currently requires immediate governance attention.</div>`;
 
+    const nextReview = `${state.reviewYear}-07-24`;
+    const completed = m.reviewed;
+    const openReviews = Math.max(0, m.total - m.reviewed);
+
     const content = `
-      <section class="hero">
+      <section class="hero cinematic-hero">
         <div class="eyebrow">Temple Board Workspace</div>
-        <h1>Good ${state.greeting()}, Ryan.</h1>
+        <h1>Good ${state.greeting()},<br>Ryan.</h1>
         <p>CORE now tracks an amendment from initial analysis through committee review, Temple Board approval, and publication to ORE.</p>
-        <div class="rule"></div>
+        <div class="rule"><span></span></div>
       </section>
 
-      <section class="health-card">
-        <div>
+      <section class="health-card cinematic-health">
+        <div class="health-primary">
           <span>Governance Health</span>
           <strong>${score}%</strong>
-          <small>Internal completion indicator — not a legal certification</small>
+          <small>Internal completion indicator —<br>not a legal certification</small>
         </div>
-        <div class="health-ring" style="--score:${score}"><b>${score}</b></div>
+        <div class="health-ring-wrap">
+          <div class="health-ring" style="--score:${score}"><b>${completed}</b></div>
+          <span>Items Complete</span>
+        </div>
+        <div class="health-pillars">
+          <button data-route="review"><i>✓</i><span>Compliance</span></button>
+          <button data-route="settings"><i>♙</i><span>Organization</span></button>
+          <button data-route="export"><i>▤</i><span>Resource</span></button>
+          <button data-route="settings"><i>⚙</i><span>Engine</span></button>
+        </div>
       </section>
 
-      <section class="summary-grid">
-        <article class="summary-card"><span>Governance Review</span><strong>${m.reviewed} / ${m.total}</strong><small>sections reviewed</small></article>
-        <article class="summary-card"><span>Review Progress</span><strong>${m.percent}%</strong><small>${m.total-m.reviewed} remaining</small><div class="progress-track"><i style="width:${m.percent}%"></i></div></article>
-        <article class="summary-card"><span>Awaiting Approval</span><strong>${stages.awaitingApproval + stages.awaitingBoard}</strong><small>amendments</small></article>
-        <article class="summary-card"><span>Open Actions</span><strong>${actions.open}</strong><small>${actions.overdue} overdue</small></article>
+      <section class="summary-grid cinematic-summary">
+        <button class="summary-card review-summary" data-route="review">
+          <span>Governance Review</span>
+          <strong>${openReviews}</strong>
+          <small>Open reviews</small>
+          <b class="round-arrow">→</b>
+          <div class="summary-footer">
+            <i>▦</i>
+            <span><small>Next Review</small><strong>${new Date(nextReview+"T12:00:00").toLocaleDateString("en-CA",{month:"short",day:"numeric",year:"numeric"})}</strong></span>
+          </div>
+        </button>
+
+        <button class="summary-card progress-summary" data-route="review">
+          <span>Review Progress</span>
+          <strong>${m.percent}%</strong>
+          <small>Current progress</small>
+          <b class="round-arrow">→</b>
+          <div class="summary-footer">
+            <i>↗</i>
+            <span><small>${actions.overdue ? "Needs Attention" : "On Track"}</small><strong>${actions.overdue ? `${actions.overdue} overdue item${actions.overdue===1?"":"s"}` : "No overdue items"}</strong></span>
+          </div>
+        </button>
       </section>
 
-      <button class="intelligence-launch-card" data-route="intelligence">
-        <span class="intelligence-launch-icon">◎</span>
-        <span>
-          <small>Governance Intelligence</small>
-          <strong>Meeting Guidance & Risk</strong>
-          <em>${state.intelligenceSummary().high.length} high-risk · ${state.intelligenceSummary().estimated} estimated minutes remaining</em>
-        </span>
-        <b>Open →</b>
-      </button>
+      <section class="module-links">
+        <button class="module-link" data-route="intelligence">
+          <span><small>Governance Intelligence</small><strong>Meeting Guidance &amp; Risk</strong></span><b>Open →</b>
+        </button>
+        <button class="module-link" data-route="annual">
+          <span><small>Annual Governance Manager</small><strong>${state.reviewYear} Review Cycle</strong></span><b>Open →</b>
+        </button>
+        <button class="module-link" data-route="actions">
+          <span><small>Action Centre</small><strong>${actions.open} open · ${actions.overdue} overdue</strong></span><b>Open →</b>
+        </button>
+      </section>
 
-      <button class="annual-launch-card" data-route="annual">
-        <span class="annual-launch-icon">▣</span>
-        <span>
-          <small>Annual Governance Manager</small>
-          <strong>${state.reviewYear} Review Cycle</strong>
-          <em>${m.reviewed} of ${m.total} sections reviewed · ${state.annualQueue().length} in queue</em>
-        </span>
-        <b>Open →</b>
-      </button>
-
-      <button class="system-health-card" data-route="developer">
-        <span>
-          <small>System Health</small>
-          <strong>${platform.modules.length === 9 ? "Healthy" : "Attention"}</strong>
-          <em>${platform.modules.length} / 9 modules loaded · diagnostics isolated from startup</em>
-        </span>
-        <b>Open Diagnostics →</b>
-      </button>
-
-      <section class="panel">
+      <section class="panel compact-panel">
         <div class="panel-head">
           <div><h2>${state.reviewYear} Governance Review</h2><p>${state.articles.length} Articles · ${m.total} Sections</p></div>
           <button class="btn" data-route="review">${m.reviewed ? "Continue Review" : "Begin Review"}</button>
@@ -94,12 +107,10 @@ export default function register(ctx){
           <button class="menu-row" data-route="review"><span><span class="row-title">Corporate By-Laws</span><span class="row-sub">Review all Articles and Sections.</span></span></button>
           <button class="menu-row" data-route="annual"><span><span class="row-title">Annual Governance Manager</span><span class="row-sub">${m.reviewed} of ${m.total} sections reviewed · ${state.annualQueue().length} in queue</span></span></button>
           <button class="menu-row" data-route="amendments"><span><span class="row-title">Amendment Centre</span><span class="row-sub">${amendments.length} amendment record${amendments.length === 1 ? "" : "s"} · ${stages.ready} ready to publish</span></span></button>
-          <button class="menu-row" data-route="export"><span><span class="row-title">Review Data & Publication</span><span class="row-sub">Back up CORE or generate the ORE review file.</span></span></button>
-          <button class="menu-row" data-route="settings"><span><span class="row-title">Platform & Modules</span><span class="row-sub">View installed modules, versions, and system health.</span></span></button>
         </div>
       </section>
 
-      <section class="panel">
+      <section class="panel compact-panel">
         <div class="panel-head"><div><h2>Attention Required</h2><p>Discussion and amendment records</p></div></div>
         <div class="panel-body">${attentionRows}</div>
       </section>`;

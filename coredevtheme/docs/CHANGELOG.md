@@ -1,22 +1,20 @@
-# CORE Theme Lab 1.7.0
+# CORE Theme Lab 1.7.1
 
-Build: `20260714.001`
-Release ID: `CORE-THEME-LAB-001`
+Build: `20260714.002`
+Release ID: `CORE-THEME-LAB-002`
 
-## Added
-- Alpine Night profile
-- Titanium profile
-- Heritage profile
-- Frosted glass visual system
-- Ambient background motion
-- Card entrance animation
-- Animated governance rings
-- Glass strength controls
-- Motion controls
-- Mobile-specific Alpine background crop
-- Separate `coredevtheme` deployment folder
+## Visual rebuild
+- Recreated the mobile homepage from the supplied reference
+- Larger CORE identity header
+- Cinematic full-screen background
+- Editorial hero typography
+- Rebuilt governance health card
+- Four CORE pillar shortcuts
+- Rebuilt governance review and progress cards
+- Larger rounded floating navigation
+- Refined black, ivory, and warm-gold palette
 
-## Architecture
-This package is built from stable CORE 1.6.2. It changes visual presentation
-and settings only. It does not modify the module loader, router, governance
-records, review schema, annual tasks, actions, export format, or diagnostics.
+## Safety
+The package is based on stable CORE 1.6.2 and remains in the separate
+`coredevtheme` folder. Existing governance records, routes, modules,
+reviews, actions, annual tasks, exports, and diagnostics are preserved.

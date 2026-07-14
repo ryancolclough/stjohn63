@@ -1,30 +1,25 @@
-CORE 1.7.0 THEME LAB
+COREDEVTHEME 1.7.1-theme-lab
+
+This package is coded to match the supplied mobile reference:
+- black and warm-gold presentation
+- cinematic mountain-lake universe background
+- large editorial greeting
+- substantial CORE identity header
+- governance health card with four CORE pillars
+- paired review cards
+- rounded floating bottom navigation
 
 Upload this complete folder as:
 
 coredevtheme/
 
-Do NOT replace the stable core-dev folder.
+Do NOT replace core-dev.
 
-Recommended upload order:
-1. assets/
-2. css/
-3. sdk/
-4. modules/
-5. data/
-6. docs/
-7. js/
-8. index.html LAST
+Upload index.html last.
 
 Open:
-https://ryancolclough.github.io/stjohn63/coredevtheme/?v=20260714.001
+https://ryancolclough.github.io/stjohn63/coredevtheme/?v=20260714.002
 
-Test:
-1. Dashboard loads.
-2. Bottom navigation works on mobile.
-3. Settings opens.
-4. Switch Alpine Night / Titanium / Heritage.
-5. Switch Crystal / Balanced / Frosted.
-6. Switch Motion Off / Low / Normal.
-7. Refresh and confirm the choices persist.
-8. Open every existing module once.
+Confirm:
+Version 1.7.1-theme-lab
+Build 20260714.002
