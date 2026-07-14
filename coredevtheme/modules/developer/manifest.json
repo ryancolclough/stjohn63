@@ -1,0 +1,10 @@
+{
+  "id": "developer",
+  "name": "Developer & Diagnostics",
+  "version": "1.0.0",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "storage"
+  ],
+  "description": "Isolated platform health, validation, release history, runtime error logging, and support reports."
+}

@@ -1,0 +1,14 @@
+{
+  "id": "intelligence",
+  "name": "Governance Intelligence",
+  "version": "1.0.1",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "review",
+    "annual",
+    "amendment",
+    "storage",
+    "events"
+  ],
+  "description": "Rules-based meeting agenda, risk assessment, review estimates, and diagnostics."
+}

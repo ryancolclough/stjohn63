@@ -1,0 +1,11 @@
+{
+  "id": "review",
+  "name": "Review Engine",
+  "version": "1.5.0",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "storage",
+    "ui",
+    "events"
+  ]
+}

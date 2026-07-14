@@ -1,0 +1,10 @@
+{
+  "id": "dashboard",
+  "name": "Dashboard",
+  "version": "1.7.0-theme",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "review",
+    "export"
+  ]
+}

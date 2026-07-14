@@ -1,0 +1,474 @@
+
+/* ================================================================
+   CORE 1.7.0 THEME LAB
+   Visual-only branch. Governance logic is unchanged.
+   ================================================================ */
+
+:root{
+  --glass-bg:rgba(11,17,24,.64);
+  --glass-bg-strong:rgba(7,12,18,.78);
+  --glass-border:rgba(238,224,190,.22);
+  --glass-highlight:rgba(255,255,255,.08);
+  --ambient-accent:rgba(200,164,93,.26);
+  --theme-image:none;
+  --theme-overlay:
+    linear-gradient(180deg,rgba(3,8,14,.22),rgba(3,8,14,.58)),
+    radial-gradient(circle at 72% 18%,rgba(198,157,83,.16),transparent 34%);
+  --theme-position:center center;
+  --theme-scale:1.04;
+  --glass-blur:22px;
+  --glass-saturation:1.14;
+}
+
+html[data-profile="alpine"]{
+  --theme-image:url("../assets/themes/alpine-night.webp");
+  --theme-overlay:
+    linear-gradient(180deg,rgba(2,7,13,.16),rgba(2,7,13,.52)),
+    radial-gradient(circle at 67% 15%,rgba(203,164,91,.18),transparent 32%);
+  --glass-bg:rgba(7,15,23,.60);
+  --glass-bg-strong:rgba(4,10,16,.76);
+  --glass-border:rgba(228,216,188,.24);
+  --ambient-accent:rgba(213,171,92,.28);
+}
+
+html[data-profile="titanium"]{
+  --theme-image:none;
+  --theme-overlay:
+    radial-gradient(circle at 76% 8%,rgba(255,255,255,.11),transparent 22%),
+    linear-gradient(118deg,#07090b 0%,#25292d 42%,#0a0c0f 75%,#373b3f 100%);
+  --glass-bg:rgba(24,27,30,.72);
+  --glass-bg-strong:rgba(12,14,16,.84);
+  --glass-border:rgba(232,235,238,.19);
+  --ambient-accent:rgba(224,226,229,.15);
+}
+
+html[data-profile="heritage"]{
+  --theme-image:none;
+  --theme-overlay:
+    radial-gradient(circle at 50% -10%,rgba(200,164,93,.17),transparent 36%),
+    linear-gradient(180deg,#050505,#0c0c0c 65%,#030303);
+  --glass-bg:rgba(19,18,16,.82);
+  --glass-bg-strong:rgba(8,8,7,.91);
+  --glass-border:rgba(200,164,93,.28);
+  --ambient-accent:rgba(200,164,93,.22);
+}
+
+html[data-glass="crystal"]{
+  --glass-bg:rgba(9,16,24,.44);
+  --glass-bg-strong:rgba(6,11,17,.60);
+  --glass-blur:14px;
+}
+html[data-glass="balanced"]{
+  --glass-blur:22px;
+}
+html[data-glass="frosted"]{
+  --glass-bg:rgba(13,20,28,.68);
+  --glass-bg-strong:rgba(7,12,18,.82);
+  --glass-blur:34px;
+}
+
+html,body{
+  background:#03070c;
+}
+
+body{
+  position:relative;
+  isolation:isolate;
+  overflow-x:hidden;
+  background:transparent;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:-4%;
+  z-index:-3;
+  background-image:var(--theme-overlay),var(--theme-image);
+  background-size:cover;
+  background-position:var(--theme-position);
+  background-repeat:no-repeat;
+  transform:scale(var(--theme-scale));
+  filter:saturate(.94) contrast(1.04);
+  will-change:transform,background-position;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    linear-gradient(110deg,transparent 8%,rgba(255,255,255,.025) 40%,transparent 70%),
+    radial-gradient(circle at 18% 12%,var(--ambient-accent),transparent 35%);
+  mix-blend-mode:screen;
+  opacity:.75;
+}
+
+html[data-motion="normal"] body::before{
+  animation:coreBackgroundDrift 34s ease-in-out infinite alternate;
+}
+html[data-motion="normal"] body::after{
+  animation:coreLightSweep 18s ease-in-out infinite alternate;
+}
+html[data-motion="low"] body::before{
+  animation:coreBackgroundDrift 65s ease-in-out infinite alternate;
+}
+html[data-motion="off"] body::before,
+html[data-motion="off"] body::after{
+  animation:none;
+}
+
+@keyframes coreBackgroundDrift{
+  from{transform:scale(1.045) translate3d(-.3%,0,0)}
+  to{transform:scale(1.075) translate3d(.7%,-.45%,0)}
+}
+@keyframes coreLightSweep{
+  from{opacity:.45;transform:translateX(-2%)}
+  to{opacity:.85;transform:translateX(2%)}
+}
+@keyframes coreCardEnter{
+  from{opacity:0;transform:translateY(12px) scale(.992)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes coreRingReveal{
+  from{transform:rotate(-18deg) scale(.88);opacity:.35}
+  to{transform:rotate(0) scale(1);opacity:1}
+}
+
+.app-shell{
+  min-height:100vh;
+  background:linear-gradient(180deg,rgba(3,8,14,.02),rgba(3,8,14,.20));
+}
+
+.dev-banner{
+  background:rgba(7,10,14,.72);
+  color:var(--brass-soft);
+  border-bottom:1px solid var(--glass-border);
+  backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+}
+
+.topbar{
+  top:25px;
+  width:min(1420px,calc(100% - 28px));
+  margin:14px auto 0;
+  padding:14px 18px;
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  background:var(--glass-bg-strong);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,.30),
+    inset 0 1px 0 var(--glass-highlight);
+  backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturation));
+}
+
+.brand-mark{
+  border-color:rgba(229,201,128,.68);
+  box-shadow:0 0 22px rgba(200,164,93,.12);
+}
+
+.main{
+  width:min(1320px,100%);
+  padding-top:42px;
+}
+
+.hero{
+  padding:20px 2px 30px;
+  text-shadow:0 2px 20px rgba(0,0,0,.28);
+}
+
+.hero h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(42px,6vw,76px);
+}
+
+.panel,
+.health-card,
+.summary-card,
+.annual-launch-card,
+.intelligence-launch-card,
+.system-health-card,
+.modal-panel,
+.annual-health,
+.developer-health-card,
+.diagnostic-grid article{
+  position:relative;
+  border:1px solid var(--glass-border)!important;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.055),transparent 42%),
+    var(--glass-bg)!important;
+  box-shadow:
+    0 22px 70px rgba(0,0,0,.26),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(255,255,255,.025)!important;
+  backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturation));
+}
+
+.panel::before,
+.health-card::before,
+.summary-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.07),transparent 26%,transparent 70%,rgba(229,201,128,.025));
+}
+
+.panel,
+.health-card,
+.summary-card,
+.annual-launch-card,
+.intelligence-launch-card,
+.system-health-card{
+  animation:coreCardEnter .55s cubic-bezier(.2,.72,.2,1) both;
+}
+
+.summary-card:nth-child(2){animation-delay:.04s}
+.summary-card:nth-child(3){animation-delay:.08s}
+.summary-card:nth-child(4){animation-delay:.12s}
+
+.health-ring,
+.annual-health-ring,
+.developer-health-ring{
+  animation:coreRingReveal .8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.panel-head{
+  background:linear-gradient(180deg,rgba(255,255,255,.028),transparent);
+}
+
+.menu-row:hover,
+.article-row:hover,
+.section-row:hover,
+.attention-row:hover,
+.annual-task-row:hover{
+  background:rgba(255,255,255,.055)!important;
+}
+
+.icon-btn,
+.btn.secondary,
+.theme-options button,
+.profile-card,
+.motion-options button,
+.glass-options button{
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+.dock{
+  bottom:10px;
+  width:min(760px,calc(100% - 24px));
+  height:calc(var(--dock-h) + env(safe-area-inset-bottom));
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  background:var(--glass-bg-strong);
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.38),
+    inset 0 1px 0 var(--glass-highlight);
+  backdrop-filter:blur(calc(var(--glass-blur) + 5px)) saturate(1.18);
+  -webkit-backdrop-filter:blur(calc(var(--glass-blur) + 5px)) saturate(1.18);
+}
+
+.dock button{
+  border-radius:16px;
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+.dock button.active{
+  background:linear-gradient(180deg,rgba(229,201,128,.14),rgba(200,164,93,.045));
+}
+.dock button:active{transform:scale(.96)}
+
+.field input:not([type=checkbox]):not([type=radio]),
+.field textarea,
+.field select,
+.about-row,
+.database-row,
+.validation-row{
+  background:rgba(7,12,18,.48)!important;
+  border-color:var(--glass-border)!important;
+}
+
+.toast{
+  background:rgba(8,13,19,.86);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+
+/* Appearance Profile controls */
+.profile-options{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  padding:18px;
+}
+.profile-card{
+  min-height:154px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  text-align:left;
+  color:var(--text);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  padding:16px;
+  overflow:hidden;
+  position:relative;
+  background:rgba(8,13,19,.58);
+}
+.profile-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:.72;
+  transition:transform .35s ease,opacity .35s ease;
+}
+.profile-card:hover::before{transform:scale(1.045);opacity:.88}
+.profile-card.alpine::before{background-image:linear-gradient(180deg,transparent,rgba(3,8,14,.88)),url("../assets/themes/alpine-night.webp")}
+.profile-card.titanium::before{background-image:linear-gradient(140deg,#42474c,#0b0d0f 55%,#70757a)}
+.profile-card.heritage::before{background-image:radial-gradient(circle at 65% 20%,rgba(200,164,93,.34),transparent 36%),linear-gradient(140deg,#050505,#191713)}
+.profile-card strong,.profile-card small{position:relative;display:block}
+.profile-card strong{font-size:18px}
+.profile-card small{color:#ddd7cb;margin-top:5px;line-height:1.35}
+.profile-card.active{border-color:var(--brass-soft);box-shadow:0 0 0 1px rgba(229,201,128,.34),0 16px 50px rgba(0,0,0,.3)}
+
+.motion-options,.glass-options{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:18px;
+}
+.motion-options button,.glass-options button{
+  padding:14px;
+  border-radius:12px;
+  border:1px solid var(--glass-border);
+  background:rgba(8,13,19,.55);
+  color:var(--text);
+}
+.motion-options button.active,.glass-options button.active{
+  border-color:var(--brass);
+  color:var(--brass-soft);
+  background:rgba(200,164,93,.10);
+}
+
+.theme-lab-note{
+  margin:0 18px 18px;
+  padding:14px 16px;
+  border:1px solid rgba(229,201,128,.22);
+  border-radius:14px;
+  background:rgba(200,164,93,.07);
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* Light mode remains useful while profile styling stays intact. */
+html[data-theme="light"]{
+  --glass-bg:rgba(255,255,255,.68);
+  --glass-bg-strong:rgba(252,250,245,.82);
+  --glass-border:rgba(255,255,255,.52);
+  --glass-highlight:rgba(255,255,255,.75);
+}
+html[data-theme="light"] body::before{filter:saturate(.78) brightness(1.08)}
+html[data-theme="light"] body::after{opacity:.38}
+html[data-theme="light"] .panel,
+html[data-theme="light"] .health-card,
+html[data-theme="light"] .summary-card,
+html[data-theme="light"] .annual-launch-card,
+html[data-theme="light"] .intelligence-launch-card,
+html[data-theme="light"] .system-health-card,
+html[data-theme="light"] .topbar,
+html[data-theme="light"] .dock{
+  color:#151515;
+  text-shadow:none;
+}
+html[data-theme="light"] .dock button{color:#5f5b54}
+html[data-theme="light"] .dock button.active{color:#9a6a17}
+html[data-theme="light"] .profile-card{color:white}
+
+@media(max-width:700px){
+  :root{
+    --glass-blur:18px;
+    --theme-position:center top;
+    --theme-scale:1.02;
+  }
+
+  html[data-profile="alpine"]{
+    --theme-image:url("../assets/themes/alpine-night-mobile.webp");
+  }
+
+  body::before{
+    inset:0;
+    transform:none;
+    background-attachment:scroll;
+  }
+
+  html[data-motion="normal"] body::before,
+  html[data-motion="low"] body::before{
+    animation:coreMobileBackgroundDrift 42s ease-in-out infinite alternate;
+  }
+
+  @keyframes coreMobileBackgroundDrift{
+    from{background-position:48% top}
+    to{background-position:53% 2%}
+  }
+
+  .topbar{
+    width:calc(100% - 20px);
+    margin-top:10px;
+    border-radius:20px;
+  }
+
+  .main{
+    padding-left:12px;
+    padding-right:12px;
+    padding-top:22px;
+  }
+
+  .hero h1{
+    font-size:clamp(36px,11vw,52px);
+  }
+
+  .summary-grid{
+    gap:10px;
+  }
+
+  .summary-card{
+    min-height:124px;
+    padding:15px;
+  }
+
+  .profile-options{
+    grid-template-columns:1fr;
+  }
+
+  .profile-card{
+    min-height:124px;
+  }
+
+  .motion-options,.glass-options{
+    grid-template-columns:1fr;
+  }
+
+  .dock{
+    bottom:6px;
+    width:calc(100% - 14px);
+    border-radius:20px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  body::before,body::after,
+  .panel,.health-card,.summary-card,
+  .annual-launch-card,.intelligence-launch-card,.system-health-card,
+  .health-ring,.annual-health-ring,.developer-health-ring{
+    animation:none!important;
+  }
+}
