@@ -5,9 +5,9 @@ import { ThemeService } from "../sdk/themes.js";
 import { DialogService } from "../sdk/dialogs.js";
 
 const PLATFORM = {
-  version:"1.7.1-theme-lab",
-  build:"20260714.002",
-  releaseId:"CORE-THEME-LAB-002",
+  version:"1.7.0-theme-lab",
+  build:"20260714.001",
+  releaseId:"CORE-THEME-LAB-001",
   environment:"Development",
   modules:[]
 };
@@ -301,15 +301,7 @@ function renderShell(content,active="dashboard"){
     <div class="app-shell">
       <div class="dev-banner">CORE Development Build · ${PLATFORM.version} · ${PLATFORM.build}</div>
       <header class="topbar">
-        <button class="brand" data-route="dashboard">
-          <span class="brand-seal" aria-hidden="true">
-            <span class="seal-compass">⌁</span><span class="seal-letter">C</span>
-          </span>
-          <span class="brand-copy">
-            <strong>CORE</strong>
-            <small>Compliance &amp; Organizational Resource Engine</small>
-          </span>
-        </button>
+        <button class="brand" data-route="dashboard"><span class="brand-mark"><span>C</span></span><span><strong>CORE</strong><small>Compliance &amp; Operational Review Engine</small></span></button>
         <div class="top-actions"><button class="icon-btn" data-route="settings">⚙</button></div>
       </header>
       <main class="main">${content}</main>
@@ -327,12 +319,12 @@ function renderShell(content,active="dashboard"){
 function dock(route,label,active){ return `<button data-route="${route}" class="${active===route?"active":""}">${icons[route]||icons.actions}<span>${label}</span></button>`; }
 
 async function boot(){
-  const registry = await fetch("data/module-registry.json?v=20260714.002", {cache:"no-store"}).then(r=>{
+  const registry = await fetch("data/module-registry.json?v=20260714.001", {cache:"no-store"}).then(r=>{
     if(!r.ok) throw new Error(`Module registry HTTP ${r.status}`);
     return r.json();
   });
   for(const item of registry.filter(x=>x.enabled)){
-    const mod = await import(`${item.entry}?v=20260714.002`);
+    const mod = await import(`${item.entry}?v=20260714.001`);
     PLATFORM.modules.push(item);
     mod.default({router,state,storage,events,themes,dialogs,renderShell,toast,platform:PLATFORM});
   }

@@ -2,7 +2,7 @@
   {
     "id": "dashboard",
     "name": "Dashboard",
-    "version": "1.7.1-theme",
+    "version": "1.7.0-theme",
     "entry": "../modules/dashboard/dashboard.js",
     "enabled": true
   },
@@ -44,7 +44,7 @@
   {
     "id": "settings",
     "name": "Settings",
-    "version": "1.6.2",
+    "version": "1.7.0-theme",
     "entry": "../modules/settings/settings.js",
     "enabled": true
   },
