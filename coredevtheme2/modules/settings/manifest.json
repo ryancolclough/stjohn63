@@ -1,0 +1,10 @@
+{
+  "id": "settings",
+  "name": "Settings",
+  "version": "1.7.2-motion",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "themes",
+    "dialogs"
+  ]
+}

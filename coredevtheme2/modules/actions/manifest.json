@@ -1,0 +1,13 @@
+{
+  "id": "actions",
+  "name": "Action Centre",
+  "version": "1.0.1",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "storage",
+    "events",
+    "dialogs",
+    "review"
+  ],
+  "description": "Temple Board action tracking with modal editing."
+}

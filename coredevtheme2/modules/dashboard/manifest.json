@@ -1,0 +1,10 @@
+{
+  "id": "dashboard",
+  "name": "Dashboard",
+  "version": "1.7.2-motion",
+  "coreCompatibility": "1.x",
+  "dependencies": [
+    "review",
+    "export"
+  ]
+}

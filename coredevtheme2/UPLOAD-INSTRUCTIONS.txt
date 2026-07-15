@@ -1,0 +1,7 @@
+COREDEVTHEME 1.7.2-theme-lab
+
+Replace the complete coredevtheme folder. Do not replace core-dev. Upload index.html last.
+
+Logo: replace assets/branding/core-logo.png with any transparent PNG using the same filename.
+
+Open: https://ryancolclough.github.io/stjohn63/coredevtheme/?v=20260715.001
