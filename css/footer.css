@@ -274,26 +274,45 @@ footer.sj63-footer {
   }
 }
 
+/* Beat footer img { width:62px } and the height attribute, which otherwise
+   squash this wide wordmark into a tall sliver. */
+footer.sj63-footer a.sj63-ontario-mark,
 .sj63-footer-col a.sj63-ontario-mark{
-  display:block;
-  width:100%;
-  max-width:280px;
+  display:inline-block;
+  width:240px;
+  max-width:100%;
+  height:auto;
   margin:16px 0 12px;
-  padding:18px 4px;
+  padding:16px 0;
   border:0;
   background:transparent;
   line-height:0;
   box-sizing:border-box;
+  vertical-align:top;
 }
 
+footer.sj63-footer a.sj63-ontario-mark:hover,
 .sj63-footer-col a.sj63-ontario-mark:hover{
-  padding-left:4px;
+  padding-left:0;
   color:inherit;
 }
 
+footer.sj63-footer .sj63-ontario-mark img,
 .sj63-ontario-mark img{
-  width:100%;
-  height:auto;
-  filter:none;
+  display:block;
+  width:100% !important;
+  height:auto !important;
+  max-width:100%;
+  max-height:none;
+  margin:0 !important;
+  aspect-ratio:600 / 106;
   object-fit:contain;
+  filter:none;
+}
+
+@media (max-width: 700px) {
+  footer.sj63-footer a.sj63-ontario-mark,
+  .sj63-footer-col a.sj63-ontario-mark {
+    max-width: 80%;
+  }
 }
