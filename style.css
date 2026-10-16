@@ -641,10 +641,10 @@ nav a.active{
 
   width:100%;
 
-  aspect-ratio:1 / 1.15;
+  aspect-ratio:307 / 421;
 
   object-fit:cover;
-  object-position:center top;
+  object-position:center center;
 
   display:block;
 
