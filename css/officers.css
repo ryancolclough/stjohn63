@@ -255,6 +255,8 @@
     .year>summary{padding:15px 18px;color:#f4efe5;letter-spacing:.05em;font-size:15px}
     .table-scroll{overflow-x:auto;padding:0 0 4px}
     table{width:100%;border-collapse:collapse;min-width:640px;background:rgba(0,0,0,.2)}
+    table.masters{min-width:0}
+    table.masters td:first-child,table.masters th:first-child{white-space:nowrap;width:1%}
     th,td{text-align:left;padding:13px 14px;border-bottom:1px solid rgba(255,255,255,.075)}
     th{color:var(--brass-soft);text-transform:uppercase;letter-spacing:.16em;font-size:11px;background:rgba(200,164,93,.08)}
     td{color:#ddd3c1;font-size:14px}
