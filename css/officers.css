@@ -294,7 +294,7 @@
 .home-section-title{font-size:clamp(2rem,4vw,3.45rem);}
 .home-officers-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:30px;align-items:start;}
 .home-officer-card{text-align:center;background:transparent;border:0;padding:0;}
-.home-officer-card img,.officer-placeholder{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border-radius:0;box-shadow:0 22px 42px rgba(0,0,0,.48);background:#111;border:1px solid rgba(216,176,100,.12);}
+.home-officer-card img,.officer-placeholder{width:100%;aspect-ratio:307 / 421;object-fit:cover;object-position:center center;display:block;border-radius:0;box-shadow:0 22px 42px rgba(0,0,0,.48);background:#111;border:1px solid rgba(216,176,100,.12);}
 .officer-placeholder{display:grid;place-items:center;color:rgba(255,255,255,.35);font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;background:linear-gradient(180deg,#1a1a1a,#050505);}
 .home-officer-card h3{font-size:1.05rem;line-height:1.2;margin:16px 0 5px;color:#fff;font-weight:600;}
 .home-officer-card p{margin:0;color:var(--brass);font-family:Arial,sans-serif;font-size:.82rem;line-height:1.35;}
