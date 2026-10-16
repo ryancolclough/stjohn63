@@ -1391,30 +1391,19 @@ footer a:hover{
 
 }
 
-/* HOME: lodge name and Grand Lodge line on the opening screen */
+/* HOME: lodge name on the opening screen */
 .hero .hero-identity{
   margin:0 0 22px;
 }
 
-.hero .hero-lodge-name,
-.hero .hero-grand-lodge{
+.hero .hero-lodge-name{
   margin:0;
   max-width:680px;
   font-family:Cinzel,Georgia,serif;
-}
-
-.hero .hero-lodge-name{
   font-size:clamp(1.45rem,2.6vw,2.05rem);
   font-weight:500;
   line-height:1.2;
   color:#f7f1e6;
-}
-
-.hero .hero-grand-lodge{
-  margin-top:8px;
-  font-size:clamp(.88rem,1.45vw,1.08rem);
-  line-height:1.45;
-  color:var(--brass2);
 }
 
 /* UPCOMING EVENTS */
@@ -1548,30 +1537,6 @@ footer a:hover{
   outline:2px solid #fff;
 }
 
-.brand{
-  flex:0 0 auto;
-  min-width:0;
-  max-width:20rem;
-}
-
-.brand > div{
-  min-width:0;
-}
-
-.brand p{
-  max-width:17.5rem;
-  font-size:.68rem;
-  letter-spacing:.035em;
-  line-height:1.3;
-  text-wrap:balance;
-}
-
-.site-header,
-.header-inner{
-  height:auto;
-  min-height:88px;
-}
-
 .value-icon-wrap picture{
   display:contents;
 }
@@ -1630,30 +1595,9 @@ footer a:hover{
   nav.open{
     display:flex;
   }
-
-  .brand{
-    max-width:none;
-  }
-
-  .brand p{
-    max-width:min(18rem, calc(100vw - 8.5rem));
-    font-size:.64rem;
-    letter-spacing:.03em;
-    line-height:1.3;
-  }
 }
 
 @media(max-width:1000px){
-  .site-header,
-  .header-inner{
-    height:auto;
-    min-height:78px;
-  }
-
-  nav{
-    top:100%;
-  }
-
   .meet-card{
     padding:34px 24px;
   }
