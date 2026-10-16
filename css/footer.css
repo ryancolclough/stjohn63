@@ -307,6 +307,7 @@ footer.sj63-footer .sj63-ontario-mark img,
   margin:0 !important;
   aspect-ratio:600 / 106;
   object-fit:contain;
+  background:transparent !important;
   filter:none;
 }
 
