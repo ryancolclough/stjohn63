@@ -15,16 +15,18 @@
   <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="index.html">
       <img src="assets/lodge-mark.svg" alt="St. John's Lodge Logo">
       <div>
         <h2>St. John's Lodge No. 63</h2>
-        <p>A.F. &amp; A.M. Carleton Place</p>
+        <p>Grand Lodge of A.F. &amp; A.M. of Canada in the Province of Ontario · Carleton Place</p>
       </div>
     </a>
-    <button class="menu-btn" id="menuBtn" type="button">☰</button>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-controls="mainNav" aria-expanded="false">☰</button>
     <nav id="mainNav">
       <a href="index.html">Home</a>
       <a href="index.html#freemasonry">About Freemasonry</a>
@@ -38,7 +40,7 @@
     <a class="header-btn" href="contact.html">Interested in Joining?</a>
   </div>
 </header>
-<main class="legal-page">
+<main id="main" tabindex="-1" class="legal-page">
   <p class="legal-kicker">St. John's Lodge No. 63</p>
   <h1>Privacy Policy</h1>
   
@@ -91,9 +93,9 @@
       </section>
       <section class="sj63-footer-col sj63-affiliate">
         <h3>Ontario Masons</h3>
-        <!-- Ontario Masons official symbol and wordmark: not in this repo. Needed from Grand Lodge before it can be shown. assets/ontario-masons-placeholder.png is a text placeholder, not the official mark. -->
+        <a class="sj63-ontario-mark" href="https://ontariomasons.ca/" target="_blank" rel="noopener"><img src="assets/Ontario-Masons-Brand-Colour-Reverse-1-scaled.png" width="2560" height="451" alt="Ontario Masons" loading="lazy"></a>
         <p>Proudly affiliated with the Grand Lodge of A.F. &amp; A.M. of Canada in the Province of Ontario.</p>
-        <a href="https://grandlodge.on.ca/" target="_blank" rel="noopener">Visit Ontario Masons</a>
+        <a href="https://ontariomasons.ca/" target="_blank" rel="noopener">Visit Ontario Masons</a>
       </section>
     </div>
     <div class="sj63-footer-bottom">
@@ -106,7 +108,7 @@
       </div>
       <div class="sj63-seal-line">
         <i></i>
-        <img src="assets/faq/wax-seal-realistic.png" alt="St. John's Lodge No. 63 wax seal">
+        <img src="assets/faq/wax-seal-realistic.png" alt="St. John's Lodge No. 63 wax seal" width="156" height="170" loading="lazy">
         <i></i>
       </div>
       <p>St. John’s 63 All Rights Reserved © 2026</p>

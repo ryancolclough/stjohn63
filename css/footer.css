@@ -62,7 +62,7 @@
 
 .sj63-footer-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.15fr 1.05fr 1.25fr;
+  grid-template-columns: 1fr 1fr 1.05fr 1fr minmax(280px, 1.45fr);
   gap: 48px;
   padding: 82px 6vw 68px;
   border-bottom: 1px solid var(--sj63-line);
@@ -140,6 +140,7 @@
 .sj63-affiliate {
   padding-left: 44px;
   border-left: 1px solid var(--sj63-line);
+  min-width: min(260px, 100%);
 }
 
 .sj63-affiliate a {
@@ -271,4 +272,28 @@ footer.sj63-footer {
     width: 82px;
     height: 82px;
   }
+}
+
+.sj63-footer-col a.sj63-ontario-mark{
+  display:block;
+  width:100%;
+  max-width:280px;
+  margin:16px 0 12px;
+  padding:18px 4px;
+  border:0;
+  background:transparent;
+  line-height:0;
+  box-sizing:border-box;
+}
+
+.sj63-footer-col a.sj63-ontario-mark:hover{
+  padding-left:4px;
+  color:inherit;
+}
+
+.sj63-ontario-mark img{
+  width:100%;
+  height:auto;
+  filter:none;
+  object-fit:contain;
 }

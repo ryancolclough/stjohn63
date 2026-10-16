@@ -313,6 +313,19 @@ body{
   color:rgba(200,190,176,.82)!important;
 }
 
+.become-mason{
+  grid-column:1 / -1;
+  margin:2px 0 0;
+  text-align:center;
+}
+
+.become-mason a{
+  color:var(--brass-soft);
+  font-weight:700;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
 /* MOBILE */
 @media(max-width:900px){
   .site-nav.active,

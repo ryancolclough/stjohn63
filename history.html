@@ -17,6 +17,8 @@
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
 
 <header class="site-header">
 
@@ -42,7 +44,7 @@
 
         <p>
 
-          A.F. &amp; A.M. Carleton Place
+          Grand Lodge of A.F. &amp; A.M. of Canada in the Province of Ontario · Carleton Place
 
         </p>
 
@@ -50,7 +52,7 @@
 
     </a>
 
-    <button class="menu-btn" id="menuBtn">
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-controls="mainNav" aria-expanded="false">
 
       ☰
 
@@ -86,7 +88,7 @@
         Questions
 
       </a>
-      <a href="index.html#officers">
+      <a href="officers.html">
 
         Officers
 
@@ -115,7 +117,7 @@
   </div>
 
 </header>
-<main>
+<main id="main" tabindex="-1">
 
   <!-- HERO -->
 
@@ -199,7 +201,7 @@
         <img
           src="assets/carleton-archive.jpg"
           alt="Historic Carleton Place"
-        >
+         width="1536" height="1024" loading="lazy">
       </div>
 
     </div>
@@ -221,10 +223,10 @@
       <article class="time-item">
 
         <div class="time-icon">
-          <img
+          <picture><source srcset="assets/timeline-charter.webp" type="image/webp"><img
             src="assets/timeline-charter.png"
             alt="Lodge Chartered Icon"
-          >
+           width="1024" height="1024" loading="lazy"></picture>
         </div>
 
         <div class="time-copy">
@@ -237,7 +239,7 @@
 
           <p>
             St. John's Lodge No. 63 is constituted under the Grand Lodge
-            of Canada West, now the Grand Lodge of Canada in the Province
+            of Canada West, now the Grand Lodge of Ancient Free and Accepted Masons of Canada in the Province
             of Ontario.
           </p>
 
@@ -250,10 +252,10 @@
       <article class="time-item">
 
         <div class="time-icon">
-          <img
+          <picture><source srcset="assets/timeline-pillar.webp" type="image/webp"><img
             src="assets/timeline-pillar.png"
             alt="Building Foundations Icon"
-          >
+           width="1024" height="1024" loading="lazy"></picture>
         </div>
 
         <div class="time-copy">
@@ -279,10 +281,10 @@
       <article class="time-item">
 
         <div class="time-icon">
-          <img
+          <picture><source srcset="assets/timeline-lantern.webp" type="image/webp"><img
             src="assets/timeline-lantern.png"
             alt="Growth and Community Icon"
-          >
+           width="1024" height="1024" loading="lazy"></picture>
         </div>
 
         <div class="time-copy">
@@ -308,10 +310,10 @@
       <article class="time-item highlight">
 
         <div class="time-icon">
-          <img
+          <picture><source srcset="assets/timeline-flame.webp" type="image/webp"><img
             src="assets/timeline-flame.png"
             alt="Great Fire Icon"
-          >
+           width="1024" height="1024" loading="lazy"></picture>
         </div>
 
         <div class="time-copy">
@@ -337,10 +339,10 @@
       <article class="time-item">
 
         <div class="time-icon">
-          <img
+          <picture><source srcset="assets/timeline-broken-column.webp" type="image/webp"><img
             src="assets/timeline-broken-column.png"
             alt="Wartime Years Icon"
-          >
+           width="1024" height="1024" loading="lazy"></picture>
         </div>
 
         <div class="time-copy">
@@ -366,10 +368,10 @@
       <article class="time-item">
 
         <div class="time-icon">
-          <img
+          <picture><source srcset="assets/timeline-compass-rose.webp" type="image/webp"><img
             src="assets/timeline-compass-rose.png"
             alt="Modern Era Icon"
-          >
+           width="1024" height="1024" loading="lazy"></picture>
         </div>
 
         <div class="time-copy">
@@ -413,7 +415,7 @@
         <img
           src="assets/archive-book.jpg"
           alt="Historical record book"
-        >
+         width="1008" height="1560" loading="lazy">
 
         <div>
 
@@ -433,7 +435,7 @@
 
           <a
             class="record-btn"
-            href="https://efc700d0-e84f-486d-97d0-8fa0c1cae8d9.filesusr.com/ugd/5d9d9f_410aa9c9cb2c4ab28b1e236c7979aaa3.pdf"
+            href="assets/docs/history-of-st-johns-no-63.pdf"
             target="_blank"
             rel="noopener"
           >
@@ -449,7 +451,7 @@
         <img
           src="assets/archive-book.jpg"
           alt="Historical record book"
-        >
+         width="1008" height="1560" loading="lazy">
 
         <div>
 
@@ -468,7 +470,7 @@
 
           <a
             class="record-btn"
-            href="https://efc700d0-e84f-486d-97d0-8fa0c1cae8d9.filesusr.com/ugd/5d9d9f_81957101ea274715837e4375f2433748.pdf"
+            href="assets/docs/the-next-25-years.pdf"
             target="_blank"
             rel="noopener"
           >
@@ -484,7 +486,7 @@
         <img
           src="assets/archive-book.jpg"
           alt="Historical record book"
-        >
+         width="1008" height="1560" loading="lazy">
 
         <div>
 
@@ -503,7 +505,7 @@
 
           <a
             class="record-btn"
-            href="https://efc700d0-e84f-486d-97d0-8fa0c1cae8d9.filesusr.com/ugd/5d9d9f_4af0980eade44a628128a2cc11e76f3b.pdf"
+            href="assets/docs/history-of-st-johns-supplement.pdf"
             target="_blank"
             rel="noopener"
           >
@@ -575,9 +577,9 @@
       </section>
       <section class="sj63-footer-col sj63-affiliate">
         <h3>Ontario Masons</h3>
-        <!-- Ontario Masons official symbol and wordmark: not in this repo. Needed from Grand Lodge before it can be shown. assets/ontario-masons-placeholder.png is a text placeholder, not the official mark. -->
+        <a class="sj63-ontario-mark" href="https://ontariomasons.ca/" target="_blank" rel="noopener"><img src="assets/Ontario-Masons-Brand-Colour-Reverse-1-scaled.png" width="2560" height="451" alt="Ontario Masons" loading="lazy"></a>
         <p>Proudly affiliated with the Grand Lodge of A.F. &amp; A.M. of Canada in the Province of Ontario.</p>
-        <a href="https://grandlodge.on.ca/" target="_blank" rel="noopener">Visit Ontario Masons</a>
+        <a href="https://ontariomasons.ca/" target="_blank" rel="noopener">Visit Ontario Masons</a>
       </section>
     </div>
     <div class="sj63-footer-bottom">
@@ -590,7 +592,7 @@
       </div>
       <div class="sj63-seal-line">
         <i></i>
-        <img src="assets/faq/wax-seal-realistic.png" alt="St. John's Lodge No. 63 wax seal">
+        <img src="assets/faq/wax-seal-realistic.png" alt="St. John's Lodge No. 63 wax seal" width="156" height="170" loading="lazy">
         <i></i>
       </div>
       <p>St. John’s 63 All Rights Reserved © 2026</p>

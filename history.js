@@ -1,1 +1,15 @@
-const b=document.getElementById('menuBtn'),n=document.getElementById('mainNav');if(b&&n){b.addEventListener('click',()=>n.classList.toggle('open'));n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>n.classList.remove('open')));}
+const menuButton = document.getElementById('menuBtn');
+const mainNav = document.getElementById('mainNav');
+
+if (menuButton && mainNav) {
+  menuButton.addEventListener('click', () => {
+    const open = mainNav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mainNav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
