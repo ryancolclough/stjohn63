@@ -22,22 +22,11 @@
 
 </head>
 
-  <script>
-  const audio = document.getElementById('lodgeAudio');
-  const button = document.querySelector('.audio-btn');
-
-  function toggleAudio() {
-    if (audio.paused) {
-      audio.play();
-      button.innerHTML = '❚❚ Pause Music';
-    } else {
-      audio.pause();
-      button.innerHTML = '▶ Play Music';
-    }
-  }
-</script>
+  
 
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
 
 <header class="site-header">
 
@@ -63,7 +52,7 @@
 
         <p>
 
-          A.F. &amp; A.M. Carleton Place
+          Grand Lodge of A.F. &amp; A.M. of Canada in the Province of Ontario · Carleton Place
 
         </p>
 
@@ -71,7 +60,7 @@
 
     </a>
 
-    <button class="menu-btn" id="menuBtn">
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-controls="mainNav" aria-expanded="false">
 
       ☰
 
@@ -107,7 +96,7 @@
         Questions
 
       </a>
-      <a href="#officers">
+      <a href="officers.html">
 
         Officers
 
@@ -137,7 +126,7 @@
 
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 
   <!-- HERO -->
 
@@ -201,36 +190,33 @@
 
         </a>
 
-          <button class="audio-btn" onclick="toggleAudio()">
+          <button class="audio-btn" type="button" onclick="toggleAudio()">
   ▶ Light the Lantern
 </button>
 
-<audio id="lodgeAudio">
+<audio id="lodgeAudio" preload="none">
   <source src="assets/audio/lightinthedark.mp3" type="audio/mpeg">
 </audio>
-        <script>
-function toggleAudio() {
-  const audio = document.getElementById('lodgeAudio');
-  const button = document.querySelector('.audio-btn');
-
-  if (audio.paused) {
-    audio.play();
-    button.innerHTML = '❚❚ Pause Music';
-  } else {
-    audio.pause();
-    button.innerHTML = '▶ Play Music';
-  }
-}
-</script>
+        
       </div>
 
     </div>
 
   </section>
 
+  <section class="meet-band" aria-labelledby="we-meet-title">
+    <article class="meet-card">
+      <h2 id="we-meet-title">We Meet</h2>
+      <p>Regular meetings: 2nd Wednesday of the month, 7:30 PM</p>
+      <p>55 Bridge Street<br>Carleton Place, ON K7C 2V3</p>
+      <p>Visiting brethren are always welcome.</p>
+      <a class="text-btn" href="https://ontariomasons.ca/becoming-a-mason/" target="_blank" rel="noopener">Interested in becoming a Mason?</a>
+    </article>
+  </section>
+
   <!-- VALUES -->
 
-  <section class="values.values-upgraded" id="freemasonry">
+  <section class="values values-upgraded" id="freemasonry">
 
   <article class="value-card">
 
@@ -238,7 +224,7 @@ function toggleAudio() {
 
     <div class="value-icon-wrap">
 
-      <img 
+      <picture><source srcset="assets/brotherly-love-icon.webp" type="image/webp"><img 
 
         class="value-medallion"
 
@@ -246,7 +232,7 @@ function toggleAudio() {
 
         alt="Brotherly Love"
 
-      >
+       width="510" height="513" loading="lazy"></picture>
 
     </div>
 
@@ -270,7 +256,7 @@ function toggleAudio() {
 
     <div class="value-icon-wrap">
 
-      <img 
+      <picture><source srcset="assets/relief-icon.webp" type="image/webp"><img 
 
         class="value-medallion"
 
@@ -278,7 +264,7 @@ function toggleAudio() {
 
         alt="Relief"
 
-      >
+       width="510" height="513" loading="lazy"></picture>
 
     </div>
 
@@ -302,7 +288,7 @@ function toggleAudio() {
 
     <div class="value-icon-wrap">
 
-      <img 
+      <picture><source srcset="assets/truth-icon.webp" type="image/webp"><img 
 
         class="value-medallion"
 
@@ -310,7 +296,7 @@ function toggleAudio() {
 
         alt="Truth"
 
-      >
+       width="510" height="513" loading="lazy"></picture>
 
     </div>
 
@@ -362,7 +348,7 @@ function toggleAudio() {
 
         We are a Masonic Lodge under the jurisdiction
 
-        of the Grand Lodge of Canada in the Province of Ontario.
+        of the Grand Lodge of Ancient Free and Accepted Masons of Canada in the Province of Ontario.
 
       </p>
 
@@ -376,7 +362,7 @@ function toggleAudio() {
 
       </p>
 
-      <a class="text-btn" href="#about">
+      <a class="text-btn" href="history.html">
 
         Learn More About Us
 
@@ -492,7 +478,7 @@ function toggleAudio() {
 
           alt="W. Bro. Wesley Thompson"
 
-        >
+         width="307" height="421" loading="lazy">
 
         <h3>
 
@@ -515,7 +501,7 @@ function toggleAudio() {
 
           alt="Bro. Peter Schmidt"
 
-        >
+         width="307" height="421" loading="lazy">
 
         <h3>
 
@@ -539,7 +525,7 @@ function toggleAudio() {
 
           alt="Bro. Greg Forsyth"
 
-        >
+         width="307" height="421" loading="lazy">
 
         <h3>
 
@@ -563,7 +549,7 @@ function toggleAudio() {
 
           alt="Bro. Mark Dorland"
 
-        >
+         width="307" height="421" loading="lazy">
 
         <h3>
 
@@ -586,7 +572,7 @@ function toggleAudio() {
 
           alt="W. Bro. Andrew Valley"
 
-        >
+         width="307" height="421" loading="lazy">
 
         <h3>
 
@@ -790,9 +776,9 @@ function toggleAudio() {
 
       <section class="sj63-footer-col sj63-affiliate">
         <h3>Ontario Masons</h3>
-        <!-- Ontario Masons official symbol and wordmark: not in this repo. Needed from Grand Lodge before it can be shown. assets/ontario-masons-placeholder.png is a text placeholder, not the official mark. -->
+        <a class="sj63-ontario-mark" href="https://ontariomasons.ca/" target="_blank" rel="noopener"><img src="assets/Ontario-Masons-Brand-Colour-Reverse-1-scaled.png" width="2560" height="451" alt="Ontario Masons" loading="lazy"></a>
         <p>Proudly affiliated with the Grand Lodge of A.F. &amp; A.M. of Canada in the Province of Ontario.</p>
-        <a href="https://grandlodge.on.ca/" target="_blank" rel="noopener">Visit Ontario Masons</a>
+        <a href="https://ontariomasons.ca/" target="_blank" rel="noopener">Visit Ontario Masons</a>
       </section>
 
     </div>
@@ -808,7 +794,7 @@ function toggleAudio() {
 
       <div class="sj63-seal-line">
         <i></i>
-        <img src="assets/faq/wax-seal-realistic.png" alt="St. John’s Lodge No. 63 wax seal">
+        <img src="assets/faq/wax-seal-realistic.png" alt="St. John’s Lodge No. 63 wax seal" width="156" height="170" loading="lazy">
         <i></i>
       </div>
 

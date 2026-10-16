@@ -22,6 +22,8 @@
 
 
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
 
   <!-- HEADER -->
   
@@ -49,7 +51,7 @@
 
         <p>
 
-          A.F. &amp; A.M. Carleton Place
+          Grand Lodge of A.F. &amp; A.M. of Canada in the Province of Ontario · Carleton Place
 
         </p>
 
@@ -57,7 +59,7 @@
 
     </a>
 
-    <button class="menu-btn" id="menuBtn">
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-controls="mainNav" aria-expanded="false">
 
       ☰
 
@@ -124,7 +126,7 @@
 </header>
 
   <!-- CONTACT PAGE -->
-  <main class="contact-page">
+  <main id="main" tabindex="-1" class="contact-page">
 
     <section class="contact-hero">
       <img
@@ -188,6 +190,7 @@
         </label>
 
         <button type="submit">Send Message</button>
+        <p class="become-mason"><a href="https://ontariomasons.ca/becoming-a-mason/" target="_blank" rel="noopener">Interested in becoming a Mason?</a></p>
       </form>
 
       <aside class="contact-info">
@@ -269,9 +272,9 @@
 
       <section class="sj63-footer-col sj63-affiliate">
         <h3>Ontario Masons</h3>
-        <!-- Ontario Masons official symbol and wordmark: not in this repo. Needed from Grand Lodge before it can be shown. assets/ontario-masons-placeholder.png is a text placeholder, not the official mark. -->
+        <a class="sj63-ontario-mark" href="https://ontariomasons.ca/" target="_blank" rel="noopener"><img src="assets/Ontario-Masons-Brand-Colour-Reverse-1-scaled.png" width="2560" height="451" alt="Ontario Masons" loading="lazy"></a>
         <p>Proudly affiliated with the Grand Lodge of A.F. &amp; A.M. of Canada in the Province of Ontario.</p>
-        <a href="https://grandlodge.on.ca/" target="_blank" rel="noopener">Visit Ontario Masons</a>
+        <a href="https://ontariomasons.ca/" target="_blank" rel="noopener">Visit Ontario Masons</a>
       </section>
 
     </div>
@@ -287,7 +290,7 @@
 
       <div class="sj63-seal-line">
         <i></i>
-        <img src="assets/faq/wax-seal-realistic.png" alt="St. John’s Lodge No. 63 wax seal">
+        <img src="assets/faq/wax-seal-realistic.png" alt="St. John’s Lodge No. 63 wax seal" width="156" height="170" loading="lazy">
         <i></i>
       </div>
 
