@@ -1468,6 +1468,12 @@ footer a:hover{
   .events{
     grid-template-columns:1fr;
   }
+
+  .events-section .section-head{
+    width:min(1380px,92vw);
+    margin-left:auto;
+    margin-right:auto;
+  }
 }
 
 /* PRIVACY, ACCESSIBILITY, TERMS */
