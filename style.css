@@ -1523,6 +1523,17 @@ footer a:hover{
   color:var(--brass2);
 }
 
+.not-found-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:22px;
+}
+
+.not-found-links .text-btn{
+  margin-top:0;
+}
+
 .skip-link{
   position:fixed;
   left:12px;
