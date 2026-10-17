@@ -19,6 +19,16 @@ if (lodgeAudio && audioButton) {
   });
 }
 
+if (window.SJ63Meetings) {
+  var nextMeetingLine = document.getElementById('next-meeting-line');
+  if (nextMeetingLine) {
+    var meeting = window.SJ63Meetings.nextRegularMeeting(new Date());
+    var line = window.SJ63Meetings.meetingLine(meeting);
+    if (line) nextMeetingLine.textContent = line;
+  }
+  window.SJ63Meetings.hidePastEvents(document, new Date());
+}
+
 function toggleAudio() {
   if (!lodgeAudio || !audioButton) return;
 

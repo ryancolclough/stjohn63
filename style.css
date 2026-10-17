@@ -1558,6 +1558,36 @@ footer a:hover{
   display:contents;
 }
 
+.next-meeting{
+  background:#121212;
+  border-bottom:1px solid var(--line);
+}
+
+.next-meeting-card{
+  width:min(980px,100%);
+  margin:0 auto;
+  padding:28px 46px;
+}
+
+.next-meeting h2{
+  margin:0 0 10px;
+  color:#f3e6c8;
+  font-family:Cinzel,Georgia,serif;
+  font-size:.84rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  line-height:1.4;
+  text-transform:uppercase;
+}
+
+.next-meeting-line{
+  margin:0;
+  color:#f4efe6;
+  font-size:1.05rem;
+  line-height:1.55;
+  text-wrap:balance;
+}
+
 .meet-band{
   border-bottom:1px solid var(--line);
   background:linear-gradient(145deg,#121212,#0d0d0f);
@@ -1615,6 +1645,14 @@ footer a:hover{
 }
 
 @media(max-width:1000px){
+  .next-meeting-card{
+    padding:28px 24px;
+  }
+
+  .next-meeting-line{
+    font-size:1rem;
+  }
+
   .meet-card{
     padding:34px 24px;
   }
